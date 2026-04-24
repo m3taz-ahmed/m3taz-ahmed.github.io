@@ -46,8 +46,27 @@ body {
 }
 
 section {
-    padding: 8rem 0;
+    padding: 10rem 0; /* Deep breathability */
     position: relative;
+}
+
+.section-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 6rem; /* Wide gap for impact */
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+    border-radius: 2px;
 }
 
 /* --- Typography --- */
@@ -244,8 +263,32 @@ nav .container {
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 2.5rem;
-    transition: var(--transition);
+    padding: 3rem; /* More padding inside cards */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-accent);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.glass-card:hover::before {
+    left: 100%;
 }
 
 .glass-card:hover {
@@ -277,11 +320,17 @@ nav .container {
 .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+    border-radius: 10px;
     width: 0;
-    transition: width 1.5s ease-out;
+    transition: width 1.5s cubic-bezier(0.1, 0, 0.2, 1);
 }
 
-/* --- Stats --- */
+.skill-item h4 {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-code);
+}
+
+/* --- Stats Grid --- */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -351,8 +400,15 @@ nav .container {
 /* --- Projects --- */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3.5rem; /* Massive breathing room */
+}
+
+/* --- Skills --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
 }
 
 .project-card {
@@ -476,15 +532,15 @@ nav .container {
 /* --- Education Grid --- */
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem; /* Increased gap */
 }
 
 /* --- Testimonials --- */
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem; /* Increased gap */
 }
 
 /* --- Back to Top --- */

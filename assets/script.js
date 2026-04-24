@@ -104,6 +104,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .stats-grid').forEach(el => revealObserver.observe(el));
 
+// Staggered children reveal
+document.querySelectorAll('.projects-grid, .skills-grid, .education-grid, .testimonials-grid').forEach(grid => {
+    const children = grid.children;
+    Array.from(children).forEach((child, index) => {
+        child.classList.add('reveal');
+        child.style.transitionDelay = `${index * 0.15}s`;
+        revealObserver.observe(child);
+    });
+});
+
 // Active Nav Link on Scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinksAll = document.querySelectorAll('.nav-links a');
