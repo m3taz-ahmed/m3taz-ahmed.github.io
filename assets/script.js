@@ -1,5 +1,19 @@
+// === LOADER DISMISSAL (runs first, always) ===
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.add('hidden');
+    }, 800);
+});
+// Failsafe: hide loader after 3s even if load event issues
+setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) loader.classList.add('hidden');
+}, 3000);
+
 // Particles Background Configuration
-particlesJS('particles-js', {
+try {
+    particlesJS('particles-js', {
     "particles": {
         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
         "color": { "value": "#00d4ff" },
@@ -16,6 +30,9 @@ particlesJS('particles-js', {
     },
     "retina_detect": true
 });
+} catch (e) {
+    console.warn('Particles.js not loaded:', e);
+}
 
 // Typewriter Effect
 const typewriter = document.getElementById('typewriter');
@@ -137,12 +154,6 @@ backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Page Loading Animation
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-    }, 800);
-});
 
 // Add reveal styles dynamically
 const style = document.createElement('style');
