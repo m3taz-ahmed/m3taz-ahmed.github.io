@@ -8,6 +8,33 @@
     <meta name="description"
         content="Portfolio of Moataz Ahmed, Seasoned Software Engineer with 15+ years experience. Expert in Laravel 12, Filament v4, and Audit-Ready System Design.">
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="Moataz Ahmed | Lead Systems Architect">
+    <meta property="og:description" content="Seasoned Software Engineer with 15+ years experience. Expert in Laravel 12, Filament v4, and Audit-Ready System Design.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://m3taz-ahmed.github.io/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Moataz Ahmed | Lead Systems Architect">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Moataz Ahmed",
+        "jobTitle": "Lead Systems Architect",
+        "url": "https://m3taz-ahmed.github.io/",
+        "sameAs": [
+            "https://github.com/m3taz-ahmed",
+            "https://linkedin.com/in/m3taz-ahmed"
+        ],
+        "knowsAbout": ["Laravel", "PHP", "Filament", "System Architecture", "Internal Audit"]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,18 +50,27 @@
 </head>
 
 <body>
+    <!-- Loading Screen -->
+    <div id="loader" class="page-loader">
+        <span class="loader-text">[M3TAZ.<span class="gradient-text">AHMED</span>]</span>
+    </div>
+
     <div id="particles-js"></div>
 
     <nav>
         <div class="container">
             <a href="#" class="logo">[M3TAZ.<span class="gradient-text">AHMED</span>]</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Professional Journey</a></li>
-                <li><a href="#projects">Case Studies</a></li>
+                <li><a href="#experience">Journey</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Stack</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <a href="https://github.com/m3taz-ahmed" target="_blank"
                     style="color: var(--text-heading); font-size: 1.2rem;"><i class="fab fa-github"></i></a>
@@ -68,9 +104,9 @@
                 landscape.
             </p>
             <p style="margin-bottom: 2rem;">
-                I specialize in **Laravel 12** and **Filament v4/v5**, focusing on building secure, scalable
-                architectures for complex business logic. My unique dual-expertise in **Internal Audit & System
-                Integrity** allows me to deliver "audit-ready" applications that ensure 100% data consistency and
+                I specialize in <strong>Laravel 12</strong> and <strong>Filament v4/v5</strong>, focusing on building secure, scalable
+                architectures for complex business logic. My unique dual-expertise in <strong>Internal Audit & System
+                Integrity</strong> allows me to deliver "audit-ready" applications that ensure 100% data consistency and
                 compliance.
             </p>
             <div class="stats-grid">
@@ -91,6 +127,9 @@
                     <span class="stat-label">% System Uptime</span>
                 </div>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="assets/Moataz-Ahmed-Resume.pdf" class="btn btn-outline" target="_blank"><i class="fas fa-download"></i> Download Full Resume</a>
         </div>
     </section>
 
@@ -177,10 +216,10 @@
                 </div>
                 <h3>SkyBridge Ticketing Platform</h3>
                 <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;">Engineered a high-traffic system with **99.9% uptime** during
+                    <li style="margin-bottom: 0.5rem;">Engineered a high-traffic system with <strong>99.9% uptime</strong> during
                         peak hours.</li>
-                    <li style="margin-bottom: 0.5rem;">Integrated RESTful APIs and AJAX for **real-time ticket
-                        availability**.</li>
+                    <li style="margin-bottom: 0.5rem;">Integrated RESTful APIs and AJAX for <strong>real-time ticket
+                        availability</strong>.</li>
                     <li>Secure payment gateway integration with optimized database schema.</li>
                 </ul>
                 <div class="tech-stack" style="margin-top: 1.5rem;">
@@ -202,9 +241,9 @@
                 </div>
                 <h3>Raunautica Maritime Dashboard</h3>
                 <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;">**Resource Orchestration:** Transformed traditional marina
+                    <li style="margin-bottom: 0.5rem;"><strong>Resource Orchestration:</strong> Transformed traditional marina
                         docking into a fully automated digital workflow.</li>
-                    <li style="margin-bottom: 0.5rem;">**Real-time Integration:** Handled docking requests using
+                    <li style="margin-bottom: 0.5rem;"><strong>Real-time Integration:</strong> Handled docking requests using
                         high-performance Eloquent relationships.</li>
                     <li>Integrated Redis caching for inventory tracking.</li>
                 </ul>
@@ -227,9 +266,9 @@
                 </div>
                 <h3>Business Belarabi Directory</h3>
                 <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;">**Custom Survey Engine:** Built a high-flexibility module using
-                        **Laravel 12 & Filament 4**.</li>
-                    <li style="margin-bottom: 0.5rem;">**Decision Support:** Automated export of clean, data-only
+                    <li style="margin-bottom: 0.5rem;"><strong>Custom Survey Engine:</strong> Built a high-flexibility module using
+                        <strong>Laravel 12 & Filament 4</strong>.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Decision Support:</strong> Automated export of clean, data-only
                         PDF/Excel reports for executives.</li>
                     <li>Optimized search for near-instant response times across 200+ businesses.</li>
                 </ul>
@@ -252,9 +291,9 @@
                 </div>
                 <h3>IshraqMed Healthcare Portal</h3>
                 <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;">**Notification Architecture:** Real-time push notifications via
+                    <li style="margin-bottom: 0.5rem;"><strong>Notification Architecture:</strong> Real-time push notifications via
                         GraphQL API.</li>
-                    <li>**Business Impact:** Successfully boosted platform engagement and appointment conversion.</li>
+                    <li><strong>Business Impact:</strong> Successfully boosted platform engagement and appointment conversion.</li>
                 </ul>
                 <div class="tech-stack" style="margin-top: 1.5rem;">
                     <span class="tech-tag">GraphQL</span>
@@ -306,6 +345,81 @@
         </div>
     </section>
 
+    <section id="education" class="container">
+        <h2 class="section-title">Education & <span class="gradient-text">Growth</span></h2>
+        <div class="education-grid">
+            <div class="glass-card reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <i class="fas fa-graduation-cap gradient-text" style="font-size: 2rem;"></i>
+                    <div>
+                        <h3>Bachelor of Commerce</h3>
+                        <h4 style="color: var(--primary-accent);">Ain Shams University</h4>
+                    </div>
+                </div>
+                <p style="color: var(--text-dim);">Foundational education in business administration and management — providing a unique lens for building audit-ready enterprise systems.</p>
+            </div>
+            <div class="glass-card reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <i class="fas fa-code gradient-text" style="font-size: 2rem;"></i>
+                    <div>
+                        <h3>ITI — Professional Training</h3>
+                        <h4 style="color: var(--primary-accent);">Information Technology Institute</h4>
+                    </div>
+                </div>
+                <p style="color: var(--text-dim);">Intensive 9-month professional program in software development, covering web technologies, databases, and enterprise application architecture.</p>
+            </div>
+            <div class="glass-card reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <i class="fas fa-rocket gradient-text" style="font-size: 2rem;"></i>
+                    <div>
+                        <h3>Self-Taught Since 2006</h3>
+                        <h4 style="color: var(--primary-accent);">Continuous Learning</h4>
+                    </div>
+                </div>
+                <p style="color: var(--text-dim);">Nearly two decades of hands-on learning across PHP, Laravel, Node.js, and modern web architecture. Always staying up-to-date with the latest tools.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="container">
+        <h2 class="section-title">What People <span class="gradient-text">Say</span></h2>
+        <div class="testimonials-grid">
+            <div class="glass-card reveal">
+                <div style="margin-bottom: 1rem; color: var(--primary-accent);"><i class="fas fa-quote-left" style="font-size: 1.5rem;"></i></div>
+                <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--text-dim);">"Moataz didn't just build our system — he understood our business first. The audit module he designed saved us weeks of manual work every quarter."</p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">A</div>
+                    <div>
+                        <strong style="color: var(--text-heading);">Ahmed R.</strong>
+                        <span style="display: block; font-size: 0.8rem; color: var(--text-dim);">Operations Director</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card reveal">
+                <div style="margin-bottom: 1rem; color: var(--primary-accent);"><i class="fas fa-quote-left" style="font-size: 1.5rem;"></i></div>
+                <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--text-dim);">"We needed someone who could handle backend complexity without hand-holding. Moataz delivered a clean architecture and the dashboard was exactly what we needed."</p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">S</div>
+                    <div>
+                        <strong style="color: var(--text-heading);">Sarah M.</strong>
+                        <span style="display: block; font-size: 0.8rem; color: var(--text-dim);">Product Manager</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card reveal">
+                <div style="margin-bottom: 1rem; color: var(--primary-accent);"><i class="fas fa-quote-left" style="font-size: 1.5rem;"></i></div>
+                <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--text-dim);">"What sets Moataz apart is his attention to data integrity. He caught edge cases in our booking flow that nobody else noticed. Solid engineer."</p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">O</div>
+                    <div>
+                        <strong style="color: var(--text-heading);">Omar K.</strong>
+                        <span style="display: block; font-size: 0.8rem; color: var(--text-dim);">CTO, Tech Startup</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="container">
         <h2 class="section-title">Initiate <span class="gradient-text">Direct Line</span></h2>
         <div class="contact-container">
@@ -338,7 +452,9 @@
                 </div>
             </div>
             <div class="glass-card">
-                <form action="https://formspree.io/f/m3taz.ahmed@gmail.com" method="POST" class="contact-form">
+                <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Portfolio Contact — m3taz-ahmed.github.io">
                     <input type="text" name="name" placeholder="Full Name" required style="margin-bottom: 1rem;">
                     <input type="email" name="email" placeholder="Email Address" required style="margin-bottom: 1rem;">
                     <textarea name="message" rows="5" placeholder="Project details or technical challenge..." required
@@ -357,6 +473,11 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="assets/script.js"></script>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 </body>
 
 </html>

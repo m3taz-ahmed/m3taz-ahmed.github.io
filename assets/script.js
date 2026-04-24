@@ -27,7 +27,7 @@ let typeSpeed = 100;
 
 function type() {
     const currentPhrase = phrases[phraseIndex];
-    
+
     if (isDeleting) {
         typewriter.textContent = currentPhrase.substring(0, charIndex - 1);
         charIndex--;
@@ -40,7 +40,7 @@ function type() {
 
     if (!isDeleting && charIndex === currentPhrase.length) {
         isDeleting = true;
-        typeSpeed = 2000; // Pause at the end
+        typeSpeed = 2000;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
@@ -50,25 +50,26 @@ function type() {
     setTimeout(type, typeSpeed);
 }
 
-// Stats Counter Animation
+// Stats Counter Animation (fixed for decimals like 99.9)
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-number');
-    const speed = 200;
-
     counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const inc = target / speed;
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const isDecimal = !Number.isInteger(target);
+        const duration = 2000;
+        const steps = 60;
+        const stepTime = duration / steps;
+        let current = 0;
 
-            if (count < target) {
-                counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 1);
+        const timer = setInterval(() => {
+            current += target / steps;
+            if (current >= target) {
+                counter.innerText = isDecimal ? target.toFixed(1) : Math.round(target);
+                clearInterval(timer);
             } else {
-                counter.innerText = target;
+                counter.innerText = isDecimal ? current.toFixed(1) : Math.ceil(current);
             }
-        };
-        updateCount();
+        }, stepTime);
     });
 }
 
@@ -86,7 +87,64 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .stats-grid').forEach(el => revealObserver.observe(el));
 
-// Add reveal styles dynamically if they aren't in CSS
+// Active Nav Link on Scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinksAll = document.querySelectorAll('.nav-links a');
+
+const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinksAll.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + entry.target.id) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+
+sections.forEach(section => navObserver.observe(section));
+
+// Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
+
+// Back to Top Button
+const backToTop = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Page Loading Animation
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+    }, 800);
+});
+
+// Add reveal styles dynamically
 const style = document.createElement('style');
 style.textContent = `
     .reveal {
@@ -106,7 +164,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Start animations
+// Start typewriter
 document.addEventListener('DOMContentLoaded', () => {
     type();
 });
