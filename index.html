@@ -82,20 +82,68 @@
     </nav>
 
     <header class="hero">
+        <div class="hero-visual-bg"></div>
         <div class="container">
-            <h1 class="reveal">Architecting <span class="gradient-text">Audit-Ready</span><br>Scalable Systems</h1>
-            <div class="name-container reveal">
-                <span class="name-tag-label">SYSTEM_ARCHITECT_ID</span>
-                <h2 class="hero-name" data-text="MOATAZ AHMED">MOATAZ AHMED</h2>
-            </div>
-            <p class="hero-subtitle">Senior <span class="typewriter-text" id="typewriter"></span></p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">Explore My Work</a>
-                <a href="assets/Moataz-Ahmed-Resume.pdf" class="btn btn-outline" target="_blank">Full Resume <i
-                        class="fas fa-file-pdf"></i></a>
+            <div class="hero-content">
+                <div class="hero-text-side">
+                    <h1 class="reveal">Architecting <span class="gradient-text">Audit-Ready</span><br>Scalable Systems</h1>
+                    <div class="name-container reveal">
+                        <span class="name-tag-label">SYSTEM_ARCHITECT_ID</span>
+                        <h2 class="hero-name" data-text="MOATAZ AHMED">MOATAZ AHMED</h2>
+                    </div>
+                    <p class="hero-subtitle">Senior <span class="typewriter-text" id="typewriter"></span></p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary magnetic">Explore My Work</a>
+                        <a href="assets/Moataz-Ahmed-Resume.pdf" class="btn btn-outline magnetic" target="_blank">Full Resume <i
+                                class="fas fa-file-pdf"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image-side reveal">
+                    <div class="profile-frame">
+                        <img src="assets/moataz-ahmed-pic.jpg" alt="Moataz Ahmed" class="profile-pic">
+                        <div class="frame-decoration"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
+
+    <section id="how-i-work" class="container">
+        <h2 class="section-title">How I <span class="gradient-text">Work</span></h2>
+        <div class="pipeline-container">
+            <div class="pipeline-item reveal">
+                <div class="pipeline-icon"><i class="fas fa-search"></i></div>
+                <div class="pipeline-content">
+                    <h3>Discovery</h3>
+                    <p>Deep analysis of business logic and audit requirements before writing a single line of code.</p>
+                </div>
+            </div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-item reveal">
+                <div class="pipeline-icon"><i class="fas fa-drafting-compass"></i></div>
+                <div class="pipeline-content">
+                    <h3>Architecture</h3>
+                    <p>Designing scalable, normalized database schemas and SOLID backend structures.</p>
+                </div>
+            </div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-item reveal">
+                <div class="pipeline-icon"><i class="fas fa-vials"></i></div>
+                <div class="pipeline-content">
+                    <h3>TDD & Dev</h3>
+                    <p>Implementing features with test-driven development to ensure zero regressions.</p>
+                </div>
+            </div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-item reveal">
+                <div class="pipeline-icon"><i class="fas fa-shield-check"></i></div>
+                <div class="pipeline-content">
+                    <h3>Audit-Ready</h3>
+                    <p>Final system integrity check ensuring 100% data consistency and compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="about" class="container">
         <h2 class="section-title">Senior <span class="gradient-text">Architect</span> Profile</h2>
@@ -213,145 +261,127 @@
         <div class="projects-grid">
             <!-- SkyBridge -->
             <div class="glass-card project-card reveal floating">
-                <div
-                    style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
-                    <i class="fas fa-ticket-alt gradient-text" style="font-size: 2.5rem;"></i>
-                    <span class="tech-tag">28K+ Bookings</span>
+                <div class="project-mockup">
+                    <img src="assets/skybridge.png" alt="SkyBridge Platform">
+                    <div class="mockup-overlay"></div>
                 </div>
-                <h3>SkyBridge Ticketing Platform</h3>
-                <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;">Engineered a high-traffic system with <strong>99.9%
-                            uptime</strong> during
-                        peak hours.</li>
-                    <li style="margin-bottom: 0.5rem;">Integrated RESTful APIs and AJAX for <strong>real-time ticket
-                            availability</strong>.</li>
-                    <li>Secure payment gateway integration with optimized database schema.</li>
-                </ul>
-                <div class="tech-stack" style="margin-top: 1.5rem;">
-                    <span class="tech-tag">Laravel</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">Real-time</span>
+                <div class="project-info">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <i class="fas fa-ticket-alt gradient-text" style="font-size: 2rem;"></i>
+                        <span class="tech-tag">28K+ Bookings</span>
+                    </div>
+                    <h3>SkyBridge Ticketing Platform</h3>
+                    <p class="project-desc">Engineered a high-traffic system with 99.9% uptime during peak hours.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Real-time</span>
+                    </div>
+                    <a href="https://facilitiesservices.sa/welcome" target="_blank" class="project-link">Explore <i class="fas fa-external-link-alt"></i></a>
                 </div>
-                <a href="https://facilitiesservices.sa" target="_blank"
-                    style="display: block; margin-top: 1.5rem; color: var(--primary-accent); text-decoration: none; font-weight: 600;">Visit
-                    Platform <i class="fas fa-external-link-alt"></i></a>
             </div>
 
             <!-- Raunautica -->
             <div class="glass-card project-card reveal">
-                <div
-                    style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
-                    <i class="fas fa-anchor gradient-text" style="font-size: 2.5rem;"></i>
-                    <span class="tech-tag">Automation</span>
+                <div class="project-mockup">
+                    <img src="assets/raunautica.png" alt="Raunautica Dashboard">
+                    <div class="mockup-overlay"></div>
                 </div>
-                <h3>Raunautica Maritime Dashboard</h3>
-                <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;"><strong>Resource Orchestration:</strong> Transformed traditional
-                        marina
-                        docking into a fully automated digital workflow.</li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Real-time Integration:</strong> Handled docking requests
-                        using
-                        high-performance Eloquent relationships.</li>
-                    <li>Integrated Redis caching for inventory tracking.</li>
-                </ul>
-                <div class="tech-stack" style="margin-top: 1.5rem;">
-                    <span class="tech-tag">Filament PHP</span>
-                    <span class="tech-tag">Redis</span>
-                    <span class="tech-tag">Eloquent</span>
+                <div class="project-info">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <i class="fas fa-anchor gradient-text" style="font-size: 2rem;"></i>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                    <h3>Raunautica Maritime Dashboard</h3>
+                    <p class="project-desc">Transformed traditional marina docking into a fully automated digital workflow.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Filament PHP</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">Eloquent</span>
+                    </div>
+                    <a href="https://raunautica.com" target="_blank" class="project-link">Explore <i class="fas fa-external-link-alt"></i></a>
                 </div>
-                <a href="https://raunautica.com" target="_blank"
-                    style="display: block; margin-top: 1.5rem; color: var(--primary-accent); text-decoration: none; font-weight: 600;">Visit
-                    Site <i class="fas fa-external-link-alt"></i></a>
             </div>
 
             <!-- Business Belarabi -->
             <div class="glass-card project-card reveal floating">
-                <div
-                    style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
-                    <i class="fas fa-poll-h gradient-text" style="font-size: 2.5rem;"></i>
-                    <span class="tech-tag">Laravel 12</span>
+                <div class="project-mockup">
+                    <img src="assets/businessbelarabi.png" alt="Business Belarabi Directory">
+                    <div class="mockup-overlay"></div>
                 </div>
-                <h3>Business Belarabi Directory</h3>
-                <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;"><strong>Custom Survey Engine:</strong> Built a high-flexibility
-                        module using
-                        <strong>Laravel 12 & Filament 4</strong>.
-                    </li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Decision Support:</strong> Automated export of clean,
-                        data-only
-                        PDF/Excel reports for executives.</li>
-                    <li>Optimized search for near-instant response times across 200+ businesses.</li>
-                </ul>
-                <div class="tech-stack" style="margin-top: 1.5rem;">
-                    <span class="tech-tag">Filament v4</span>
-                    <span class="tech-tag">Reporting Engine</span>
-                    <span class="tech-tag">B2B</span>
+                <div class="project-info">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <i class="fas fa-poll-h gradient-text" style="font-size: 2rem;"></i>
+                        <span class="tech-tag">Laravel 12</span>
+                    </div>
+                    <h3>Business Belarabi Directory</h3>
+                    <p class="project-desc">Built a high-flexibility survey engine with automated reporting.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Filament v4</span>
+                        <span class="tech-tag">Reporting</span>
+                        <span class="tech-tag">B2B</span>
+                    </div>
+                    <a href="https://businessbelarabi.com" target="_blank" class="project-link">Explore <i class="fas fa-external-link-alt"></i></a>
                 </div>
-                <a href="https://businessbelarabi.com" target="_blank"
-                    style="display: block; margin-top: 1.5rem; color: var(--primary-accent); text-decoration: none; font-weight: 600;">Visit
-                    Directory <i class="fas fa-external-link-alt"></i></a>
             </div>
 
             <!-- IshraqMed -->
             <div class="glass-card project-card reveal">
-                <div
-                    style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
-                    <i class="fas fa-mobile-alt gradient-text" style="font-size: 2.5rem;"></i>
-                    <span class="tech-tag">+35% Bookings</span>
+                <div class="project-mockup">
+                    <img src="assets/ishraqmed.png" alt="IshraqMed Portal">
+                    <div class="mockup-overlay"></div>
                 </div>
-                <h3>IshraqMed Healthcare Portal</h3>
-                <ul style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li style="margin-bottom: 0.5rem;"><strong>Notification Architecture:</strong> Real-time push
-                        notifications via
-                        GraphQL API.</li>
-                    <li><strong>Business Impact:</strong> Successfully boosted platform engagement and appointment
-                        conversion.</li>
-                </ul>
-                <div class="tech-stack" style="margin-top: 1.5rem;">
-                    <span class="tech-tag">GraphQL</span>
-                    <span class="tech-tag">Push Notifications</span>
-                    <span class="tech-tag">Node.js</span>
+                <div class="project-info">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <i class="fas fa-mobile-alt gradient-text" style="font-size: 2rem;"></i>
+                        <span class="tech-tag">+35% Bookings</span>
+                    </div>
+                    <h3>IshraqMed Healthcare Portal</h3>
+                    <p class="project-desc">Notification architecture and real-time appointment booking system.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Real-time</span>
+                    </div>
+                    <a href="https://ishraqmed.net/ar" target="_blank" class="project-link">Explore <i class="fas fa-external-link-alt"></i></a>
                 </div>
-                <a href="https://ishraqmed.net" target="_blank"
-                    style="display: block; margin-top: 1.5rem; color: var(--primary-accent); text-decoration: none; font-weight: 600;">Visit
-                    App <i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
     </section>
 
     <section id="skills" class="container">
         <h2 class="section-title">Technical <span class="gradient-text">Manifesto</span></h2>
-        <div class="skills-grid">
-            <div class="glass-card skill-item">
-                <h4>Core Backend</h4>
-                <p style="font-size: 0.85rem; color: var(--text-dim);">PHP 8.x (Laravel 12 Expert), Node.js (Real-time),
-                    GraphQL, RESTful Design</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 98%;"></div>
+        <div class="skills-cloud">
+            <div class="skill-category reveal">
+                <h3>Backend Mastery</h3>
+                <div class="tags-container">
+                    <span class="tech-tag expert" data-info="15+ years of core logic development">PHP 8.x</span>
+                    <span class="tech-tag expert" data-info="Deep architectural expertise">Laravel 12</span>
+                    <span class="tech-tag advanced" data-info="Real-time orchestration">Node.js</span>
+                    <span class="tech-tag advanced" data-info="Complex API design">GraphQL</span>
+                    <span class="tech-tag expert" data-info="Stateless & Scalable">RESTful APIs</span>
                 </div>
             </div>
-            <div class="glass-card skill-item">
-                <h4>Admin & Orchestration</h4>
-                <p style="font-size: 0.85rem; color: var(--text-dim);">Filament v4/v5, Livewire, Alpine.js, Tailwind CSS
-                    v4</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 96%;"></div>
+            <div class="skill-category reveal">
+                <h3>Admin & UX</h3>
+                <div class="tags-container">
+                    <span class="tech-tag expert" data-info="Lead developer grade">Filament v4/v5</span>
+                    <span class="tech-tag expert" data-info="Reactive UI building">Livewire</span>
+                    <span class="tech-tag advanced" data-info="Client-side micro-interactions">Alpine.js</span>
+                    <span class="tech-tag expert" data-info="Modern utility-first styling">Tailwind v4</span>
                 </div>
             </div>
-            <div class="glass-card skill-item">
-                <h4>Data Integrity</h4>
-                <p style="font-size: 0.85rem; color: var(--text-dim);">MySQL Expert, Redis (Queues & Caching), Schema
-                    Normalization</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 95%;"></div>
-                </div>
-            </div>
-            <div class="glass-card skill-item">
-                <h4>Architecture & Security</h4>
-                <p style="font-size: 0.85rem; color: var(--text-dim);">SOLID, RBAC, Audit-Ready Design, OWASP Standards
-                </p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 97%;"></div>
+            <div class="skill-category reveal">
+                <h3>Data & Systems</h3>
+                <div class="tags-container">
+                    <span class="tech-tag expert" data-info="Normalized, audit-ready schemas">MySQL</span>
+                    <span class="tech-tag advanced" data-info="High-speed caching & queues">Redis</span>
+                    <span class="tech-tag expert" data-info="Strong foundational design">SOLID Principles</span>
+                    <span class="tech-tag expert" data-info="Complex authorization">RBAC</span>
                 </div>
             </div>
         </div>
@@ -373,25 +403,13 @@
             </div>
             <div class="glass-card reveal">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                    <i class="fas fa-code gradient-text" style="font-size: 2rem;"></i>
-                    <div>
-                        <h3>ITI — Professional Training</h3>
-                        <h4 style="color: var(--primary-accent);">Information Technology Institute</h4>
-                    </div>
-                </div>
-                <p style="color: var(--text-dim);">Intensive 9-month professional program in software development,
-                    covering web technologies, databases, and enterprise application architecture.</p>
-            </div>
-            <div class="glass-card reveal">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <i class="fas fa-rocket gradient-text" style="font-size: 2rem;"></i>
                     <div>
-                        <h3>Self-Taught Since 2006</h3>
-                        <h4 style="color: var(--primary-accent);">Continuous Learning</h4>
+                        <h3>Professional Mastery</h3>
+                        <h4 style="color: var(--primary-accent);">Self-Taught Since 2006</h4>
                     </div>
                 </div>
-                <p style="color: var(--text-dim);">Nearly two decades of hands-on learning across PHP, Laravel, Node.js,
-                    and modern web architecture. Always staying up-to-date with the latest tools.</p>
+                <p style="color: var(--text-dim);">Nearly two decades of hands-on architectural experience. Expert-level mastery across PHP, Laravel, and modern web ecosystems through continuous real-world implementation.</p>
             </div>
         </div>
     </section>

@@ -105,24 +105,52 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    
+                    // Counter animation
                     if (entry.target.classList.contains('stats-grid')) {
                         entry.target.querySelectorAll('.stat-number').forEach(animateCounter);
                     }
-                    observer.unobserve(entry.target);
+                    
+                    // Pipeline activation logic
+                    if (entry.target.classList.contains('pipeline-item')) {
+                        entry.target.classList.add('active');
+                    }
+
+                    // For staggers
+                    if (entry.target.hasAttribute('data-stagger')) {
+                        const children = entry.target.children;
+                        Array.from(children).forEach((child, i) => {
+                            setTimeout(() => child.classList.add('active'), i * 150);
+                        });
+                    }
                 }
             });
         }, { threshold: 0.15 });
 
-        document.querySelectorAll('.reveal, .stats-grid, .glass-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal, .stats-grid, .glass-card, .pipeline-item, .skill-category').forEach(el => observer.observe(el));
 
-        // 2.4 Navigation Logic
+        // 2.4 Magnetic Effect
+        const magneticEls = document.querySelectorAll('.magnetic');
+        magneticEls.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = el.getBoundingClientRect();
+                const x = e.clientX - (left + width / 2);
+                const y = e.clientY - (top + height / 2);
+                el.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // 2.5 Navigation Logic
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
         
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(s => {
-                const top = s.offsetTop - 100;
+                const top = s.offsetTop - 150;
                 if (window.scrollY >= top) current = s.getAttribute('id');
             });
 
@@ -132,7 +160,7 @@
             });
         });
 
-        // 2.5 Hamburger & Back-to-Top
+        // 2.6 Hamburger & Back-to-Top
         const burger = document.getElementById('hamburger');
         const menu = document.getElementById('nav-links');
         if (burger && menu) {
