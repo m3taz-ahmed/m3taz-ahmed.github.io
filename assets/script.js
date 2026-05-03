@@ -181,6 +181,68 @@
             });
             btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         }
+
+        // 2.7 Testimonials Slider
+        const slider = document.getElementById('testimonials-slider');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        const totalSlides = dots.length;
+
+        const updateSlider = (index) => {
+            if (slider) {
+                slider.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+        };
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => updateSlider(index));
+        });
+
+        // Auto-slide every 6 seconds
+        setInterval(() => {
+            let next = (currentSlide + 1) % totalSlides;
+            updateSlider(next);
+        }, 6000);
+
+        // 2.8 Resume Download Feedback
+        const resumeBtn = document.querySelector('a[href*="Resume.pdf"]');
+        if (resumeBtn) {
+            resumeBtn.addEventListener('click', () => {
+                const originalText = resumeBtn.innerHTML;
+                resumeBtn.innerHTML = '<i class="fas fa-check"></i> Preparing Download...';
+                setTimeout(() => {
+                    resumeBtn.innerHTML = originalText;
+                }, 3000);
+            });
+        }
+
+        // 2.9 Contact Form Async Feedback (Web3Forms handles the actual POST, we just add UI)
+        const contactForm = document.querySelector('.contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const feedback = document.getElementById('form-feedback');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoader = submitBtn.querySelector('.btn-loader');
+                
+                btnText.style.opacity = '0.5';
+                btnLoader.style.display = 'inline-block';
+                submitBtn.disabled = true;
+
+                // We let the browser handle the redirect/POST to Web3Forms, 
+                // but we add a nice touch if they use an AJAX approach (optional)
+                // For now, just visual feedback before the native submit.
+                setTimeout(() => {
+                    feedback.style.display = 'block';
+                    feedback.className = 'success';
+                    feedback.innerHTML = '<i class="fas fa-check-circle"></i> Connection established. Dispatching...';
+                }, 500);
+            });
+        }
     });
 
 })();

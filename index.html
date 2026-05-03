@@ -76,7 +76,7 @@
                 <a href="https://github.com/m3taz-ahmed" target="_blank"
                     style="color: var(--text-heading); font-size: 1.2rem;"><i class="fab fa-github"></i></a>
                 <a href="mailto:m3taz.ahmed@gmail.com" class="btn btn-primary"
-                    style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Hire the Architect</a>
+                    style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Let's Build Together</a>
             </div>
         </div>
     </nav>
@@ -416,56 +416,55 @@
 
     <section id="testimonials" class="container">
         <h2 class="section-title">What People <span class="gradient-text">Say</span></h2>
-        <div class="testimonials-grid">
-            <div class="glass-card reveal">
-                <div style="margin-bottom: 1rem; color: var(--primary-accent);"><i class="fas fa-quote-left"
-                        style="font-size: 1.5rem;"></i></div>
-                <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--text-dim);">"Moataz didn't just build
-                    our system — he understood our business first. The audit module he designed saved us weeks of manual
-                    work every quarter."</p>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div
-                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">
-                        A</div>
-                    <div>
-                        <strong style="color: var(--text-heading);">Ahmed R.</strong>
-                        <span style="display: block; font-size: 0.8rem; color: var(--text-dim);">Operations
-                            Director</span>
+        <div class="testimonials-slider-container">
+            <div class="testimonials-slider reveal" id="testimonials-slider">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-slide">
+                    <div class="glass-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"Moataz didn't just build our system — he understood our business first. The audit module he designed saved us weeks of manual work every quarter."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">A</div>
+                            <div class="author-info">
+                                <strong class="author-name">Ahmed R.</strong>
+                                <span class="author-role">Operations Director</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-slide">
+                    <div class="glass-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"We needed someone who could handle backend complexity without hand-holding. Moataz delivered a clean architecture and the dashboard was exactly what we needed."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">S</div>
+                            <div class="author-info">
+                                <strong class="author-name">Sarah M.</strong>
+                                <span class="author-role">Product Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-slide">
+                    <div class="glass-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"What sets Moataz apart is his attention to data integrity. He caught edge cases in our booking flow that nobody else noticed. Solid engineer."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">O</div>
+                            <div class="author-info">
+                                <strong class="author-name">Omar K.</strong>
+                                <span class="author-role">CTO, Tech Startup</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="glass-card reveal">
-                <div style="margin-bottom: 1rem; color: var(--primary-accent);"><i class="fas fa-quote-left"
-                        style="font-size: 1.5rem;"></i></div>
-                <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--text-dim);">"We needed someone who
-                    could handle backend complexity without hand-holding. Moataz delivered a clean architecture and the
-                    dashboard was exactly what we needed."</p>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div
-                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">
-                        S</div>
-                    <div>
-                        <strong style="color: var(--text-heading);">Sarah M.</strong>
-                        <span style="display: block; font-size: 0.8rem; color: var(--text-dim);">Product Manager</span>
-                    </div>
-                </div>
-            </div>
-            <div class="glass-card reveal">
-                <div style="margin-bottom: 1rem; color: var(--primary-accent);"><i class="fas fa-quote-left"
-                        style="font-size: 1.5rem;"></i></div>
-                <p style="font-style: italic; margin-bottom: 1.5rem; color: var(--text-dim);">"What sets Moataz apart is
-                    his attention to data integrity. He caught edge cases in our booking flow that nobody else noticed.
-                    Solid engineer."</p>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div
-                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">
-                        O</div>
-                    <div>
-                        <strong style="color: var(--text-heading);">Omar K.</strong>
-                        <span style="display: block; font-size: 0.8rem; color: var(--text-dim);">CTO, Tech
-                            Startup</span>
-                    </div>
-                </div>
+            <div class="slider-controls">
+                <button class="slider-dot active" data-index="0" aria-label="Slide 1"></button>
+                <button class="slider-dot" data-index="1" aria-label="Slide 2"></button>
+                <button class="slider-dot" data-index="2" aria-label="Slide 3"></button>
             </div>
         </div>
     </section>
@@ -509,7 +508,11 @@
                     <input type="email" name="email" placeholder="Email Address" required style="margin-bottom: 1rem;">
                     <textarea name="message" rows="5" placeholder="Project details or technical challenge..." required
                         style="margin-bottom: 1rem;"></textarea>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Dispatch to Moataz</button>
+                    <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">
+                        <span class="btn-text">Dispatch to Moataz</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <div id="form-feedback" style="margin-top: 1rem; text-align: center; display: none;"></div>
                 </form>
             </div>
         </div>

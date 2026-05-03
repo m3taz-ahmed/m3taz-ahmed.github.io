@@ -812,6 +812,115 @@ nav .container {
     gap: 3rem; /* Increased gap */
 }
 
+/* --- Testimonials Slider --- */
+.testimonials-slider-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+.testimonials-slider {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.testimonial-slide {
+    min-width: 100%;
+    padding: 0 1rem;
+}
+
+.testimonial-slide .glass-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote-icon {
+    margin-bottom: 1.5rem;
+    color: var(--primary-accent);
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.testimonial-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.author-name {
+    display: block;
+    color: var(--text-heading);
+    font-size: 1.1rem;
+}
+
+.author-role {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--glass-border);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slider-dot.active {
+    background: var(--primary-accent);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px var(--primary-accent);
+}
+
+/* --- Form Feedback & Button States --- */
+#form-feedback.success { color: var(--neon-green); }
+#form-feedback.error { color: #ff4d4d; }
+
+.btn-loader {
+    margin-left: 0.5rem;
+}
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
 /* --- Back to Top --- */
 .back-to-top {
     position: fixed;
