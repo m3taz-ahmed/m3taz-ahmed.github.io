@@ -1,0 +1,11 @@
+dist/
+site/dist/
+site/node_modules/
+site/.astro/
+graphify-out/
+/favicon.ico
+/favicon.svg
+/site/public/favicon.ico
+/site/public/favicon.svg
+.DS_Store
+Thumbs.db

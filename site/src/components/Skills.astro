@@ -1,0 +1,35 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+---
+
+<section id="skills" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={t.skills.title} />
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {
+        t.skills.categories.map((category) => (
+          <div class="glass-card reveal">
+            <h3 class="text-xl font-bold text-heading mb-6 border-b border-white/10 pb-3">
+              {category.title}
+            </h3>
+            <div class="flex flex-wrap gap-3">
+              {category.tags.map((tag) => (
+                <span
+                  class={`tech-tag ${tag.level === 'expert' ? 'border-s-[3px] border-neon' : tag.level === 'advanced' ? 'border-s-[3px] border-primary' : ''}`}
+                  data-info={tag.info}
+                >
+                  {tag.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

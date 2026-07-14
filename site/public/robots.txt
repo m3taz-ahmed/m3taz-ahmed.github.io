@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://m3taz-ahmed.github.io/sitemap-index.xml

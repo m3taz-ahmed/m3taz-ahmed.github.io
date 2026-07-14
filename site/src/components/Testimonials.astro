@@ -1,0 +1,70 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+---
+
+<section id="testimonials" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={t.testimonials.title} />
+
+    <div class="max-w-4xl mx-auto">
+      <div id="testimonials-slider" class="overflow-hidden relative">
+        <div class="testimonials-track flex transition-transform duration-500 ease-out">
+          {
+            t.testimonials.items.map((item) => (
+              <div class="w-full shrink-0 px-4">
+                <div class="glass-card text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-primary mx-auto mb-6 opacity-50"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                  </svg>
+                  <p class="text-lg md:text-xl text-heading leading-relaxed italic mb-6">
+                    "{item.quote}"
+                  </p>
+                  <div>
+                    <h4 class="text-white font-bold">{item.author}</h4>
+                    <span class="text-primary text-sm">{item.role}</span>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div id="testimonials-dots" class="flex justify-center gap-3 mt-8">
+        {t.testimonials.items.map((_, index) => (
+          <button
+            class="w-3 h-3 rounded-full bg-white/20 transition-all hover:bg-primary focus:outline-none"
+            data-index={index}
+            aria-label={`${t.testimonials.goTo} ${index + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .testimonials-track {
+      cursor: grab;
+    }
+    .testimonials-track:active {
+      cursor: grabbing;
+    }
+  </style>
+</section>

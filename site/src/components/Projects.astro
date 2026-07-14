@@ -1,0 +1,59 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+---
+
+<section id="projects" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={t.projects.title} />
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {
+        t.projects.items.map((project, index) => (
+          <article class="glass-card overflow-hidden p-0 flex flex-col reveal group">
+            <div class="relative h-52 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" aria-hidden="true"></div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-start justify-between mb-3">
+                <Icon name={project.icon} size={32} class="text-primary" />
+                <span class="tech-tag text-xs">{project.metric}</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-heading mb-2">{project.title}</h3>
+              <p class="text-dim text-sm leading-relaxed mb-4 flex-1">{project.desc}</p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span class="tech-tag text-xs px-2 py-1">{tag}</span>
+                ))}
+              </div>
+
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
+              >
+                {t.projects.explore}
+                <Icon name="ExternalLink" size={14} />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

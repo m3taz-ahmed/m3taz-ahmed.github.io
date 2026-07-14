@@ -1,0 +1,25 @@
+{
+  "name": "Moataz Ahmed — Lead Systems Architect",
+  "short_name": "M3TAZ",
+  "description": "Portfolio of Moataz Ahmed, a seasoned software engineer and Sovereign AI architect.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/moataz-ahmed-pic.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

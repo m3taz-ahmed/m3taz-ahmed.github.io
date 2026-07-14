@@ -1,0 +1,16 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const locale = Astro.currentLocale ?? 'en';
+const otherLocale = locale === 'en' ? 'ar' : 'en';
+const otherLabel = locale === 'en' ? 'العربية' : 'English';
+const otherUrl = getRelativeLocaleUrl(otherLocale, '/');
+---
+
+<a
+  href={otherUrl}
+  class="text-sm font-medium text-dim hover:text-primary transition-colors border border-white/10 rounded-full px-3 py-1.5 hover:bg-white/5"
+  aria-label={locale === 'en' ? 'Switch to Arabic' : 'Switch to English'}
+>
+  {otherLabel}
+</a>

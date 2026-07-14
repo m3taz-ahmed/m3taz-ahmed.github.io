@@ -1,0 +1,31 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+---
+
+<section id="education" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={t.education.title} />
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {
+        t.education.items.map((item) => (
+          <div class="glass-card reveal flex items-start gap-4">
+            <div class="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary shrink-0">
+              <Icon name={item.icon} size={28} />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-heading">{item.title}</h3>
+              <h4 class="text-primary font-medium mb-2">{item.place}</h4>
+              <p class="text-dim text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

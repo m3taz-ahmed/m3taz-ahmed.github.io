@@ -1,0 +1,15 @@
+---
+import * as icons from '@lucide/astro';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  'stroke-width'?: number;
+}
+
+const { name, ...rest } = Astro.props;
+const IconComponent = (icons[name as keyof typeof icons] ?? icons.Circle) as typeof icons.Icon;
+---
+
+<IconComponent {...rest} />

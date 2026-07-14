@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: {
+    prefix: string;
+    highlight: string;
+  };
+  class?: string;
+}
+
+const { title, class: className } = Astro.props;
+---
+
+<h2 class={`text-3xl md:text-4xl lg:text-5xl font-black text-center uppercase tracking-wider mb-16 relative ${className ?? ''}`}>
+  {title.prefix}
+  <span class="gradient-text">{title.highlight}</span>
+  <span class="block w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded mx-auto mt-4" aria-hidden="true"></span>
+</h2>

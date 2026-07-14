@@ -1,0 +1,134 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+
+const contact = t.contact.info;
+---
+
+<section id="contact" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={t.contact.title} />
+
+    <div class="max-w-5xl mx-auto grid lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-1 space-y-6">
+        <div class="glass-card reveal">
+          <h3 class="text-2xl font-bold text-heading mb-2">{t.contact.subtitle}</h3>
+          <p class="text-dim text-sm mb-6">
+            {t.contact.title.prefix} <span class="text-primary">{t.contact.title.highlight}</span>
+          </p>
+
+          <ul class="space-y-4">
+            <li>
+              <a href={`mailto:${contact.email}`} class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+                <Icon name="Mail" size={18} />
+                <span class="text-sm">{contact.email}</span>
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${contact.phone}`} class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+                <Icon name="Phone" size={18} />
+                <span class="text-sm">{contact.phone}</span>
+              </a>
+            </li>
+            <li>
+              <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+                <Icon name="MessageCircle" size={18} />
+                <span class="text-sm">WhatsApp</span>
+              </a>
+            </li>
+            <li>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+                <Icon name="Linkedin" size={18} />
+                <span class="text-sm">LinkedIn</span>
+              </a>
+            </li>
+            <li>
+              <a href={contact.github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+                <Icon name="Github" size={18} />
+                <span class="text-sm">GitHub</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="glass-card reveal">
+          <h3 class="text-xl font-bold text-heading mb-6">{t.contact.form.title}</h3>
+          <form
+            id="contact-form"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            class="space-y-5"
+            data-sending={t.contact.form.sending}
+            data-success={t.contact.form.success}
+            data-error={t.contact.form.error}
+          >
+            <input type="hidden" name="access_key" value="a0e8105f-2846-436b-a137-7737e6e21c28" />
+            <input type="hidden" name="redirect" value="https://m3taz-ahmed.github.io" />
+
+            <div>
+              <label for="name" class="sr-only">{t.contact.form.name}</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                required
+                placeholder={t.contact.form.name}
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-dim focus:outline-none focus:border-primary transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="sr-only">{t.contact.form.email}</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                required
+                placeholder={t.contact.form.email}
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-dim focus:outline-none focus:border-primary transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="sr-only">{t.contact.form.message}</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder={t.contact.form.message}
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-dim focus:outline-none focus:border-primary transition-colors resize-y"
+              ></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn btn-primary w-full">
+              <span>{t.contact.form.submit}</span>
+            </button>
+
+            <p id="form-status" class="text-sm text-center text-primary hidden"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>
