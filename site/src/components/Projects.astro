@@ -16,14 +16,22 @@ const t = getTranslations(locale);
         t.projects.items.map((project, index) => (
           <article class="glass-card overflow-hidden p-0 flex flex-col reveal group">
             <div class="relative h-52 overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" aria-hidden="true"></div>
+              {project.image ? (
+                <>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" aria-hidden="true"></div>
+                </>
+              ) : (
+                <div class="h-full w-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-bg">
+                  <Icon name={project.icon} size={64} class="text-primary/40" />
+                </div>
+              )}
             </div>
 
             <div class="p-6 flex-1 flex flex-col">
