@@ -1,4 +1,4 @@
-const CACHE_NAME = 'm3taz-portfolio-20260715111638';
+const CACHE_NAME = 'm3taz-portfolio-20260715112411';
 const PRECACHE_ASSETS = [
   '/',
   '/ar/',
