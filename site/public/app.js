@@ -3,7 +3,44 @@
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function init() {
+  function initThemeToggle() {
+    const toggles = document.querySelectorAll('[data-theme-toggle]');
+    if (!toggles.length) return;
+
+    function updateIcons() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      toggles.forEach((toggle) => {
+        const lightIcon = toggle.querySelector('.theme-icon-light');
+        const darkIcon = toggle.querySelector('.theme-icon-dark');
+        if (lightIcon) lightIcon.classList.toggle('hidden', !isDark);
+        if (darkIcon) darkIcon.classList.toggle('hidden', isDark);
+      });
+    }
+
+    updateIcons();
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const root = document.documentElement;
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        const next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch {}
+        updateIcons();
+      });
+    });
+  }
+
+  function ready(fn) {
+    if (document.readyState !== 'loading') {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
+
+  ready(function () {
+    initThemeToggle();
     initTypewriter();
     initCounters();
     initTestimonials();
@@ -11,9 +48,11 @@
     initBackToTop();
     initNavActive();
     initReveal();
-    initParticles();
+    if (!prefersReducedMotion) {
+      initParticles();
+    }
     initForm();
-  }
+  });
 
   function initTypewriter() {
     const el = document.getElementById('typewriter');
@@ -83,7 +122,7 @@
       const progress = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - progress, 4);
       const value = target * ease;
-      el.textContent = (isFloat ? value.toFixed(1) : Math.floor(value)) + suffix;
+      el.textContent = (isFloat ? value.toFixed(1) : Math.floor(value).toLocaleString()) + suffix;
 
       if (progress < 1) {
         requestAnimationFrame(step);
@@ -110,7 +149,7 @@
       track.style.transform = `translateX(-${current * 100}%)`;
       dots.forEach((dot, i) => {
         dot.classList.toggle('bg-primary', i === current);
-        dot.classList.toggle('bg-white/20', i !== current);
+        dot.classList.toggle('bg-border', i !== current);
       });
     }
 
@@ -136,6 +175,8 @@
 
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
+    slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', start);
 
     goTo(0);
     start();
@@ -143,24 +184,30 @@
 
   function initMobileMenu() {
     const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('mobile-menu');
+    const menu = document.getElementById('nav-links-mobile');
     if (!hamburger || !menu) return;
 
     const links = menu.querySelectorAll('a');
     let open = false;
 
-    function toggle() {
-      open = !open;
+    function setState(isOpen) {
+      open = isOpen;
       hamburger.setAttribute('aria-expanded', String(open));
       menu.setAttribute('aria-hidden', String(!open));
       menu.style.transform = open ? 'translateX(0)' : 'translateX(100%)';
-      hamburger.children[0].style.transform = open ? 'rotate(45deg) translateY(8px)' : '';
-      hamburger.children[1].style.opacity = open ? '0' : '1';
-      hamburger.children[2].style.transform = open ? 'rotate(-45deg) translateY(-8px)' : '';
+      const bars = hamburger.children;
+      if (bars[0]) bars[0].style.transform = open ? 'rotate(45deg) translateY(8px)' : '';
+      if (bars[1]) bars[1].style.opacity = open ? '0' : '1';
+      if (bars[2]) bars[2].style.transform = open ? 'rotate(-45deg) translateY(-8px)' : '';
+      document.body.style.overflow = open ? 'hidden' : '';
     }
 
-    hamburger.addEventListener('click', toggle);
-    links.forEach((link) => link.addEventListener('click', () => open && toggle()));
+    hamburger.addEventListener('click', () => setState(!open));
+    links.forEach((link) => link.addEventListener('click', () => open && setState(false)));
+
+    document.addEventListener('keydown', (e) => {
+      if (open && e.key === 'Escape') setState(false);
+    });
   }
 
   function initBackToTop() {
@@ -180,6 +227,11 @@
 
     const hero = document.querySelector('section');
     if (hero) observer.observe(hero);
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
   }
 
   function initNavActive() {
@@ -194,11 +246,11 @@
           links.forEach((link) => {
             const active = link.getAttribute('href') === `#${id}`;
             link.classList.toggle('text-primary', active);
-            link.classList.toggle('text-dim', !active);
+            link.classList.toggle('text-muted', !active);
           });
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
 
     sections.forEach((section) => observer.observe(section));
   }
@@ -217,7 +269,7 @@
 
     elements.forEach((el, i) => {
       if (el.dataset.stagger) {
-        el.style.transitionDelay = `${i * 0.1}s`;
+        el.style.transitionDelay = `${i * 0.05}s`;
       }
       observer.observe(el);
     });
@@ -225,15 +277,16 @@
 
   function initParticles() {
     const canvas = document.getElementById('particles-canvas');
-    if (!canvas || prefersReducedMotion) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let width, height, particles;
-    const maxParticles = 40;
+    const maxParticles = window.matchMedia('(pointer: coarse)').matches ? 20 : 35;
     const connectionDistance = 120;
-    const mouseDistance = 150;
+    const mouse = { x: null, y: null };
+    let rafId;
 
     function resize() {
       width = window.innerWidth;
@@ -256,6 +309,7 @@
     }
 
     function draw() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p, i) => {
@@ -267,7 +321,7 @@
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+        ctx.fillStyle = isDark ? 'rgba(34, 211, 238, 0.5)' : 'rgba(8, 145, 178, 0.4)';
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -280,71 +334,110 @@
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 * (1 - dist / connectionDistance)})`;
-            ctx.lineWidth = 1;
+            const alpha = (1 - dist / connectionDistance) * (isDark ? 0.18 : 0.12);
+            ctx.strokeStyle = isDark ? `rgba(34, 211, 238, ${alpha})` : `rgba(8, 145, 178, ${alpha})`;
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            const alpha = (1 - dist / 150) * 0.3;
+            ctx.strokeStyle = isDark ? `rgba(34, 211, 238, ${alpha})` : `rgba(8, 145, 178, ${alpha})`;
             ctx.stroke();
           }
         }
       });
 
-      requestAnimationFrame(draw);
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function onResize() {
+      resize();
+      create();
+    }
+
+    function onMouseMove(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    }
+
+    function onMouseLeave() {
+      mouse.x = null;
+      mouse.y = null;
     }
 
     resize();
     create();
     draw();
-    window.addEventListener('resize', resize);
-  }
 
-  function initForm() {
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    if (!form || !status) return;
+    window.addEventListener('resize', onResize);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseleave', onMouseLeave);
 
-    const sending = form.dataset.sending || 'Sending...';
-    const success = form.dataset.success || 'Message sent.';
-    const error = form.dataset.error || 'Failed to send. Please try again.';
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const original = btn.textContent;
-      btn.textContent = sending;
-      btn.disabled = true;
-
-      try {
-        const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
-        if (response.ok) {
-          status.textContent = success;
-          status.classList.remove('hidden');
-          form.reset();
-        } else {
-          throw new Error('Failed');
-        }
-      } catch {
-        status.textContent = error;
-        status.classList.remove('hidden');
-      } finally {
-        btn.textContent = original;
-        btn.disabled = false;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+      } else {
+        draw();
       }
     });
   }
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
-  }
+  function initForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
 
-  if (prefersReducedMotion) {
-    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('active'));
-    return;
-  }
+    const status = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-  document.addEventListener('astro:page-load', init);
+      const sending = form.dataset.sending || 'Sending...';
+      const success = form.dataset.success || 'Sent!';
+      const error = form.dataset.error || 'Failed. Please try again.';
+
+      if (status) {
+        status.textContent = sending;
+        status.classList.remove('hidden', 'text-red-500');
+        status.classList.add('text-primary');
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+        });
+
+        if (response.ok) {
+          if (status) status.textContent = success;
+          form.reset();
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (err) {
+        if (status) {
+          status.textContent = error;
+          status.classList.remove('text-primary');
+          status.classList.add('text-red-500');
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        }
+      }
+    });
+  }
 })();

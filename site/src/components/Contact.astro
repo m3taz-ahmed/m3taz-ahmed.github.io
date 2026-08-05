@@ -16,38 +16,38 @@ const contact = t.contact.info;
     <div class="max-w-5xl mx-auto grid lg:grid-cols-3 gap-8">
       <div class="lg:col-span-1 space-y-6">
         <div class="glass-card reveal">
-          <h3 class="text-2xl font-bold text-heading mb-2">{t.contact.subtitle}</h3>
-          <p class="text-dim text-sm mb-6">
+          <h3 class="text-2xl font-bold text-fg mb-2">{t.contact.subtitle}</h3>
+          <p class="text-muted text-sm mb-6">
             {t.contact.title.prefix} <span class="text-primary">{t.contact.title.highlight}</span>
           </p>
 
           <ul class="space-y-4">
             <li>
-              <a href={`mailto:${contact.email}`} class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+              <a href={`mailto:${contact.email}`} class="flex items-center gap-3 text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                 <Icon name="Mail" size={18} />
                 <span class="text-sm">{contact.email}</span>
               </a>
             </li>
             <li>
-              <a href={`tel:${contact.phone}`} class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+              <a href={`tel:${contact.phone}`} class="flex items-center gap-3 text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                 <Icon name="Phone" size={18} />
                 <span class="text-sm">{contact.phone}</span>
               </a>
             </li>
             <li>
-              <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+              <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                 <Icon name="MessageCircle" size={18} />
                 <span class="text-sm">WhatsApp</span>
               </a>
             </li>
             <li>
-              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                 <Icon name="Linkedin" size={18} />
                 <span class="text-sm">LinkedIn</span>
               </a>
             </li>
             <li>
-              <a href={contact.github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-dim hover:text-primary transition-colors">
+              <a href={contact.github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                 <Icon name="Github" size={18} />
                 <span class="text-sm">GitHub</span>
               </a>
@@ -58,7 +58,7 @@ const contact = t.contact.info;
 
       <div class="lg:col-span-2">
         <div class="glass-card reveal">
-          <h3 class="text-xl font-bold text-heading mb-6">{t.contact.form.title}</h3>
+          <h3 class="text-xl font-bold text-fg mb-6">{t.contact.form.title}</h3>
           <form
             id="contact-form"
             action="https://api.web3forms.com/submit"
@@ -79,7 +79,7 @@ const contact = t.contact.info;
                 name="name"
                 required
                 placeholder={t.contact.form.name}
-                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-dim focus:outline-none focus:border-primary transition-colors"
+                class="w-full bg-card border border-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
               />
             </div>
 
@@ -91,7 +91,7 @@ const contact = t.contact.info;
                 name="email"
                 required
                 placeholder={t.contact.form.email}
-                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-dim focus:outline-none focus:border-primary transition-colors"
+                class="w-full bg-card border border-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
               />
             </div>
 
@@ -103,7 +103,7 @@ const contact = t.contact.info;
                 rows="5"
                 required
                 placeholder={t.contact.form.message}
-                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-dim focus:outline-none focus:border-primary transition-colors resize-y"
+                class="w-full bg-card border border-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y"
               ></textarea>
             </div>
 
@@ -111,7 +111,7 @@ const contact = t.contact.info;
               <span>{t.contact.form.submit}</span>
             </button>
 
-            <p id="form-status" class="text-sm text-center text-primary hidden"></p>
+            <p id="form-status" class="text-sm text-center text-primary hidden" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>

@@ -9,7 +9,7 @@ const otherUrl = getRelativeLocaleUrl(otherLocale, '/');
 
 <a
   href={otherUrl}
-  class="text-sm font-medium text-dim hover:text-primary transition-colors border border-white/10 rounded-full px-3 py-1.5 hover:bg-white/5"
+  class="text-sm font-medium text-muted hover:text-fg transition-colors border border-border rounded-full px-3 py-1.5 hover:bg-card focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
   aria-label={locale === 'en' ? 'Switch to Arabic' : 'Switch to English'}
 >
   {otherLabel}

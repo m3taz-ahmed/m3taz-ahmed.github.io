@@ -4,14 +4,25 @@ interface Props {
     prefix: string;
     highlight: string;
   };
+  align?: 'start' | 'center';
   class?: string;
 }
 
-const { title, class: className } = Astro.props;
+const { title, align = 'center', class: className } = Astro.props;
 ---
 
-<h2 class={`text-3xl md:text-4xl lg:text-5xl font-black text-center uppercase tracking-wider mb-16 relative ${className ?? ''}`}>
+<h2
+  class={[
+    'text-3xl md:text-4xl lg:text-5xl font-black text-fg uppercase tracking-wider relative mb-12 md:mb-16',
+    align === 'center' ? 'text-center' : 'text-start',
+    className ?? '',
+  ].join(' ')}
+>
   {title.prefix}
   <span class="gradient-text">{title.highlight}</span>
-  <span class="block w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded mx-auto mt-4" aria-hidden="true"></span>
+  <span
+    class="block w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded mt-4"
+    class:list={align === 'center' ? 'mx-auto' : 'ms-0'}
+    aria-hidden="true"
+  ></span>
 </h2>
