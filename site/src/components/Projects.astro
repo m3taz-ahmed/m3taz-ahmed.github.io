@@ -5,27 +5,59 @@ import Icon from './Icon.astro';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
 const t = getTranslations(locale);
+
+const categories = [
+  { key: 'all', label: locale === 'ar' ? 'الكل' : 'All' },
+  { key: 'ai', label: 'AI / aiZee' },
+  { key: 'saas', label: 'SaaS' },
+  { key: 'b2b', label: 'B2B' },
+  { key: 'audit', label: locale === 'ar' ? 'تدقيق' : 'Audit' },
+];
 ---
 
 <section id="projects" class="section-padding relative">
   <div class="container mx-auto px-6">
     <SectionTitle title={t.projects.title} />
 
-    <div class="grid md:grid-cols-2 gap-8">
+    <!-- Filter bar -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8" id="project-filters" role="tablist" aria-label="Project categories">
+      {
+        categories.map((cat) => (
+          <button
+            type="button"
+            role="tab"
+            data-filter={cat.key}
+            aria-selected={cat.key === 'all' ? 'true' : 'false'}
+            class={`filter-btn btn btn-ghost text-sm py-2 px-4 rounded-full border transition-colors ${cat.key === 'all' ? 'bg-primary text-primary-fg border-primary' : 'border-border hover:border-primary'}`}
+          >
+            {cat.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8" id="projects-grid">
       {
         t.projects.items.map((project) => (
-          <article class="glass-card glass-card-interactive overflow-hidden p-0 flex flex-col reveal group">
+          <article
+            class="project-card glass-card glass-card-interactive overflow-hidden p-0 flex flex-col reveal group"
+            data-category={project.category}
+            data-featured={String(project.featured)}
+          >
             <div class="relative h-52 overflow-hidden border-b border-border">
               {project.image ? (
                 <>
                   <img
                     src={project.image}
                     alt={project.title}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    class={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${project.image.includes('aizee') ? 'object-contain bg-white p-4' : ''}`}
                     loading="lazy"
                     decoding="async"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" aria-hidden="true"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+                  {project.featured && (
+                    <span class="absolute top-3 start-3 tech-tag bg-primary text-primary-fg text-xs">Featured</span>
+                  )}
                 </>
               ) : (
                 <div class="h-full w-full flex items-center justify-center bg-primary/5">
@@ -35,9 +67,9 @@ const t = getTranslations(locale);
             </div>
 
             <div class="p-6 flex-1 flex flex-col">
-              <div class="flex items-start justify-between mb-3">
-                <Icon name={project.icon} size={32} class="text-primary" />
-                <span class="tech-tag text-xs">{project.metric}</span>
+              <div class="flex items-start justify-between mb-3 gap-2">
+                <Icon name={project.icon} size={28} class="text-primary shrink-0" />
+                <span class="tech-tag text-xs shrink-0">{project.metric}</span>
               </div>
 
               <h3 class="text-xl font-bold text-fg mb-2">{project.title}</h3>
@@ -51,15 +83,35 @@ const t = getTranslations(locale);
                 </div>
               )}
 
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-              >
-                {t.projects.explore}
-                <Icon name="ExternalLink" size={14} />
-              </a>
+              <div class="flex flex-wrap gap-3 mt-auto">
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                  >
+                    {project.category === 'ai' ? 'GitHub' : t.projects.live}
+                    <Icon name="ExternalLink" size={14} />
+                  </a>
+                ) : (
+                  <span class="inline-flex items-center gap-2 text-muted font-medium text-sm">
+                    <Icon name="Lock" size={14} />
+                    {t.projects.nda}
+                  </span>
+                )}
+                {project.caseStudyLink && (
+                  <a
+                    href={project.caseStudyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                  >
+                    {t.projects.caseStudy}
+                    <Icon name="BookOpen" size={14} />
+                  </a>
+                )}
+              </div>
             </div>
           </article>
         ))
@@ -67,3 +119,27 @@ const t = getTranslations(locale);
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function() {
+    const btns = document.querySelectorAll('#project-filters .filter-btn');
+    const cards = document.querySelectorAll('#projects-grid .project-card');
+    if (!btns.length || !cards.length) return;
+    function apply(filter) {
+      btns.forEach(b => {
+        const active = b.dataset.filter === filter;
+        b.setAttribute('aria-selected', String(active));
+        b.classList.toggle('bg-primary', active);
+        b.classList.toggle('text-primary-fg', active);
+        b.classList.toggle('border-primary', active);
+        b.classList.toggle('border-border', !active);
+      });
+      cards.forEach(c => {
+        const cat = c.dataset.category || 'all';
+        const show = filter === 'all' || cat === filter;
+        c.style.display = show ? '' : 'none';
+      });
+    }
+    btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.filter)));
+  })();
+</script>

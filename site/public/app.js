@@ -396,9 +396,29 @@
 
     const status = document.getElementById('form-status');
     const submitBtn = document.getElementById('submit-btn');
+    const hp = document.getElementById('website');
+    const ts = document.getElementById('form-ts');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // Honeypot + time-trap
+      if (hp && hp.value) return;
+      if (ts) {
+        const elapsed = Date.now() - parseInt(ts.value || '0', 10);
+        if (elapsed < 2000) {
+          if (status) {
+            status.textContent = 'Please wait a moment before submitting.';
+            status.classList.remove('hidden', 'text-primary');
+            status.classList.add('text-red-500');
+          }
+          return;
+        }
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
 
       const sending = form.dataset.sending || 'Sending...';
       const success = form.dataset.success || 'Sent!';
@@ -415,14 +435,20 @@
       }
 
       try {
+        const fd = new FormData(form);
+        // Remove honeypot from submission
+        fd.delete('website');
+        fd.delete('_ts');
         const response = await fetch(form.action, {
           method: form.method,
-          body: new FormData(form),
+          body: fd,
+          headers: { 'Accept': 'application/json' },
         });
 
         if (response.ok) {
           if (status) status.textContent = success;
           form.reset();
+          if (ts) ts.value = String(Date.now());
         } else {
           throw new Error('Submission failed');
         }

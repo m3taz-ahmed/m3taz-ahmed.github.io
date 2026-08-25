@@ -1,0 +1,44 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const isAr = locale === 'ar';
+---
+
+<section id="now" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={{ prefix: isAr ? 'الآن — ' : 'Now — ', highlight: isAr ? 'أغسطس 2026' : 'Aug 2026' }} />
+    <div class="max-w-4xl mx-auto glass-card reveal">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+        <span class="font-mono text-xs text-muted uppercase tracking-widest">{isAr ? 'متاح لمشاريع مختارة' : 'Available for select projects'}</span>
+      </div>
+      {isAr ? (
+        <>
+          <p class="text-fg leading-relaxed mb-4">
+            أركز الآن على <strong>aiZee v5.7.1</strong> — تثبيت طبقة الحوكمة، وإكمال دراسات الحالة الست (SkyBridge / Raunautica / Belarabi / IshraqMed / Gobook / Gentoura)، وتحويل البورتفوليو إلى <strong>Content Collections</strong> مع صفحات case-study مستقلة.
+          </p>
+          <ul class="list-disc ps-5 space-y-2 text-muted text-sm mb-4">
+            <li>تحديث aiZee: ذاكرة هجينة (FTS5 + Vector)، أدوات SEO الثمانية، وتوثيق عربي كامل</li>
+            <li>بناء حجوزات SaaS متعددة المستأجرين (Gobook → SkyBridge) بمعمارية audit-ready</li>
+            <li>كتابة 4 مقالات: RBAC في Filament، منع Context Drift، هندسة 28K حجز</li>
+          </ul>
+          <p class="text-sm text-muted">آخر تحديث: 26 أغسطس 2026 — القاهرة (UTC+2)</p>
+        </>
+      ) : (
+        <>
+          <p class="text-fg leading-relaxed mb-4">
+            Focus now: shipping <strong>aiZee v5.7.1</strong> — hardening governance, completing 6 case studies (SkyBridge / Raunautica / Belarabi / IshraqMed / Gobook / Gentoura), and turning this portfolio into <strong>Content Collections</strong> with dedicated case-study pages.
+          </p>
+          <ul class="list-disc ps-5 space-y-2 text-muted text-sm mb-4">
+            <li>aiZee: hybrid memory (FTS5 + Vector), 8 SEO tools, full Arabic docs</li>
+            <li>Multi-tenant booking SaaS (Gobook → SkyBridge) — audit-ready by design</li>
+            <li>Writing 4 posts: Filament RBAC, Zero Context Drift, 28K-booking architecture</li>
+          </ul>
+          <p class="text-sm text-muted">Last updated: 26 Aug 2026 — Cairo (UTC+2)</p>
+        </>
+      )}
+    </div>
+  </div>
+</section>

@@ -19,16 +19,52 @@ const pageTitle = title ?? t.seo.title;
 const pageDescription = description ?? t.seo.description;
 const ogImage = image ?? `${site}${t.seo.image}`;
 const canonical = new URL(Astro.url.pathname, site).toString();
+const enUrl = new URL(Astro.url.pathname.replace(/^\/ar\/?/, '/'), site).toString();
+const arUrl = new URL(`/ar${Astro.url.pathname.replace(/^\/ar/, '') || '/'}`, site).toString();
+const isAr = locale === 'ar';
+const alternateUrls = [
+  { lang: 'en', href: enUrl },
+  { lang: 'ar', href: arUrl },
+  { lang: 'x-default', href: enUrl },
+];
 
+// Build JSON-LD graph: Person + ItemList of projects
+const projectItems = (t.projects.items || []).slice(0, 10).map((p: any, i: number) => ({
+  '@type': 'CreativeWork',
+  position: i + 1,
+  name: p.title,
+  description: p.desc,
+  url: p.link || p.caseStudyLink || site,
+  keywords: (p.tags || []).join(', '),
+  image: p.image ? `${site}${p.image}` : undefined,
+}));
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: t.seo.author,
-  jobTitle: t.hero.typewriter[0],
-  url: site,
-  sameAs: [t.contact.info.github, t.contact.info.linkedin],
-  knowsAbout: ['Sovereign AI Architecture', 'Agentic Workflows', 'Laravel', 'PHP', 'Filament', 'System Architecture', 'Internal Audit'],
-  image: `${site}${t.seo.image}`,
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site}#person`,
+      name: t.seo.author,
+      jobTitle: t.hero.typewriter[0],
+      url: site,
+      sameAs: [t.contact.info.github, t.contact.info.linkedin],
+      knowsAbout: ['aiZee', 'Sovereign AI Architecture', 'Agentic Workflows', 'Laravel 13', 'PHP 8.5', 'Filament v5', 'System Architecture', 'Internal Audit', 'MCP', 'Qdrant'],
+      image: `${site}${t.seo.image}`,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site}#website`,
+      url: site,
+      name: t.seo.title,
+      inLanguage: locale,
+      author: { '@id': `${site}#person` },
+    },
+    {
+      '@type': 'ItemList',
+      name: 'Projects',
+      itemListElement: projectItems,
+    },
+  ],
 };
 ---
 
@@ -54,11 +90,19 @@ const schema = {
     <meta name="twitter:image" content={ogImage} />
 
     <link rel="canonical" href={canonical} />
+    {alternateUrls.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/moataz-ahmed-pic.jpg" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:locale" content={locale === 'ar' ? 'ar_EG' : 'en_US'} />
+    {alternateUrls.filter(a => a.lang !== 'x-default').map((alt) => (
+      <meta property="og:locale:alternate" content={alt.lang === 'ar' ? 'ar_EG' : 'en_US'} />
+    ))}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

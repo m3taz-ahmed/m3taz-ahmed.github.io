@@ -11,7 +11,12 @@ export default defineConfig({
   outDir: '../dist',
   compressHTML: true,
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [sitemap({
+    i18n: {
+      defaultLocale: 'en',
+      locales: { en: 'en-US', ar: 'ar-EG' },
+    },
+  })],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ar'],

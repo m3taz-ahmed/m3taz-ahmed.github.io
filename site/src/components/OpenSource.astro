@@ -1,0 +1,127 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+const isAr = locale === 'ar';
+---
+
+<section id="opensource" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <SectionTitle title={{ prefix: isAr ? 'مفتوح ' : 'Open ', highlight: isAr ? 'المصدر' : 'Source' }} />
+
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+      <!-- aiZee card -->
+      <div class="md:col-span-2 glass-card reveal border-t-4 border-t-primary">
+        <div class="flex items-start justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <img src="/assets/aizee-logo.png" alt="aiZee" class="w-10 h-10 object-contain bg-white rounded-lg p-1" loading="lazy" />
+            <div>
+              <h3 class="text-xl font-bold text-fg">aiZee</h3>
+              <p class="text-xs text-muted font-mono">github.com/m3taz-ahmed/ai-globals</p>
+            </div>
+          </div>
+          <span class="tech-tag bg-primary text-primary-fg">v5.7.1</span>
+        </div>
+        <p class="text-muted text-sm leading-relaxed mb-4">
+          {isAr
+            ? 'طبقة الحوكمة للبرمجة بالذكاء الاصطناعي. 22 شخصية، 72 مهارة، 36 سير عمل، 163 مرجع تقني، 3561 اختبار. حماية من انحراف السياق، الديون الصامتة، وثغرات OWASP.'
+            : 'The policy layer for AI coding. 22 personas, 72 skills, 36 workflows, 163 stack refs, 3561 tests. Protection against context drift, silent tech debt, and OWASP gaps.'}
+        </p>
+        <div class="flex flex-wrap gap-2 mb-6" id="aizee-live-stats">
+          <span class="tech-tag" data-stat="stars">★ 5</span>
+          <span class="tech-tag" data-stat="commits">139 commits</span>
+          <span class="tech-tag" data-stat="tests">3561 tests · 95%</span>
+          <span class="tech-tag" data-stat="updated">{isAr ? 'محدث 2026-08' : 'Updated 2026-08'}</span>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://github.com/m3taz-ahmed/ai-globals" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-sm py-2 px-4">
+            <Icon name="Github" size={16} /> GitHub
+          </a>
+          <a href="https://github.com/m3taz-ahmed/ai-globals/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="btn btn-outline text-sm py-2 px-4">
+            Changelog
+          </a>
+        </div>
+      </div>
+
+      <!-- GitHub profile snapshot -->
+      <div class="glass-card reveal">
+        <h3 class="text-lg font-bold text-fg mb-4 flex items-center gap-2"><Icon name="Github" size={18} /> GitHub</h3>
+        <div id="github-profile" class="space-y-3 text-sm">
+          <div class="flex justify-between"><span class="text-muted">Repos</span><span class="font-bold text-fg" data-gh="repos">14</span></div>
+          <div class="flex justify-between"><span class="text-muted">Stars (aiZee)</span><span class="font-bold text-fg" data-gh="stars">5</span></div>
+          <div class="flex justify-between"><span class="text-muted">Followers</span><span class="font-bold text-fg" data-gh="followers">2</span></div>
+          <div class="h-px bg-border my-3"></div>
+          <p class="text-xs text-muted leading-relaxed">
+            {isAr ? '14 مستودع عام — 6 دراسات حالة + aiZee. تحديث مستمر منذ 2018.' : '14 public repos — 6 case studies + aiZee. Active since 2018.'}
+          </p>
+          <a href="https://github.com/m3taz-ahmed" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all">
+            {isAr ? 'عرض الملف' : 'View profile'} <Icon name="ExternalLink" size={12} />
+          </a>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="tech-tag text-xs">PHP 8.5</span>
+          <span class="tech-tag text-xs">Laravel 13</span>
+          <span class="tech-tag text-xs">Python</span>
+          <span class="tech-tag text-xs">MCP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case study repos -->
+    <div class="max-w-5xl mx-auto mt-6 glass-card reveal">
+      <h3 class="text-sm font-bold text-fg mb-3 font-mono uppercase tracking-wider">{isAr ? 'دراسات الحالة (GitHub)' : 'Case-study Repos (GitHub)'}</h3>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+        <a href="https://github.com/m3taz-ahmed/case-study-skybridge" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">SkyBridge</span><span class="text-muted text-xs">28K bookings</span>
+        </a>
+        <a href="https://github.com/m3taz-ahmed/case-study-raunautica" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">Raunautica</span><span class="text-muted text-xs">Marina OS</span>
+        </a>
+        <a href="https://github.com/m3taz-ahmed/case-study-business-belarabi" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">Belarabi</span><span class="text-muted text-xs">B2B 200+</span>
+        </a>
+        <a href="https://github.com/m3taz-ahmed/case-study-ishraqmed" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">IshraqMed</span><span class="text-muted text-xs">+35% bookings</span>
+        </a>
+        <a href="https://github.com/m3taz-ahmed/case-study-gobook" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">Gobook</span><span class="text-muted text-xs">SaaS</span>
+        </a>
+        <a href="https://github.com/m3taz-ahmed/case-study-gentoura" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">Gentoura</span><span class="text-muted text-xs">AI Travel</span>
+        </a>
+      </div>
+      <p class="text-xs text-muted mt-3">{isAr ? 'كل دراسة حالة هي تحليل معماري — المخطط، الـ RBAC، والتحديات.' : 'Each case study is an architecture brief — schema, RBAC, and trade-offs.'}</p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (async () => {
+    try {
+      const res = await fetch('https://api.github.com/users/m3taz-ahmed');
+      if (!res.ok) return;
+      const data = await res.json();
+      const repos = document.querySelector('[data-gh="repos"]');
+      const followers = document.querySelector('[data-gh="followers"]');
+      if (repos) repos.textContent = String(data.public_repos ?? 14);
+      if (followers) followers.textContent = String(data.followers ?? 2);
+      const r2 = await fetch('https://api.github.com/repos/m3taz-ahmed/ai-globals');
+      if (!r2.ok) return;
+      const d2 = await r2.json();
+      const stars = document.querySelector('[data-gh="stars"]');
+      const s1 = document.querySelector('[data-stat="stars"]');
+      if (stars) stars.textContent = String(d2.stargazers_count ?? 5);
+      if (s1) s1.textContent = `★ ${d2.stargazers_count ?? 5}`;
+      const commits = document.querySelector('[data-stat="commits"]');
+      // updated_at as freshness
+      const upd = document.querySelector('[data-stat="updated"]');
+      if (upd && d2.updated_at) {
+        const d = new Date(d2.updated_at);
+        upd.textContent = d.toISOString().slice(0,7);
+      }
+    } catch {}
+  })();
+</script>

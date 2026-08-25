@@ -5,6 +5,20 @@ const locale = (Astro.currentLocale ?? 'en') as Locale;
 const t = getTranslations(locale);
 ---
 
-<footer class="border-t border-border py-12 text-center relative z-10">
-  <p class="text-muted text-sm">{t.footer.copyright}</p>
+<footer class="border-t border-border py-10 relative z-10">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="text-muted text-sm text-center md:text-start">{t.footer.copyright}</p>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="https://github.com/m3taz-ahmed/ai-globals" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors">aiZee v5.7.1</a>
+        <span class="text-border">·</span>
+        <a href="/assets/Moataz-Ahmed-Resume.pdf" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors">Resume</a>
+        <span class="text-border">·</span>
+        <a href="https://github.com/m3taz-ahmed" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors">GitHub</a>
+        <span class="text-border">·</span>
+        <a href="https://linkedin.com/in/m3taz-ahmed/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors">LinkedIn</a>
+      </div>
+    </div>
+    <p class="text-muted/60 text-xs text-center mt-4 font-mono">PHP 8.5 · Laravel 13 · Filament v5 · MySQL 9.7 · PostgreSQL 17 · Node 24 · aiZee OS</p>
+  </div>
 </footer>

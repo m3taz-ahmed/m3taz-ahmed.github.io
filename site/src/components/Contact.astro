@@ -49,10 +49,13 @@ const contact = t.contact.info;
             <li>
               <a href={contact.github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                 <Icon name="Github" size={18} />
-                <span class="text-sm">GitHub</span>
+                <span class="text-sm">GitHub — aiZee</span>
               </a>
             </li>
           </ul>
+          <div class="mt-6 pt-6 border-t border-border">
+            <p class="text-xs text-muted font-mono">Avg. reply &lt; 24h · Cairo (UTC+2)</p>
+          </div>
         </div>
       </div>
 
@@ -64,12 +67,22 @@ const contact = t.contact.info;
             action="https://api.web3forms.com/submit"
             method="POST"
             class="space-y-5"
+            novalidate
             data-sending={t.contact.form.sending}
             data-success={t.contact.form.success}
             data-error={t.contact.form.error}
           >
             <input type="hidden" name="access_key" value="a0e8105f-2846-436b-a137-7737e6e21c28" />
             <input type="hidden" name="redirect" value="https://m3taz-ahmed.github.io" />
+            <input type="hidden" name="subject" value="New portfolio inquiry — m3taz-ahmed.github.io" />
+            <input type="hidden" name="from_name" value="Portfolio Contact" />
+            <!-- Honeypot -->
+            <div class="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" type="text" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <!-- Timestamp for spam check -->
+            <input type="hidden" name="_ts" id="form-ts" value="" />
 
             <div>
               <label for="name" class="sr-only">{t.contact.form.name}</label>
@@ -78,6 +91,8 @@ const contact = t.contact.info;
                 type="text"
                 name="name"
                 required
+                autocomplete="name"
+                minlength="2"
                 placeholder={t.contact.form.name}
                 class="w-full bg-card border border-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
               />
@@ -90,6 +105,7 @@ const contact = t.contact.info;
                 type="email"
                 name="email"
                 required
+                autocomplete="email"
                 placeholder={t.contact.form.email}
                 class="w-full bg-card border border-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
               />
@@ -102,9 +118,11 @@ const contact = t.contact.info;
                 name="message"
                 rows="5"
                 required
+                minlength="10"
                 placeholder={t.contact.form.message}
                 class="w-full bg-card border border-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y"
               ></textarea>
+              <p class="text-xs text-muted mt-1">{locale === 'ar' ? 'الحد الأدنى 10 أحرف' : 'Min. 10 characters'}</p>
             </div>
 
             <button type="submit" id="submit-btn" class="btn btn-primary w-full">
@@ -132,3 +150,10 @@ const contact = t.contact.info;
     border-width: 0;
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const ts = document.getElementById('form-ts');
+    if (ts) ts.value = String(Date.now());
+  })();
+</script>
