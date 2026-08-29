@@ -61,7 +61,6 @@ const ar: Translation = {
   },
   sovereignAI: {
     title: { prefix: 'هندسة الذكاء الاصطناعي ', highlight: 'السيادي' },
-<<<<<<< HEAD
     label: 'aiZee — طبقة الحوكمة للبرمجة بالذكاء الاصطناعي',
     version: 'aiZee v5.7.1',
     headline: 'طبقة الحوكمة التي تحوّل كل مساعد ذكي إلى مهندس معماري رئيسي.',
@@ -83,33 +82,12 @@ const ar: Translation = {
       commits: '139 commit',
       tests: '3561 نجح',
     },
-=======
-    label: 'ذكاء_محكوم_بإدارة_الإصدارات',
-    version: 'aiZee v5.0.0',
-    headline: 'طبقة السياسات للبرمجة بالذكاء الاصطناعي — تفرض الانضباط الهندسي على كل سطر مُنتج.',
-    description:
-      'aiZee هو نظام تشغيل سيادي محكوم بإدارة الإصدارات، يجلس بينك وبين كل مساعد برمجة بالذكاء الاصطناعي — Cursor، Claude، Copilot، Windsurf، Cline، Aider، Devin. يحمّل قواعد مشددة ومراجع مكدس تقني محكومة بالإصدارات وسياسات أمان من مخزن مركزي قبل التنفيذ، مما يضمن توافق كل سطر كود مُنتج مع مبادئ SOLID ومعايير OWASP وإصدارات إطاراتك بدقة. لا مزيد من انحراف السياق أو الحزم القديمة أو الديون التقنية الصامتة.',
-    tags: [
-      { label: '20 شخصية', info: 'مُختارة آلياً لكل مهمة — ARCH، QA، SEC، DEV، SRE، DATA، ML، DEVOPS، API', level: 'expert' },
-      { label: '66 مهارة', info: 'مهارات شخصية + مهارات لورد لمجال المهمة', level: 'expert' },
-      { label: 'OWASP + Zero-Trust', info: 'سياسات أمان مُطبقة افتراضياً على كل إجراء', level: 'expert' },
-      { label: 'سياسة + ميزانية + تدقيق', info: 'خط أنابيب 5 بوابات: النزاهة → الحارس → السياسة → الميزانية → التدقيق', level: 'advanced' },
-      { label: '2,343 اختبار · 91% تغطية', info: 'نواة مُختبَرة معسكرية ببوابات جودة صفرية العيوب', level: 'expert' },
-      { label: '+المزيد', info: 'ذاكرة هجينة (SQLite + متجهات)، Context7 وثائق حية، Graphify رسم معرفي', level: '' },
-    ],
-    cta: 'استكشف aiZee على GitHub',
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
   },
   about: {
     title: { prefix: 'الملف الشخصي لـ ', highlight: 'مهندس أول' },
     intro:
-<<<<<<< HEAD
       'مهندس أنظمة رئيسي ومبتكر aiZee — طبقة الحوكمة للبرمجة بالذكاء الاصطناعي (v5.7.1 · 3561 اختبار · تغطية 95% · 22 شخصية / 72 مهارة).',
     body: 'مهندس برمجيات مخضرم بخبرة 15+ سنة في المشهد التقني المصري. أتخصص في Laravel 13 / Filament v5 / PHP 8.5 لبناء هياكل آمنة وقابلة للتطوير للمنطق التجاري المعقد. خبرتي المزدوجة — هندسة البرمجيات + التدقيق الداخلي (PPC من 2016) — تمكنني من تسليم أنظمة جاهزة للتدقيق بضمان 100% اتساق البيانات و RBAC والامتثال بالتصميم. aiZee يحكم الآن كل سطر أنتجه.',
-=======
-      'مهندس برمجيات مخضرم بخلفية تقنية تمتد لأكثر من 15 عامًا في المشهد التقني المصري.',
-    body: 'أتخصص في Laravel و Filament، مع التركيز على بناء هياكل آمنة وقابلة للتطوير للمنطق التجاري المعقد. أنا أيضاً مُبتكر aiZee — مستوى تحكم هندسي سيادي للذكاء الاصطناعي يفرض الانضباط على مساعدي البرمجة بالذكاء الاصطناعي ويزيل انحراف السياق. تمكن خبرتي المزدوجة في التدقيق الداخلي وسلامة الأنظمة من تسليم تطبيقات "جاهزة للتدقيق" تضمن 100% اتساق البيانات والامتثال.',
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
     stats: [
       { value: 15, suffix: '', label: 'عامًا من الإتقان' },
       { value: 3561, suffix: '', label: 'اختبار aiZee ناجح' },
@@ -221,7 +199,6 @@ const ar: Translation = {
         icon: 'Smartphone',
         image: '/assets/ishraqmed.png',
         link: 'https://ishraqmed.net/ar',
-<<<<<<< HEAD
         caseStudyLink: 'https://github.com/m3taz-ahmed/case-study-ishraqmed',
         category: 'healthcare',
         tags: ['Node.js 24', 'GraphQL', 'Real-time'],
@@ -286,45 +263,6 @@ const ar: Translation = {
         category: 'saas',
         tags: ['Laravel 13', 'Filament v5', 'Redis'],
         featured: false,
-=======
-        tags: ['GraphQL', 'Node.js', 'Real-time'],
-      },
-      {
-        title: 'aiZee',
-        desc: 'مستوى تحكم هندسي سيادي للذكاء الاصطناعي — قواعد محكومة بإدارة الإصدارات، تعريفات المكدس التقني، وحوكمة سير عمل وكلاء LLM لتطوير مدفوع بالذكاء الاصطناعي.',
-        metric: 'مفتوح المصدر',
-        icon: 'Code',
-        image: '/assets/ai-os-logo.png',
-        link: 'https://github.com/m3taz-ahmed/ai-globals',
-        tags: ['AI', 'حوكمة', 'Python'],
-      },
-      {
-        title: 'التحول الرقمي للتدقيق الداخلي',
-        desc: 'نظام تدقيق مخصص لشركة خطوط أنابيب البترول (PPC) رقمن سير عمل الامتثال وحقق 100% اتساق بيانات عبر دورات التدقيق.',
-        metric: 'دراسة حالة',
-        icon: 'ShieldCheck',
-        image: '',
-        link: 'https://github.com/m3taz-ahmed/case-study-internal-audit',
-        tags: ['Laravel 13', 'Filament v5', 'RBAC'],
-      },
-      {
-        title: 'Gobook',
-        desc: 'منصة SaaS متعددة المستأجرين للحجز والحجوزات مع تتبع مالي متكامل وجدولة وإدارة عملاء معزولة لكل مستأجر.',
-        metric: 'دراسة حالة',
-        icon: 'Code',
-        image: '',
-        link: 'https://github.com/m3taz-ahmed/case-study-gobook',
-        tags: ['Multi-tenancy', 'SaaS', 'Laravel'],
-      },
-      {
-        title: 'Gentoura',
-        desc: 'منصة سفر مدعومة بالذكاء الاصطناعي تولّد خطط رحلات مخصصة وتوفر دعمًا فوريًا للسياح عبر توصيات مبنية على LLM.',
-        metric: 'منتج حي',
-        icon: 'Code',
-        image: '',
-        link: 'https://gentoura.com',
-        tags: ['AI/LLM', 'سفر', 'Laravel'],
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
       },
     ],
   },

@@ -64,7 +64,6 @@ const en = {
   },
   sovereignAI: {
     title: { prefix: 'Sovereign AI ', highlight: 'Architecture' },
-<<<<<<< HEAD
     label: 'aiZee — The Policy Layer for AI Coding',
     version: 'aiZee v5.7.1',
     headline: 'The policy layer that turns every AI assistant into a Principal Architect.',
@@ -86,33 +85,12 @@ const en = {
       commits: '139 commits',
       tests: '3561 passed',
     },
-=======
-    label: 'VERSION_CONTROLLED_INTELLIGENCE',
-    version: 'aiZee v5.0.0',
-    headline: 'The policy layer for AI coding — enforcing engineering discipline on every generated line.',
-    description:
-      'aiZee is a zero-compromise, version-controlled operating system that sits between you and every AI coding assistant — Cursor, Claude, Copilot, Windsurf, Cline, Aider, Devin. It hard-loads strict rules, version-locked tech-stack references, and security policies from a centralized brain before execution, ensuring every line of generated code aligns with SOLID principles, OWASP standards, and your exact framework versions. No more context drift, deprecated packages, or silent technical debt.',
-    tags: [
-      { label: '20 Personas', info: 'Auto-selected per task — ARCH, QA, SEC, DEV, SRE, DATA, ML, DEVOPS, API', level: 'expert' },
-      { label: '66 Skills', info: 'Persona + lord-level domain skills loaded per task', level: 'expert' },
-      { label: 'OWASP + Zero-Trust', info: 'Security policies enforced by default on every action', level: 'expert' },
-      { label: 'Policy + Budget + Audit', info: '5-gate pipeline: Probity → Guardian → Policy → Budget → Audit', level: 'advanced' },
-      { label: '2,343 Tests · 91% Coverage', info: 'Battle-tested kernel with zero-defect quality gates', level: 'expert' },
-      { label: '+more', info: 'Hybrid memory (SQLite + vector), Context7 live docs, Graphify knowledge graph', level: '' },
-    ],
-    cta: 'Explore aiZee on GitHub',
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
   },
   about: {
     title: { prefix: 'Senior ', highlight: 'Architect Profile' },
     intro:
-<<<<<<< HEAD
       'Lead Systems Architect & creator of aiZee — the policy layer for AI coding (v5.7.1 · 3561 tests · 95% coverage · 22 personas / 72 skills).',
     body: 'Seasoned Software Engineer with 15+ years in the Egyptian tech landscape. I specialize in Laravel 13 / Filament v5 / PHP 8.5, building secure, scalable, audit-ready architectures for complex business logic. My dual lens — Software Engineering + Internal Audit (PPC, 2016–Present) — lets me deliver systems with 100% data consistency, RBAC, and compliance by design. aiZee now governs every line I ship.',
-=======
-      'Seasoned Software Engineer with a technical background spanning over 15 years in the Egyptian tech landscape.',
-    body: 'I specialize in Laravel and Filament, focusing on building secure, scalable architectures for complex business logic. I am also the creator of aiZee — a sovereign AI engineering control plane that enforces discipline on AI coding assistants and eliminates context drift. My unique dual-expertise in Internal Audit & System Integrity allows me to deliver "audit-ready" applications that ensure 100% data consistency and compliance.',
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
     stats: [
       { value: 15, suffix: '', label: 'Years of Mastery' },
       { value: 3561, suffix: '', label: 'aiZee Tests Passed' },
@@ -224,7 +202,6 @@ const en = {
         icon: 'Smartphone',
         image: '/assets/ishraqmed.png',
         link: 'https://ishraqmed.net/ar',
-<<<<<<< HEAD
         caseStudyLink: 'https://github.com/m3taz-ahmed/case-study-ishraqmed',
         category: 'healthcare',
         tags: ['Node.js 24', 'GraphQL', 'Real-time'],
@@ -289,45 +266,6 @@ const en = {
         category: 'saas',
         tags: ['Laravel 13', 'Filament v5', 'Redis'],
         featured: false,
-=======
-        tags: ['GraphQL', 'Node.js', 'Real-time'],
-      },
-      {
-        title: 'aiZee',
-        desc: 'Sovereign AI engineering control plane — version-controlled rules, tech-stack definitions, and agentic workflow governance for LLM-driven development.',
-        metric: 'Open Source',
-        icon: 'Code',
-        image: '/assets/ai-os-logo.png',
-        link: 'https://github.com/m3taz-ahmed/ai-globals',
-        tags: ['AI', 'Governance', 'Python'],
-      },
-      {
-        title: 'Internal Audit Digital Transformation',
-        desc: 'Custom audit ecosystem for Petroleum Pipelines Company (PPC) that digitized compliance workflows and delivered 100% data consistency across audit cycles.',
-        metric: 'Case Study',
-        icon: 'ShieldCheck',
-        image: '',
-        link: 'https://github.com/m3taz-ahmed/case-study-internal-audit',
-        tags: ['Laravel 13', 'Filament v5', 'RBAC'],
-      },
-      {
-        title: 'Gobook',
-        desc: 'Multi-tenant SaaS booking and reservation platform with integrated financial tracking, scheduling, and tenant-isolated customer management.',
-        metric: 'Case Study',
-        icon: 'Code',
-        image: '',
-        link: 'https://github.com/m3taz-ahmed/case-study-gobook',
-        tags: ['Multi-tenancy', 'SaaS', 'Laravel'],
-      },
-      {
-        title: 'Gentoura',
-        desc: 'AI-assisted travel platform that generates personalized trip plans and provides real-time support for tourists, powered by LLM-driven recommendations.',
-        metric: 'Live Product',
-        icon: 'Code',
-        image: '',
-        link: 'https://gentoura.com',
-        tags: ['AI/LLM', 'Travel', 'Laravel'],
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
       },
     ],
   },
