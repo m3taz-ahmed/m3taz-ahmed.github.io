@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const CACHE_NAME = 'm3taz-portfolio-__BUILD_VERSION__';
-=======
-const CACHE_NAME = 'm3taz-portfolio-20260817081905';
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
+const CACHE_NAME = 'm3taz-portfolio-20260911104558';
 const PRECACHE_ASSETS = [
   '/',
   '/ar/',
