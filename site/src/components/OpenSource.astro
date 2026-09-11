@@ -5,12 +5,11 @@ import Icon from './Icon.astro';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
 const t = getTranslations(locale);
-const isAr = locale === 'ar';
 ---
 
 <section id="opensource" class="section-padding relative">
   <div class="container mx-auto px-6">
-    <SectionTitle title={{ prefix: isAr ? 'مفتوح ' : 'Open ', highlight: isAr ? 'المصدر' : 'Source' }} />
+    <SectionTitle title={t.openSource.title} />
 
     <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
       <!-- aiZee card -->
@@ -23,18 +22,16 @@ const isAr = locale === 'ar';
               <p class="text-xs text-muted font-mono">github.com/m3taz-ahmed/ai-globals</p>
             </div>
           </div>
-          <span class="tech-tag bg-primary text-primary-fg">v5.7.1</span>
+          <span class="tech-tag bg-primary text-primary-fg">v5.14.0</span>
         </div>
         <p class="text-muted text-sm leading-relaxed mb-4">
-          {isAr
-            ? 'طبقة الحوكمة للبرمجة بالذكاء الاصطناعي. 22 شخصية، 72 مهارة، 36 سير عمل، 163 مرجع تقني، 3561 اختبار. حماية من انحراف السياق، الديون الصامتة، وثغرات OWASP.'
-            : 'The policy layer for AI coding. 22 personas, 72 skills, 36 workflows, 163 stack refs, 3561 tests. Protection against context drift, silent tech debt, and OWASP gaps.'}
+          {t.openSource.aizeeDesc}
         </p>
         <div class="flex flex-wrap gap-2 mb-6" id="aizee-live-stats">
           <span class="tech-tag" data-stat="stars">★ 5</span>
-          <span class="tech-tag" data-stat="commits">139 commits</span>
-          <span class="tech-tag" data-stat="tests">3561 tests · 95%</span>
-          <span class="tech-tag" data-stat="updated">{isAr ? 'محدث 2026-08' : 'Updated 2026-08'}</span>
+          <span class="tech-tag" data-stat="commits">161 commits</span>
+          <span class="tech-tag" data-stat="tests">3865 tests · 95%</span>
+          <span class="tech-tag" data-stat="updated">{t.openSource.updated}</span>
         </div>
         <div class="flex flex-wrap gap-3">
           <a href="https://github.com/m3taz-ahmed/ai-globals" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-sm py-2 px-4">
@@ -55,10 +52,10 @@ const isAr = locale === 'ar';
           <div class="flex justify-between"><span class="text-muted">Followers</span><span class="font-bold text-fg" data-gh="followers">2</span></div>
           <div class="h-px bg-border my-3"></div>
           <p class="text-xs text-muted leading-relaxed">
-            {isAr ? '14 مستودع عام — 6 دراسات حالة + aiZee. تحديث مستمر منذ 2018.' : '14 public repos — 6 case studies + aiZee. Active since 2018.'}
+            {t.openSource.reposCount}
           </p>
           <a href="https://github.com/m3taz-ahmed" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all">
-            {isAr ? 'عرض الملف' : 'View profile'} <Icon name="ExternalLink" size={12} />
+            {t.openSource.viewProfile} <Icon name="ExternalLink" size={12} />
           </a>
         </div>
         <div class="mt-4 flex flex-wrap gap-1.5">
@@ -72,7 +69,7 @@ const isAr = locale === 'ar';
 
     <!-- Case study repos -->
     <div class="max-w-5xl mx-auto mt-6 glass-card reveal">
-      <h3 class="text-sm font-bold text-fg mb-3 font-mono uppercase tracking-wider">{isAr ? 'دراسات الحالة (GitHub)' : 'Case-study Repos (GitHub)'}</h3>
+      <h3 class="text-sm font-bold text-fg mb-3 font-mono uppercase tracking-wider">{t.openSource.caseStudiesTitle}</h3>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
         <a href="https://github.com/m3taz-ahmed/case-study-skybridge" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
           <span class="font-medium text-fg">SkyBridge</span><span class="text-muted text-xs">28K bookings</span>
@@ -93,7 +90,7 @@ const isAr = locale === 'ar';
           <span class="font-medium text-fg">Gentoura</span><span class="text-muted text-xs">AI Travel</span>
         </a>
       </div>
-      <p class="text-xs text-muted mt-3">{isAr ? 'كل دراسة حالة هي تحليل معماري — المخطط، الـ RBAC، والتحديات.' : 'Each case study is an architecture brief — schema, RBAC, and trade-offs.'}</p>
+      <p class="text-xs text-muted mt-3">{t.openSource.caseStudiesDesc}</p>
     </div>
   </div>
 </section>

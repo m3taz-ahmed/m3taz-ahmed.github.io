@@ -4,7 +4,7 @@ const ar: Translation = {
   seo: {
     title: 'معتز أحمد | مهندس أنظمة رئيسي ومبتكر aiZee',
     description:
-      'الموقع الشخصي لمعتز أحمد — مهندس أنظمة رئيسي ومبتكر aiZee (نظام الذكاء السيادي: 22 شخصية، 72 مهارة، 3561 اختبار). 15+ سنة Laravel 13 / Filament v5 / PHP 8.5 لأنظمة جاهزة للتدقيق. 28 ألف حجز بـ 99.9% uptime.',
+      'الموقع الشخصي لمعتز أحمد — مهندس أنظمة رئيسي ومبتكر aiZee (نظام الذكاء السيادي: 29 شخصية، 124 مهارة، 3865 اختبار). 15+ سنة Laravel 13 / Filament v5 / PHP 8.5 لأنظمة جاهزة للتدقيق. 28 ألف حجز بـ 99.9% uptime.',
     author: 'معتز أحمد',
     url: 'https://m3taz-ahmed.github.io',
     image: '/assets/moataz-ahmed-pic.jpg',
@@ -14,6 +14,7 @@ const ar: Translation = {
     about: 'نبذة',
     journey: 'المسيرة',
     projects: 'المشاريع',
+    openSource: 'مفتوح المصدر',
     stack: 'التقنيات',
     education: 'التعليم',
     contact: 'تواصل',
@@ -62,37 +63,37 @@ const ar: Translation = {
   sovereignAI: {
     title: { prefix: 'هندسة الذكاء الاصطناعي ', highlight: 'السيادي' },
     label: 'aiZee — طبقة الحوكمة للبرمجة بالذكاء الاصطناعي',
-    version: 'aiZee v5.7.1',
+    version: 'aiZee v5.14.0',
     headline: 'طبقة الحوكمة التي تحوّل كل مساعد ذكي إلى مهندس معماري رئيسي.',
     description:
-      'نظام تشغيل سيادي محكوم بالإصدارات بينك وبين Cursor / Claude / Copilot / Windsurf. 22 شخصية، 72 مهارة، 36 سير عمل، 163 مرجع تقني — يتم تحميلها قسراً كل جلسة لفرض OWASP و SOLID والإصدارات الدقيقة. 3561 اختبار، تغطية 95%، سجل تدقيق مسلسل. بلا انحراف سياق. بلا دين تقني صامت.',
+      'نظام تشغيل سيادي محكوم بالإصدارات بينك وبين Cursor / Claude / Copilot / Windsurf. 29 شخصية، 124 مهارة، 74 سير عمل، 252 مرجع تقني — يتم تحميلها قسراً كل جلسة لفرض OWASP و SOLID والإصدارات الدقيقة. 3865 اختبار، تغطية 95%، سجل تدقيق مسلسل. بلا انحراف سياق. بلا دين تقني صامت.',
     tags: [
-      { label: '22 شخصية', info: 'ARCH, SEC, QA, DEVOPS, DATA, ML تُكتشف تلقائياً', level: 'expert' },
-      { label: '72 مهارة', info: '29 مهارة lord على مستوى الدومين', level: 'expert' },
-      { label: '3561 اختبار', info: 'تغطية 95% — بوابة صفر عيوب', level: 'expert' },
+      { label: '29 شخصية', info: 'ARCH, SEC, QA, DEVOPS, DATA, ML تُكتشف تلقائياً', level: 'expert' },
+      { label: '124 مهارة', info: '47 مهارة lord على مستوى الدومين', level: 'expert' },
+      { label: '3865 اختبار', info: 'تغطية 95% — بوابة صفر عيوب', level: 'expert' },
       { label: 'Laravel 13', info: 'أنماط الواجهة الخلفية للمؤسسات', level: 'expert' },
       { label: 'PHP 8.5', info: 'أحدث بيئة تشغيل', level: 'expert' },
-      { label: 'PostgreSQL 17', info: 'معرفات UUIDv7 ومخططات عالية التوسع', level: 'advanced' },
+      { label: 'PostgreSQL 19', info: 'معرفات UUIDv7 ومخططات عالية التوسع', level: 'advanced' },
       { label: 'Qdrant RAG', info: 'ذاكرة متجهة + FTS5 + رسم زمني', level: 'advanced' },
-      { label: '+المزيد', info: 'MCP بـ 36 أداة، Graphify، Sliding Window، طوابير Redis', level: '' },
+      { label: '+المزيد', info: 'MCP بـ 84 أداة، Graphify، Sliding Window، طوابير Redis', level: '' },
     ],
     cta: 'استكشف aiZee على GitHub',
     stats: {
       stars: '5 ★',
-      commits: '139 commit',
-      tests: '3561 نجح',
+      commits: '161 commit',
+      tests: '3865 نجح',
     },
   },
   about: {
     title: { prefix: 'الملف الشخصي لـ ', highlight: 'مهندس أول' },
     intro:
-      'مهندس أنظمة رئيسي ومبتكر aiZee — طبقة الحوكمة للبرمجة بالذكاء الاصطناعي (v5.7.1 · 3561 اختبار · تغطية 95% · 22 شخصية / 72 مهارة).',
-    body: 'مهندس برمجيات مخضرم بخبرة 15+ سنة في المشهد التقني المصري. أتخصص في Laravel 13 / Filament v5 / PHP 8.5 لبناء هياكل آمنة وقابلة للتطوير للمنطق التجاري المعقد. خبرتي المزدوجة — هندسة البرمجيات + التدقيق الداخلي (PPC من 2016) — تمكنني من تسليم أنظمة جاهزة للتدقيق بضمان 100% اتساق البيانات و RBAC والامتثال بالتصميم. aiZee يحكم الآن كل سطر أنتجه.',
+      'أنا لا أكتب كود فحسب — أبني أنظمة ترفض الفشل. 15+ سنة من تحويل المنطق التجاري الفوضوي إلى معمارية يثق بها المدققون ولا يفكر فيها المستخدمون.',
+    body: 'بدأت عام 2009 ببناء حلول CMS للشركات الصغيرة. اليوم، أصمم أنظمة تتعامل مع أكثر من 28 ألف حجز في ذروة الحمل بنسبة تشغيل 99.9% — وأقود التحول الرقمي للتدقيق الداخلي في واحدة من أكبر الشركات الحكومية في مصر. هذه الخبرة المزدوجة هي ميزتي: أرى ما يغفل عنه المهندسون وما لا يستطيع المدققون التعبير عنه. كل نظام أبنيه جاهز للتدقيق بالتصميم — RBAC، سلامة مسلسلة، ثقة صفرية افتراضياً. أنشأت aiZee (v5.14.0) لأنني سئمت من مشاهدة مساعدات الذكاء الاصطناعي تنتج كوداً "يعمل" لكنه ينتهك OWASP بصمت، ينحرف عن المواصفات، ويتراكم كديون تقنية. aiZee هي طبقة الحوكمة التي تمنيت وجودها منذ 15 عاماً — والآن تحكم كل سطر أنتجه.',
     stats: [
-      { value: 15, suffix: '', label: 'عامًا من الإتقان' },
-      { value: 3561, suffix: '', label: 'اختبار aiZee ناجح' },
-      { value: 28000, suffix: '', label: 'حجز تم التعامل معه' },
-      { value: 99.9, suffix: '%', label: 'وقت تشغيل النظام' },
+      { value: 15, suffix: '+', label: 'سنة في بناء الأنظمة' },
+      { value: 3865, suffix: '', label: 'اختبار aiZee ناجح' },
+      { value: 28000, suffix: '+', label: 'حجز في ذروة الحمل' },
+      { value: 99.9, suffix: '%', label: 'تشغيل الإنتاج' },
     ],
     resume: 'تحميل السيرة الذاتية الكاملة',
   },
@@ -146,8 +147,8 @@ const ar: Translation = {
     items: [
       {
         title: 'aiZee — نظام الذكاء السيادي',
-        desc: 'طبقة الحوكمة للبرمجة بالذكاء الاصطناعي. 22 شخصية، 72 مهارة، 36 سير عمل، 163 مرجع. 3561 اختبار، تغطية 95%، سجل مدقّق مسلسل.',
-        metric: '5★ · 139 commit · v5.7.1',
+        desc: 'طبقة الحوكمة للبرمجة بالذكاء الاصطناعي. 29 شخصية، 124 مهارة، 74 سير عمل، 252 مرجع. 3865 اختبار، تغطية 95%، سجل مدقّق مسلسل.',
+        metric: '5★ · 161 commit · v5.14.0',
         icon: 'ShieldCheck',
         image: '/assets/aizee-logo.png',
         link: 'https://github.com/m3taz-ahmed/ai-globals',
@@ -282,8 +283,8 @@ const ar: Translation = {
       {
         title: 'حوكمة الذكاء (aiZee)',
         tags: [
-          { label: 'aiZee v5.7.1', info: '22 شخصية · 72 مهارة · 36 سير عمل', level: 'expert' },
-          { label: 'أدوات MCP 36', info: 'Context7 + Graphify حقيقة حية', level: 'expert' },
+          { label: 'aiZee v5.14.0', info: '29 شخصية · 124 مهارة · 74 سير عمل', level: 'expert' },
+          { label: 'أدوات MCP 84', info: 'Context7 + Graphify حقيقة حية', level: 'expert' },
           { label: 'Qdrant RAG', info: 'ذاكرة متجهة + FTS5 + زمنية', level: 'advanced' },
           { label: 'OWASP / RBAC', info: 'ثقة صفرية وبوابات سياسة وتدقيق مسلسل', level: 'expert' },
           { label: 'Python 3.12', info: 'نواة تشغيل aiZee', level: 'advanced' },
@@ -293,7 +294,7 @@ const ar: Translation = {
         title: 'البيانات والأنظمة',
         tags: [
           { label: 'MySQL 9.7', info: 'مخططات منظمة وجاهزة للتدقيق', level: 'expert' },
-          { label: 'PostgreSQL 17', info: 'UUIDv7 ومخططات عالية التوسع', level: 'advanced' },
+          { label: 'PostgreSQL 19', info: 'UUIDv7 ومخططات عالية التوسع', level: 'advanced' },
           { label: 'Redis', info: 'طوابير وكاش و Sliding Window', level: 'advanced' },
           { label: 'SOLID', info: 'تصميم أساسي قوي', level: 'expert' },
           { label: 'Tailwind v4 / Astro 7', info: 'واجهات ثابتة سريعة ومتاحة', level: 'advanced' },
@@ -366,6 +367,32 @@ const ar: Translation = {
   footer: {
     copyright:
       '© 2026 معتز أحمد. بكالوريوس تجارة، جامعة عين شمس. العربية لغة أم والإنجليزية لغة مهنية.',
+    links: {
+      aizee: 'aiZee v5.14.0',
+      resume: 'السيرة الذاتية',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+    },
+  },
+  now: {
+    title: { prefix: 'الآن — ', highlight: 'أغسطس 2026' },
+    available: 'متاح لمشاريع مختارة',
+    body: 'أركز الآن على <strong>aiZee v5.14.0</strong> — تثبيت طبقة الحوكمة، وإكمال دراسات الحالة الست (SkyBridge / Raunautica / Belarabi / IshraqMed / Gobook / Gentoura)، وتحويل البورتفوليو إلى <strong>Content Collections</strong> مع صفحات case-study مستقلة.',
+    items: [
+      'تحديث aiZee: ذاكرة هجينة (FTS5 + Vector)، أدوات SEO الثمانية، وتوثيق عربي كامل',
+      'بناء حجوزات SaaS متعددة المستأجرين (Gobook → SkyBridge) بمعمارية audit-ready',
+      'كتابة 4 مقالات: RBAC في Filament، منع Context Drift، هندسة 28K حجز',
+    ],
+    updated: 'آخر تحديث: 26 أغسطس 2026 — القاهرة (UTC+2)',
+  },
+  openSource: {
+    title: { prefix: 'مفتوح ', highlight: 'المصدر' },
+    aizeeDesc: 'طبقة الحوكمة للبرمجة بالذكاء الاصطناعي. 29 شخصية، 124 مهارة، 74 سير عمل، 252 مرجع تقني، 3865 اختبار. حماية من انحراف السياق، الديون الصامتة، وثغرات OWASP.',
+    updated: 'محدث 2026-08',
+    reposCount: '14 مستودع عام — 6 دراسات حالة + aiZee. تحديث مستمر منذ 2018.',
+    viewProfile: 'عرض الملف',
+    caseStudiesTitle: 'دراسات الحالة (GitHub)',
+    caseStudiesDesc: 'كل دراسة حالة هي تحليل معماري — المخطط، الـ RBAC، والتحديات.',
   },
   notFound: {
     title: 'الصفحة غير موجودة',

@@ -2,6 +2,7 @@
 import { getTranslations, type Locale } from '../i18n';
 import SectionTitle from './SectionTitle.astro';
 import Icon from './Icon.astro';
+import TiltCard from './react/TiltCard.tsx';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
 const t = getTranslations(locale);
@@ -39,11 +40,12 @@ const categories = [
     <div class="grid md:grid-cols-2 gap-8" id="projects-grid">
       {
         t.projects.items.map((project) => (
-          <article
-            class="project-card glass-card glass-card-interactive overflow-hidden p-0 flex flex-col reveal group"
-            data-category={project.category}
-            data-featured={String(project.featured)}
-          >
+          <TiltCard client:visible className="project-card-tilt" maxTilt={6}>
+            <article
+              class="project-card glass-card glass-card-interactive overflow-hidden p-0 flex flex-col reveal group h-full"
+              data-category={project.category}
+              data-featured={String(project.featured)}
+            >
             <div class="relative h-52 overflow-hidden border-b border-border">
               {project.image ? (
                 <>
@@ -114,6 +116,7 @@ const categories = [
               </div>
             </div>
           </article>
+          </TiltCard>
         ))
       }
     </div>

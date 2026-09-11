@@ -1,5 +1,6 @@
 ---
 import { getTranslations, type Locale } from '../i18n';
+import Hero3D from './react/Hero3D.tsx';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
 const t = getTranslations(locale);
@@ -7,7 +8,11 @@ const t = getTranslations(locale);
 const phrases = JSON.stringify(t.hero.typewriter);
 ---
 
-<section class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-12">
+<section class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-12 hero-section">
+  <!-- 3D particle field background -->
+  <Hero3D client:load />
+  <!-- Gradient overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-b from-bg/30 via-transparent to-bg/60 pointer-events-none z-0" aria-hidden="true"></div>
   <div class="absolute top-0 end-0 w-1/2 h-full radial-glow pointer-events-none z-0" aria-hidden="true"></div>
 
   <div class="container mx-auto px-6 relative z-10">
@@ -57,7 +62,7 @@ const phrases = JSON.stringify(t.hero.typewriter);
       </div>
 
       <div class="lg:col-span-2 flex justify-center">
-        <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+        <div class="relative w-64 h-64 sm:w-80 sm:h-80 hero-image-wrap" data-tilt>
           <img
             src="/assets/moataz-ahmed-pic.jpg"
             alt={t.hero.name}
@@ -70,6 +75,11 @@ const phrases = JSON.stringify(t.hero.typewriter);
           />
           <div
             class="absolute -inset-4 border-2 border-primary/30 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] rotating -z-0"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="absolute -inset-8 border border-secondary/20 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] rotating -z-0"
+            style="animation-direction: reverse; animation-duration: 30s;"
             aria-hidden="true"
           ></div>
         </div>

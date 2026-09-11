@@ -272,6 +272,14 @@ body {
   transform: translateY(0);
 }
 
+/* Fallback: if GSAP fails, content must still be visible.
+   This overrides any inline opacity:0 that gsap.from() sets
+   after a timeout, ensuring content is never permanently hidden. */
+.gsap-ready .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* ---------------------------------------------------------------------------
    Keyframes
    --------------------------------------------------------------------------- */
@@ -383,4 +391,61 @@ body {
 #back-to-top:hover {
   color: var(--fg);
   border-color: var(--primary);
+}
+
+/* ---------------------------------------------------------------------------
+   3D Tilt card wrapper
+   --------------------------------------------------------------------------- */
+.project-card-tilt {
+  perspective: 1000px;
+}
+
+/* ---------------------------------------------------------------------------
+   Hero section — 3D background
+   --------------------------------------------------------------------------- */
+.hero-section {
+  background: radial-gradient(ellipse at center, transparent 0%, var(--bg) 90%);
+}
+
+[data-theme='dark'] .hero-section {
+  background: radial-gradient(ellipse at center, transparent 0%, var(--bg) 95%);
+}
+
+/* Ensure the 3D canvas is visible behind content */
+.hero-section canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Custom cursor — hide default on desktop when active
+   --------------------------------------------------------------------------- */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* Keep default cursor visible — the custom one is additive, not replacement */
+}
+
+/* ---------------------------------------------------------------------------
+   Hero image 3D tilt wrapper
+   --------------------------------------------------------------------------- */
+.hero-image-wrap {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll progress bar (GSAP-managed, CSS fallback)
+   --------------------------------------------------------------------------- */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 50%, transparent);
 }

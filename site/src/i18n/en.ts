@@ -2,7 +2,7 @@ const en = {
   seo: {
     title: 'Moataz Ahmed | Lead Systems Architect & aiZee Creator',
     description:
-      'Portfolio of Moataz Ahmed — Lead Systems Architect, creator of aiZee (Sovereign AI OS: 22 personas, 72 skills, 3561 tests). 15+ years Laravel 13 / Filament v5 / PHP 8.5 audit-ready systems. 28K+ bookings at 99.9% uptime.',
+      'Portfolio of Moataz Ahmed — Lead Systems Architect, creator of aiZee (Sovereign AI OS: 29 personas, 124 skills, 3865 tests). 15+ years Laravel 13 / Filament v5 / PHP 8.5 audit-ready systems. 28K+ bookings at 99.9% uptime.',
     author: 'Moataz Ahmed',
     url: 'https://m3taz-ahmed.github.io',
     image: '/assets/moataz-ahmed-pic.jpg',
@@ -12,6 +12,7 @@ const en = {
     about: 'About',
     journey: 'Journey',
     projects: 'Projects',
+    openSource: 'Open Source',
     stack: 'Stack',
     education: 'Education',
     contact: 'Contact',
@@ -65,37 +66,37 @@ const en = {
   sovereignAI: {
     title: { prefix: 'Sovereign AI ', highlight: 'Architecture' },
     label: 'aiZee — The Policy Layer for AI Coding',
-    version: 'aiZee v5.7.1',
+    version: 'aiZee v5.14.0',
     headline: 'The policy layer that turns every AI assistant into a Principal Architect.',
     description:
-      'A zero-compromise, version-controlled OS between you and Cursor / Claude / Copilot / Windsurf. 22 personas, 72 skills, 36 workflows, 163 tech-stack refs — hard-loaded every session to enforce OWASP, SOLID, and exact-version stack. 3561 tests, 95% coverage, hash-chained audit. No context drift. No silent tech debt.',
+      'A zero-compromise, version-controlled OS between you and Cursor / Claude / Copilot / Windsurf. 29 personas, 124 skills, 74 workflows, 252 tech-stack refs — hard-loaded every session to enforce OWASP, SOLID, and exact-version stack. 3865 tests, 95% coverage, hash-chained audit. No context drift. No silent tech debt.',
     tags: [
-      { label: '22 Personas', info: 'ARCH, SEC, QA, DEVOPS, DATA, ML auto-detected', level: 'expert' },
-      { label: '72 Skills', info: '29 lord-level domain skills', level: 'expert' },
-      { label: '3561 Tests', info: '95% coverage — zero-defect gate', level: 'expert' },
+      { label: '29 Personas', info: 'ARCH, SEC, QA, DEVOPS, DATA, ML auto-detected', level: 'expert' },
+      { label: '124 Skills', info: '47 lord-level domain skills', level: 'expert' },
+      { label: '3865 Tests', info: '95% coverage — zero-defect gate', level: 'expert' },
       { label: 'Laravel 13', info: 'Enterprise backend patterns', level: 'expert' },
       { label: 'PHP 8.5', info: 'Latest language runtime', level: 'expert' },
-      { label: 'PostgreSQL 17', info: 'UUIDv7 & high-scale schemas', level: 'advanced' },
+      { label: 'PostgreSQL 19', info: 'UUIDv7 & high-scale schemas', level: 'advanced' },
       { label: 'Qdrant RAG', info: 'Vector memory + FTS5 + temporal graph', level: 'advanced' },
-      { label: '+more', info: 'MCP 36 tools, Graphify, Sliding Window, Redis queues', level: '' },
+      { label: '+more', info: 'MCP 84 tools, Graphify, Sliding Window, Redis queues', level: '' },
     ],
     cta: 'Explore aiZee on GitHub',
     stats: {
       stars: '5 ★',
-      commits: '139 commits',
-      tests: '3561 passed',
+      commits: '161 commits',
+      tests: '3865 passed',
     },
   },
   about: {
     title: { prefix: 'Senior ', highlight: 'Architect Profile' },
     intro:
-      'Lead Systems Architect & creator of aiZee — the policy layer for AI coding (v5.7.1 · 3561 tests · 95% coverage · 22 personas / 72 skills).',
-    body: 'Seasoned Software Engineer with 15+ years in the Egyptian tech landscape. I specialize in Laravel 13 / Filament v5 / PHP 8.5, building secure, scalable, audit-ready architectures for complex business logic. My dual lens — Software Engineering + Internal Audit (PPC, 2016–Present) — lets me deliver systems with 100% data consistency, RBAC, and compliance by design. aiZee now governs every line I ship.',
+      'I don\'t just write code — I engineer systems that refuse to fail. 15+ years of turning chaotic business logic into architectures that auditors trust and users never think about.',
+    body: 'I started in 2009 building CMS solutions for small businesses. Today, I architect systems that handle 28,000+ bookings at peak load with 99.9% uptime — and I lead the Internal Audit digital transformation at one of Egypt\'s largest state-owned companies. That dual expertise is my edge: I see what engineers miss and what auditors can\'t articulate. Every system I build is audit-ready by design — RBAC, hash-chained integrity, zero-trust by default. I created aiZee (v5.14.0) because I got tired of watching AI assistants produce code that "works" but silently violates OWASP, drifts from specs, and accumulates tech debt. aiZee is the policy layer I wish I had for 15 years — now it governs every line I ship.',
     stats: [
-      { value: 15, suffix: '', label: 'Years of Mastery' },
-      { value: 3561, suffix: '', label: 'aiZee Tests Passed' },
-      { value: 28000, suffix: '', label: 'Bookings Handled' },
-      { value: 99.9, suffix: '%', label: 'System Uptime' },
+      { value: 15, suffix: '+', label: 'Years Building Systems' },
+      { value: 3865, suffix: '', label: 'aiZee Tests Passed' },
+      { value: 28000, suffix: '+', label: 'Bookings at Peak Load' },
+      { value: 99.9, suffix: '%', label: 'Production Uptime' },
     ],
     resume: 'Download Full Resume',
   },
@@ -149,8 +150,8 @@ const en = {
     items: [
       {
         title: 'aiZee — Sovereign AI OS',
-        desc: 'The policy layer for AI coding. 22 personas, 72 skills, 36 workflows, 163 stack refs. 3561 tests, 95% coverage, hash-chained audit. Powers every project below.',
-        metric: '5★ · 139 commits · v5.7.1',
+        desc: 'The policy layer for AI coding. 29 personas, 124 skills, 74 workflows, 252 stack refs. 3865 tests, 95% coverage, hash-chained audit. Powers every project below.',
+        metric: '5★ · 161 commits · v5.14.0',
         icon: 'ShieldCheck',
         image: '/assets/aizee-logo.png',
         link: 'https://github.com/m3taz-ahmed/ai-globals',
@@ -285,8 +286,8 @@ const en = {
       {
         title: 'AI Governance (aiZee)',
         tags: [
-          { label: 'aiZee v5.7.1', info: '22 personas · 72 skills · 36 workflows', level: 'expert' },
-          { label: 'MCP 36 tools', info: 'Context7 + Graphify live ground-truth', level: 'expert' },
+          { label: 'aiZee v5.14.0', info: '29 personas · 124 skills · 74 workflows', level: 'expert' },
+          { label: 'MCP 84 tools', info: 'Context7 + Graphify live ground-truth', level: 'expert' },
           { label: 'Qdrant RAG', info: 'Vector + FTS5 + temporal memory', level: 'advanced' },
           { label: 'OWASP / RBAC', info: 'Zero-trust, policy gates, hash-chained audit', level: 'expert' },
           { label: 'Python 3.12', info: 'Runtime kernel for aiZee', level: 'advanced' },
@@ -296,7 +297,7 @@ const en = {
         title: 'Data & Systems',
         tags: [
           { label: 'MySQL 9.7', info: 'Normalized, audit-ready schemas', level: 'expert' },
-          { label: 'PostgreSQL 17', info: 'UUIDv7 & high-scale schemas', level: 'advanced' },
+          { label: 'PostgreSQL 19', info: 'UUIDv7 & high-scale schemas', level: 'advanced' },
           { label: 'Redis', info: 'Queues, cache, Sliding Window', level: 'advanced' },
           { label: 'SOLID', info: 'Strong foundational design', level: 'expert' },
           { label: 'Tailwind v4 / Astro 7', info: 'Fast, accessible static UIs', level: 'advanced' },
@@ -369,6 +370,32 @@ const en = {
   footer: {
     copyright:
       '© 2026 Moataz Ahmed. Bachelor of Commerce, Ain Shams University. Native Arabic & Professional English.',
+    links: {
+      aizee: 'aiZee v5.14.0',
+      resume: 'Resume',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+    },
+  },
+  now: {
+    title: { prefix: 'Now — ', highlight: 'Aug 2026' },
+    available: 'Available for select projects',
+    body: 'Focus now: shipping <strong>aiZee v5.14.0</strong> — hardening governance, completing 6 case studies (SkyBridge / Raunautica / Belarabi / IshraqMed / Gobook / Gentoura), and turning this portfolio into <strong>Content Collections</strong> with dedicated case-study pages.',
+    items: [
+      'aiZee: hybrid memory (FTS5 + Vector), 8 SEO tools, full Arabic docs',
+      'Multi-tenant booking SaaS (Gobook → SkyBridge) — audit-ready by design',
+      'Writing 4 posts: Filament RBAC, Zero Context Drift, 28K-booking architecture',
+    ],
+    updated: 'Last updated: 26 Aug 2026 — Cairo (UTC+2)',
+  },
+  openSource: {
+    title: { prefix: 'Open ', highlight: 'Source' },
+    aizeeDesc: 'The policy layer for AI coding. 29 personas, 124 skills, 74 workflows, 252 stack refs, 3865 tests. Protection against context drift, silent tech debt, and OWASP gaps.',
+    updated: 'Updated 2026-08',
+    reposCount: '14 public repos — 6 case studies + aiZee. Active since 2018.',
+    viewProfile: 'View profile',
+    caseStudiesTitle: 'Case-study Repos (GitHub)',
+    caseStudiesDesc: 'Each case study is an architecture brief — schema, RBAC, and trade-offs.',
   },
   notFound: {
     title: 'Page Not Found',

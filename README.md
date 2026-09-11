@@ -1,50 +1,36 @@
 # Moataz Ahmed | Lead Systems Architect & aiZee Creator
 
-[![aiZee](https://img.shields.io/badge/aiZee-v5.7.1-6C63FF?style=for-the-badge&logo=buffer&logoColor=white)](https://github.com/m3taz-ahmed/ai-globals)
+[![aiZee](https://img.shields.io/badge/aiZee-v5.14.0-6C63FF?style=for-the-badge&logo=buffer&logoColor=white)](https://github.com/m3taz-ahmed/ai-globals)
 [![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
 [![Filament](https://img.shields.io/badge/Filament-v5-f97316?style=for-the-badge&logo=laravel)](https://filamentphp.com)
 [![GitHub Pages](https://img.shields.io/badge/Deployment-GitHub_Pages-blue?style=for-the-badge&logo=github)](https://m3taz-ahmed.github.io/)
-<<<<<<< HEAD
 
-High-performance bilingual portfolio for Moataz Ahmed — Lead Systems Architect & creator of **aiZee** (Sovereign AI OS: 22 personas, 72 skills, 36 workflows, 3561 tests, 95% coverage). 15+ years Laravel 13 / Filament v5 / PHP 8.5 audit-ready systems.
-=======
-[![Laravel](https://img.shields.io/badge/Expertise-Laravel_13-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
-[![Filament](https://img.shields.io/badge/Expertise-Filament_v5-f97316?style=for-the-badge&logo=laravel)](https://filamentphp.com)
-[![aiZee](https://img.shields.io/badge/Sovereign_AI-aiZee_v4.22.1-8B5CF6?style=for-the-badge&logo=python&logoColor=white)](https://github.com/m3taz-ahmed/ai-globals)
-
-A high-performance, bilingual professional portfolio website showcasing 15+ years of experience in Software Engineering, System Architecture, Internal Audit, and Sovereign AI Engineering. This site is designed to be "Audit-Ready," reflecting a unique dual-expertise in both technical development and system integrity.
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
+High-performance bilingual portfolio for Moataz Ahmed — Lead Systems Architect & creator of **aiZee** (Sovereign AI OS: 29 personas, 124 skills, 74 workflows, 3865 tests, 95% coverage). 15+ years Laravel 13 / Filament v5 / PHP 8.5 audit-ready systems.
 
 ## 🚀 Live Demo
 Visit the live site here: [https://m3taz-ahmed.github.io/](https://m3taz-ahmed.github.io/)
 
 ## 🛠️ Tech Stack
-- **Framework:** [Astro 7](https://astro.build/) with static export.
+- **Framework:** [Astro 7](https://astro.build/) with static export + React islands.
+- **3D:** [Three.js](https://threejs.org/) via [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) — WebGL particle field hero.
+- **Animation:** [GSAP](https://gsap.com/) ScrollTrigger — parallax, kinetic typography, magnetic cursor.
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) with glassmorphism design system.
 - **Icons:** [Lucide icons](https://lucide.dev/) for lightweight SVG icons.
-- **Animations:** Custom CSS, Intersection Observer, canvas particles.
 - **i18n:** Arabic + English (hreflang, `sitemap` i18n, `og:locale:alternate`).
 - **PWA:** `manifest.json` + service worker (offline).
 - **SEO:** OG, Twitter Cards, `Person`+`WebSite`+`ItemList` JSON-LD, `hreflang`, `robots`, `sitemap.xml`.
 - **Contact:** [Web3Forms](https://web3forms.com/) with honeypot + time-trap + validation.
-- **Brand:** [aiZee v5.7.1](https://github.com/m3taz-ahmed/ai-globals) — `assets/aizee-logo.png`.
+- **Brand:** [aiZee v5.14.0](https://github.com/m3taz-ahmed/ai-globals) — `assets/aizee-logo.png`.
 
 ## ✨ Key Features
-<<<<<<< HEAD
 - **Bilingual:** EN/AR with `hreflang` + `og:locale` + localized routes.
-- **aiZee Sovereign AI:** Dedicated section — `v5.7.1`, 22 personas, 72 skills, live GitHub stats.
+- **3D Hero:** WebGL particle field with mouse-reactive rotation and wireframe core.
+- **GSAP Animations:** Scroll-driven parallax, kinetic section titles, magnetic buttons, 3D tilt cards.
+- **aiZee Sovereign AI:** Dedicated section — `v5.14.0`, 29 personas, 124 skills, live GitHub stats.
 - **Filterable Projects:** `All / AI / SaaS / B2B / Audit` + `Featured` + case-study links + NDA handling.
 - **Open Source Hub:** Live `api.github.com` stats for aiZee + 6 case-study repos.
 - **Audit-Ready:** RBAC, hash-chained audit, SOLID, OWASP narrative throughout.
 - **Optimized:** Particles respects `prefers-reduced-motion`, lazy images, `back-to-top`, reveal animations.
-=======
-- **Bilingual:** Fully localized English and Arabic content.
-- **Interactive Professional Journey:** A detailed timeline of 15+ years in the Egyptian tech landscape.
-- **Project Case Studies:** Deep dives into SkyBridge, Raunautica, Business Belarabi, IshraqMed, aiZee, Internal Audit (PPC), Gobook, and Gentoura.
-- **Sovereign AI Section:** Showcasing aiZee — a version-controlled AI engineering control plane for LLM governance.
-- **Audit-Ready Architecture:** Emphasis on RBAC, Data Integrity, and Secure System Design.
-- **Responsive & Optimized:** Blazing fast load times and fully mobile-responsive design.
->>>>>>> 733a6d3662ed9665449723cb75d637e348c97b64
 
 ## 📂 Project Structure
 ```text
@@ -55,8 +41,10 @@ Visit the live site here: [https://m3taz-ahmed.github.io/](https://m3taz-ahmed.g
 │   ├── src/
 │   │   ├── pages/      # Routes and 404
 │   │   ├── components/ # Reusable section components
+│   │   │   └── react/  # React islands (Hero3D, TiltCard, MagneticCursor)
 │   │   ├── layouts/    # Layouts and shared UI
 │   │   ├── i18n/       # English and Arabic translations
+│   │   ├── scripts/    # GSAP scroll animations
 │   │   └── styles/     # Global Tailwind CSS entry
 │   ├── public/         # Static assets and service worker
 │   ├── astro.config.mjs

@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { getTranslations, type Locale } from '../i18n';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import MagneticCursor from '../components/react/MagneticCursor.tsx';
 
 interface Props {
   title?: string;
@@ -128,6 +129,7 @@ const schema = {
   </head>
 
   <body class="font-sans antialiased relative min-h-screen">
+    <MagneticCursor client:only="react" />
     <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
     <Nav />
@@ -150,5 +152,9 @@ const schema = {
     </a>
 
     <script is:inline src="/app.js"></script>
+    <script>
+      import { initGSAP } from '../scripts/gsap-animations';
+      initGSAP();
+    </script>
   </body>
 </html>
