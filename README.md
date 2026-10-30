@@ -1,11 +1,11 @@
 # Moataz Ahmed | Lead Systems Architect & aiZee Creator
 
-[![aiZee](https://img.shields.io/badge/aiZee-v5.14.0-6C63FF?style=for-the-badge&logo=buffer&logoColor=white)](https://github.com/m3taz-ahmed/ai-globals)
+[![aiZee](https://img.shields.io/badge/aiZee-v6.5.0-6C63FF?style=for-the-badge&logo=buffer&logoColor=white)](https://github.com/m3taz-ahmed/aizee)
 [![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
 [![Filament](https://img.shields.io/badge/Filament-v5-f97316?style=for-the-badge&logo=laravel)](https://filamentphp.com)
 [![GitHub Pages](https://img.shields.io/badge/Deployment-GitHub_Pages-blue?style=for-the-badge&logo=github)](https://m3taz-ahmed.github.io/)
 
-High-performance bilingual portfolio for Moataz Ahmed — Lead Systems Architect & creator of **aiZee** (Sovereign AI OS: 29 personas, 124 skills, 74 workflows, 3865 tests, 95% coverage). 15+ years Laravel 13 / Filament v5 / PHP 8.5 audit-ready systems.
+High-performance bilingual portfolio for Moataz Ahmed — Lead Systems Architect & creator of **aiZee** (Sovereign AI OS: 29 personas, 151 skills, 65 workflows, 7400+ tests, 100% coverage). 15+ years Laravel 13 / Filament v5 / PHP 8.5 audit-ready systems.
 
 ## 🚀 Live Demo
 Visit the live site here: [https://m3taz-ahmed.github.io/](https://m3taz-ahmed.github.io/)
@@ -20,15 +20,15 @@ Visit the live site here: [https://m3taz-ahmed.github.io/](https://m3taz-ahmed.g
 - **PWA:** `manifest.json` + service worker (offline).
 - **SEO:** OG, Twitter Cards, `Person`+`WebSite`+`ItemList` JSON-LD, `hreflang`, `robots`, `sitemap.xml`.
 - **Contact:** [Web3Forms](https://web3forms.com/) with honeypot + time-trap + validation.
-- **Brand:** [aiZee v5.14.0](https://github.com/m3taz-ahmed/ai-globals) — `assets/aizee-logo.png`.
+- **Brand:** [aiZee v6.5.0](https://github.com/m3taz-ahmed/aizee) — `assets/aizee-logo.png`.
 
 ## ✨ Key Features
 - **Bilingual:** EN/AR with `hreflang` + `og:locale` + localized routes.
 - **3D Hero:** WebGL particle field with mouse-reactive rotation and wireframe core.
 - **GSAP Animations:** Scroll-driven parallax, kinetic section titles, magnetic buttons, 3D tilt cards.
-- **aiZee Sovereign AI:** Dedicated section — `v5.14.0`, 29 personas, 124 skills, live GitHub stats.
+- **aiZee Sovereign AI:** Dedicated section — `v6.5.0`, 29 personas, 151 skills, live GitHub stats.
 - **Filterable Projects:** `All / AI / SaaS / B2B / Audit` + `Featured` + case-study links + NDA handling.
-- **Open Source Hub:** Live `api.github.com` stats for aiZee + 6 case-study repos.
+- **Open Source Hub:** Live `api.github.com` stats for aiZee + 7 case-study repos.
 - **Audit-Ready:** RBAC, hash-chained audit, SOLID, OWASP narrative throughout.
 - **Optimized:** Particles respects `prefers-reduced-motion`, lazy images, `back-to-top`, reveal animations.
 

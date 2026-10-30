@@ -19,25 +19,25 @@ const t = getTranslations(locale);
             <img src="/assets/aizee-logo.png" alt="aiZee" class="w-10 h-10 object-contain bg-white rounded-lg p-1" loading="lazy" />
             <div>
               <h3 class="text-xl font-bold text-fg">aiZee</h3>
-              <p class="text-xs text-muted font-mono">github.com/m3taz-ahmed/ai-globals</p>
+              <p class="text-xs text-muted font-mono">github.com/m3taz-ahmed/aizee</p>
             </div>
           </div>
-          <span class="tech-tag bg-primary text-primary-fg">v5.14.0</span>
+          <span class="tech-tag bg-primary text-primary-fg">v6.5.0</span>
         </div>
         <p class="text-muted text-sm leading-relaxed mb-4">
           {t.openSource.aizeeDesc}
         </p>
         <div class="flex flex-wrap gap-2 mb-6" id="aizee-live-stats">
           <span class="tech-tag" data-stat="stars">★ 5</span>
-          <span class="tech-tag" data-stat="commits">161 commits</span>
-          <span class="tech-tag" data-stat="tests">3865 tests · 95%</span>
+          <span class="tech-tag" data-stat="commits">194 commits</span>
+          <span class="tech-tag" data-stat="tests">7400+ tests · 100%</span>
           <span class="tech-tag" data-stat="updated">{t.openSource.updated}</span>
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="https://github.com/m3taz-ahmed/ai-globals" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-sm py-2 px-4">
+          <a href="https://github.com/m3taz-ahmed/aizee" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-sm py-2 px-4">
             <Icon name="Github" size={16} /> GitHub
           </a>
-          <a href="https://github.com/m3taz-ahmed/ai-globals/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="btn btn-outline text-sm py-2 px-4">
+          <a href="https://github.com/m3taz-ahmed/aizee/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="btn btn-outline text-sm py-2 px-4">
             Changelog
           </a>
         </div>
@@ -47,7 +47,7 @@ const t = getTranslations(locale);
       <div class="glass-card reveal">
         <h3 class="text-lg font-bold text-fg mb-4 flex items-center gap-2"><Icon name="Github" size={18} /> GitHub</h3>
         <div id="github-profile" class="space-y-3 text-sm">
-          <div class="flex justify-between"><span class="text-muted">Repos</span><span class="font-bold text-fg" data-gh="repos">14</span></div>
+          <div class="flex justify-between"><span class="text-muted">Repos</span><span class="font-bold text-fg" data-gh="repos">16</span></div>
           <div class="flex justify-between"><span class="text-muted">Stars (aiZee)</span><span class="font-bold text-fg" data-gh="stars">5</span></div>
           <div class="flex justify-between"><span class="text-muted">Followers</span><span class="font-bold text-fg" data-gh="followers">2</span></div>
           <div class="h-px bg-border my-3"></div>
@@ -89,6 +89,9 @@ const t = getTranslations(locale);
         <a href="https://github.com/m3taz-ahmed/case-study-gentoura" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
           <span class="font-medium text-fg">Gentoura</span><span class="text-muted text-xs">AI Travel</span>
         </a>
+        <a href="https://github.com/m3taz-ahmed/case-study-internal-audit" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
+          <span class="font-medium text-fg">Internal Audit</span><span class="text-muted text-xs">PPC · RBAC</span>
+        </a>
       </div>
       <p class="text-xs text-muted mt-3">{t.openSource.caseStudiesDesc}</p>
     </div>
@@ -105,7 +108,7 @@ const t = getTranslations(locale);
       const followers = document.querySelector('[data-gh="followers"]');
       if (repos) repos.textContent = String(data.public_repos ?? 14);
       if (followers) followers.textContent = String(data.followers ?? 2);
-      const r2 = await fetch('https://api.github.com/repos/m3taz-ahmed/ai-globals');
+      const r2 = await fetch('https://api.github.com/repos/m3taz-ahmed/aizee');
       if (!r2.ok) return;
       const d2 = await r2.json();
       const stars = document.querySelector('[data-gh="stars"]');

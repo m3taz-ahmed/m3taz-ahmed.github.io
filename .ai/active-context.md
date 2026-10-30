@@ -1,33 +1,28 @@
 ---
-updated: 2026-08-06
+updated: 2026-10-30
 ---
 
 # Active Context — m3taz-ahmed.github.io
 
 ## Last Milestone
-Full redesign and restructure of the Astro 7 + Tailwind 4 portfolio site.
+Full link/fact audit against live GitHub state + content refresh to aiZee v6.5.0.
 
-## Key Decisions
-- Adopted personas: CV/UX (primary), with frontend-frameworks-lord, language-lord, page-sections-lord, gsap-animated-frontend lord skills.
-- Design direction: light glassmorphism by default with a manual light/dark theme toggle, persisted in `localStorage` and respecting `prefers-color-scheme`.
-- Theme system: Tailwind v4 `@custom-variant dark` driven by `data-theme` attribute on `<html>`; CSS custom properties switch between light and dark palettes.
-- Restructured component architecture: all sections use the new `glass-card`, `btn-*`, `tech-tag`, and `SectionTitle` patterns; added `ThemeToggle.astro`.
-- Content refresh: filled empty project descriptions, normalized version references (Laravel, Filament, PHP, Node.js, MySQL, PostgreSQL without hardcoded version numbers), improved Arabic copy.
-- Accessibility: focus-visible rings, reduced-motion support, semantic headings, `aria-label` on icons/toggles, form labels.
-- Interactions: theme toggle, typewriter, animated counters, testimonials slider, mobile menu, back-to-top, reveal-on-scroll, particle canvas, contact form AJAX (Web3Forms).
-- Deployment: build output deployed to repository root; stale `_astro/` and `assets/script.js`/`assets/style.css` artifacts removed.
+## Verified Facts (GitHub API, 2026-10-30)
+- aiZee repo renamed: `ai-globals` → `aizee` (old URL redirects; canonical = `github.com/m3taz-ahmed/aizee`).
+- aiZee real stats: **v6.5.0**, 29 personas, **151 skills, 65 workflows, 269 tech-stack refs, 7400+ tests, 100% coverage**, 5★, 194 commits, MIT.
+- Profile: **16 public repos**, 2 followers — **7 case-study repos** (incl. `case-study-internal-audit` which was unlinked).
+- `ishraqmed.net` → hosting suspended page (dead link — removed from project card, case study kept).
+- Live links OK: facilitiesservices.sa/welcome, raunautica.com, businessbelarabi.com, LinkedIn.
 
-## Files Touched
-- `site/src/styles/global.css`
-- `site/src/layouts/Layout.astro`
-- `site/src/components/*` (all sections, Nav, Footer, ThemeToggle, Icon, SectionTitle, LanguageSwitcher)
-- `site/src/i18n/en.ts` and `ar.ts`
-- `site/src/pages/404.astro`
-- `site/public/app.js`
-- `site/public/manifest.json`
-- Root deployment files (`index.html`, `ar/index.html`, `app.js`, `sw.js`, `manifest.json`, `_astro/*`, `404.html`)
+## Changes Made
+- `i18n/en.ts` + `ar.ts`: all aiZee numbers/version/links updated; IshraqMed `link` removed; InternalAudtingSys gained `case-study-internal-audit` link; `now` section refreshed to Oct 2026; typewriter gained "aiZee Creator"/"مبتكر aiZee"; `reposCount` 14→16.
+- `SovereignAI.astro`, `OpenSource.astro`, `Footer.astro`: `ai-globals`→`aizee` everywhere incl. live-fetch URL; version/commits/tests fallbacks updated; 7th case-study link added.
+- `Projects.astro`: NDA lock now only renders when neither `link` nor `caseStudyLink` exists.
+- Root `README.md`: badge + stats updated.
+- Rebuilt (`npm run build`) + deployed to repo root via `node deploy.js` (sw cache 20261030132255).
 
-## Next Steps / Open Items
-- User review of the live preview at `http://localhost:4321` (or root `index.html`).
-- Decide whether to keep, refine, or extend the new design system.
-- Potential: add a dedicated AI OS page, project detail pages, or a blog.
+## Open Items
+- ~~GitHub profile README~~ — DONE 2026-10-30 (commit `9e6bb40`): canonical `aizee` links, v6.5.0 badges/stats, AppLane + sahra-games listed.
+- Consider adding `AppLane` + `sahra-games` public repos to the portfolio site's Open Source section.
+- Content Collections migration for dedicated case-study pages (from `now` roadmap).
+- User to review + commit/push (agent does not commit per policy).

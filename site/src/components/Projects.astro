@@ -96,12 +96,12 @@ const categories = [
                     {project.category === 'ai' ? 'GitHub' : t.projects.live}
                     <Icon name="ExternalLink" size={14} />
                   </a>
-                ) : (
+                ) : !project.caseStudyLink ? (
                   <span class="inline-flex items-center gap-2 text-muted font-medium text-sm">
                     <Icon name="Lock" size={14} />
                     {t.projects.nda}
                   </span>
-                )}
+                ) : null}
                 {project.caseStudyLink && (
                   <a
                     href={project.caseStudyLink}
