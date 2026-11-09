@@ -22,15 +22,15 @@ const t = getTranslations(locale);
               <p class="text-xs text-muted font-mono">github.com/m3taz-ahmed/aizee</p>
             </div>
           </div>
-          <span class="tech-tag bg-primary text-primary-fg">v6.7.0</span>
+          <span class="tech-tag bg-primary text-primary-fg" data-stat="version">v6.x</span>
         </div>
         <p class="text-muted text-sm leading-relaxed mb-4">
           {t.openSource.aizeeDesc}
         </p>
         <div class="flex flex-wrap gap-2 mb-6" id="aizee-live-stats">
           <span class="tech-tag" data-stat="stars">★ 5</span>
-          <span class="tech-tag" data-stat="commits">208 commits</span>
-          <span class="tech-tag" data-stat="tests">7653 tests · 100%</span>
+          <span class="tech-tag" data-stat="commits">200+ commits</span>
+          <span class="tech-tag" data-stat="tests">7,600+ tests · 100%</span>
           <span class="tech-tag" data-stat="updated">{t.openSource.updated}</span>
         </div>
         <div class="flex flex-wrap gap-3">
@@ -121,6 +121,13 @@ const t = getTranslations(locale);
       if (upd && d2.updated_at) {
         const d = new Date(d2.updated_at);
         upd.textContent = d.toISOString().slice(0,7);
+      }
+      // latest release tag → version badge (never goes stale)
+      const r3 = await fetch('https://api.github.com/repos/m3taz-ahmed/aizee/releases/latest');
+      if (r3.ok) {
+        const d3 = await r3.json();
+        const ver = document.querySelector('[data-stat="version"]');
+        if (ver && d3.tag_name) ver.textContent = d3.tag_name;
       }
     } catch {}
   })();
