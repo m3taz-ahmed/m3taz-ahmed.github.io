@@ -22,15 +22,15 @@ const t = getTranslations(locale);
               <p class="text-xs text-muted font-mono">github.com/m3taz-ahmed/aizee</p>
             </div>
           </div>
-          <span class="tech-tag bg-primary text-primary-fg">v6.5.0</span>
+          <span class="tech-tag bg-primary text-primary-fg">v6.7.0</span>
         </div>
         <p class="text-muted text-sm leading-relaxed mb-4">
           {t.openSource.aizeeDesc}
         </p>
         <div class="flex flex-wrap gap-2 mb-6" id="aizee-live-stats">
           <span class="tech-tag" data-stat="stars">★ 5</span>
-          <span class="tech-tag" data-stat="commits">194 commits</span>
-          <span class="tech-tag" data-stat="tests">7400+ tests · 100%</span>
+          <span class="tech-tag" data-stat="commits">208 commits</span>
+          <span class="tech-tag" data-stat="tests">7653 tests · 100%</span>
           <span class="tech-tag" data-stat="updated">{t.openSource.updated}</span>
         </div>
         <div class="flex flex-wrap gap-3">
@@ -106,7 +106,7 @@ const t = getTranslations(locale);
       const data = await res.json();
       const repos = document.querySelector('[data-gh="repos"]');
       const followers = document.querySelector('[data-gh="followers"]');
-      if (repos) repos.textContent = String(data.public_repos ?? 14);
+      if (repos) repos.textContent = String(data.public_repos ?? 16);
       if (followers) followers.textContent = String(data.followers ?? 2);
       const r2 = await fetch('https://api.github.com/repos/m3taz-ahmed/aizee');
       if (!r2.ok) return;
