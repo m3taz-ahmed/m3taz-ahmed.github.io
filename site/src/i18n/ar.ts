@@ -96,6 +96,7 @@ const ar: Translation = {
       { value: 99.9, suffix: '%', label: 'تشغيل الإنتاج' },
     ],
     resume: 'تحميل السيرة الذاتية الكاملة',
+    resumeOnline: 'عرض أونلاين',
   },
   experience: {
     title: { prefix: 'المسيرة ', highlight: 'المهنية' },
@@ -276,6 +277,7 @@ const ar: Translation = {
           { label: 'PHP 8.5', info: '15+ عامًا — أنواع صارمة وتعدادات', level: 'expert' },
           { label: 'Laravel 13', info: 'خبرة معمارية عميقة — Octane, Queues', level: 'expert' },
           { label: 'Filament v5', info: 'نظام الإدارة — resources و plugins', level: 'expert' },
+          { label: 'Livewire · Blade · Alpine', info: 'حزمة واجهات Laravel الكاملة', level: 'expert' },
           { label: 'Node.js 24', info: 'تنسيق لحظي + GraphQL', level: 'advanced' },
           { label: 'REST / GraphQL', info: 'واجهات محكمة العقود ومُصدرة الإصدارات', level: 'expert' },
         ],
@@ -297,6 +299,7 @@ const ar: Translation = {
           { label: 'PostgreSQL 19', info: 'UUIDv7 ومخططات عالية التوسع', level: 'advanced' },
           { label: 'Redis', info: 'طوابير وكاش و Sliding Window', level: 'advanced' },
           { label: 'SOLID', info: 'تصميم أساسي قوي', level: 'expert' },
+          { label: 'Docker · CI/CD · Linux', info: 'خطوط GitHub Actions و Nginx/Apache', level: 'advanced' },
           { label: 'Tailwind v4 / Astro 7', info: 'واجهات ثابتة سريعة ومتاحة', level: 'advanced' },
         ],
       },

@@ -7,6 +7,7 @@ const PRECACHE_ASSETS = [
   '/app.js',
   '/assets/favicon.svg',
   '/assets/moataz-ahmed-pic.jpg',
+  '/assets/Moataz-Ahmed-CV.pdf',
   '/manifest.json',
 ];
 

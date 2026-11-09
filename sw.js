@@ -1,4 +1,4 @@
-const CACHE_NAME = 'm3taz-portfolio-20261030132255';
+const CACHE_NAME = 'm3taz-portfolio-20261109053532';
 const PRECACHE_ASSETS = [
   '/',
   '/ar/',
@@ -7,6 +7,7 @@ const PRECACHE_ASSETS = [
   '/app.js',
   '/assets/favicon.svg',
   '/assets/moataz-ahmed-pic.jpg',
+  '/assets/Moataz-Ahmed-CV.pdf',
   '/manifest.json',
 ];
 

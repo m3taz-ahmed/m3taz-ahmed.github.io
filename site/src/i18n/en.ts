@@ -100,6 +100,7 @@ const en = {
       { value: 99.9, suffix: '%', label: 'Production Uptime' },
     ],
     resume: 'Download Full Resume',
+    resumeOnline: 'View Online',
   },
   experience: {
     title: { prefix: 'Professional ', highlight: 'Journey' },
@@ -280,6 +281,7 @@ const en = {
           { label: 'PHP 8.5', info: '15+ years core logic — strict types, enums, readonly', level: 'expert' },
           { label: 'Laravel 13', info: 'Deep architectural expertise — Octane, queues, events', level: 'expert' },
           { label: 'Filament v5', info: 'Admin OS — resources, actions, plugins', level: 'expert' },
+          { label: 'Livewire · Blade · Alpine', info: 'Full-stack Laravel UI stack', level: 'expert' },
           { label: 'Node.js 24', info: 'Real-time orchestration + GraphQL', level: 'advanced' },
           { label: 'REST / GraphQL', info: 'Versioned, stateless, contract-first', level: 'expert' },
         ],
@@ -301,6 +303,7 @@ const en = {
           { label: 'PostgreSQL 19', info: 'UUIDv7 & high-scale schemas', level: 'advanced' },
           { label: 'Redis', info: 'Queues, cache, Sliding Window', level: 'advanced' },
           { label: 'SOLID', info: 'Strong foundational design', level: 'expert' },
+          { label: 'Docker · CI/CD · Linux', info: 'GitHub Actions pipelines, Nginx/Apache', level: 'advanced' },
           { label: 'Tailwind v4 / Astro 7', info: 'Fast, accessible static UIs', level: 'advanced' },
         ],
       },
