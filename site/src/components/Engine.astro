@@ -1,0 +1,83 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+const isAr = locale === 'ar';
+---
+
+<section id="engine" data-station="4" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl glass-card reveal p-0! overflow-hidden border-secondary/30" style="border-inline-start: 3px solid var(--secondary);">
+      <div class="grid lg:grid-cols-12">
+        <div class="lg:col-span-8 p-7 md:p-10">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="station-chip">[ 04 / 06 ]</span>
+            <span class="kicker" style="color: var(--secondary);">{t.engine.kicker}</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-fg">
+            {t.engine.title.prefix}<span style="background: linear-gradient(120deg, var(--secondary), var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent;">{t.engine.title.highlight}</span>
+          </h2>
+          <p class="mt-5 text-muted leading-relaxed max-w-2xl">{t.engine.desc}</p>
+
+          <ul class="mt-6 space-y-2.5">
+            {t.engine.points.map((point) => (
+              <li class="flex items-start gap-3 text-sm text-muted">
+                <Icon name="CheckCircle2" size={16} class="shrink-0 mt-0.5" style="color: var(--secondary);" />
+                {point}
+              </li>
+            ))}
+          </ul>
+
+          <a href="https://github.com/m3taz-ahmed/aizee" target="_blank" rel="noopener noreferrer" class="btn btn-outline mt-7 text-sm py-2.5 px-5" style="border-color: color-mix(in srgb, var(--secondary) 45%, transparent);">
+            <Icon name="Github" size={16} /> {t.engine.cta}
+            <Icon name={isAr ? 'ArrowLeft' : 'ArrowRight'} size={14} />
+          </a>
+        </div>
+
+        <!-- Live stats rail -->
+        <div class="lg:col-span-4 border-t lg:border-t-0 lg:border-s border-border bg-card-solid/40 p-7 md:p-8 flex flex-col justify-center gap-5">
+          <div class="mono-note" style="color: var(--secondary);">{t.engine.statsLabel}</div>
+          <div class="space-y-4">
+            <div class="flex items-baseline justify-between border-b border-border pb-3">
+              <span class="text-muted text-sm font-mono">stars</span>
+              <span class="font-display text-xl font-bold text-fg" data-gh="stars">{t.engine.stats.stars}</span>
+            </div>
+            <div class="flex items-baseline justify-between border-b border-border pb-3">
+              <span class="text-muted text-sm font-mono">commits</span>
+              <span class="font-display text-xl font-bold text-fg" data-stat="commits">{t.engine.stats.commits}</span>
+            </div>
+            <div class="flex items-baseline justify-between border-b border-border pb-3">
+              <span class="text-muted text-sm font-mono">tests</span>
+              <span class="font-display text-xl font-bold text-fg">{t.engine.stats.tests}</span>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <span class="text-muted text-sm font-mono">release</span>
+              <span class="font-display text-xl font-bold text-fg" data-stat="version">v6.x</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (async () => {
+    try {
+      const r2 = await fetch('https://api.github.com/repos/m3taz-ahmed/aizee');
+      if (r2.ok) {
+        const d2 = await r2.json();
+        const stars = document.querySelector('[data-gh="stars"]');
+        if (stars) stars.textContent = `★ ${d2.stargazers_count ?? 5}`;
+      }
+      const r3 = await fetch('https://api.github.com/repos/m3taz-ahmed/aizee/releases/latest');
+      if (r3.ok) {
+        const d3 = await r3.json();
+        const ver = document.querySelector('[data-stat="version"]');
+        if (ver && d3.tag_name) ver.textContent = d3.tag_name;
+      }
+    } catch {}
+  })();
+</script>

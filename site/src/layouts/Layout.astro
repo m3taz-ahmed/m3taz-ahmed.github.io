@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { getTranslations, type Locale } from '../i18n';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import MagneticCursor from '../components/react/MagneticCursor.tsx';
+import SignalLine from '../components/SignalLine.astro';
 
 interface Props {
   title?: string;
@@ -22,22 +22,26 @@ const ogImage = image ?? `${site}${t.seo.image}`;
 const canonical = new URL(Astro.url.pathname, site).toString();
 const enUrl = new URL(Astro.url.pathname.replace(/^\/ar\/?/, '/'), site).toString();
 const arUrl = new URL(`/ar${Astro.url.pathname.replace(/^\/ar/, '') || '/'}`, site).toString();
-const isAr = locale === 'ar';
 const alternateUrls = [
   { lang: 'en', href: enUrl },
   { lang: 'ar', href: arUrl },
   { lang: 'x-default', href: enUrl },
 ];
 
-// Build JSON-LD graph: Person + ItemList of projects
-const projectItems = (t.projects.items || []).slice(0, 10).map((p: any, i: number) => ({
+interface Flagship {
+  title: string;
+  desc: string;
+  link?: string;
+  caseStudyLink?: string;
+  tags?: string[];
+}
+const projectItems = (t.work.flagships || []).slice(0, 10).map((p: Flagship, i: number) => ({
   '@type': 'CreativeWork',
   position: i + 1,
   name: p.title,
   description: p.desc,
   url: p.link || p.caseStudyLink || site,
   keywords: (p.tags || []).join(', '),
-  image: p.image ? `${site}${p.image}` : undefined,
 }));
 const schema = {
   '@context': 'https://schema.org',
@@ -46,10 +50,10 @@ const schema = {
       '@type': 'Person',
       '@id': `${site}#person`,
       name: t.seo.author,
-      jobTitle: t.hero.typewriter[0],
+      jobTitle: 'Full-Cycle Product Engineer',
       url: site,
       sameAs: [t.contact.info.github, t.contact.info.linkedin],
-      knowsAbout: ['aiZee', 'Sovereign AI Architecture', 'Agentic Workflows', 'Laravel 13', 'PHP 8.5', 'Filament v5', 'System Architecture', 'Internal Audit', 'MCP', 'Qdrant'],
+      knowsAbout: ['Full-Stack Product Engineering', 'Laravel 13', 'PHP 8.5', 'Filament v5', 'System Architecture', 'Internal Audit', 'aiZee', 'AI Governance', 'MCP', 'RTL Interfaces'],
       image: `${site}${t.seo.image}`,
     },
     {
@@ -62,7 +66,7 @@ const schema = {
     },
     {
       '@type': 'ItemList',
-      name: 'Projects',
+      name: 'Shipped Products',
       itemListElement: projectItems,
     },
   ],
@@ -70,14 +74,15 @@ const schema = {
 ---
 
 <!DOCTYPE html>
-<html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} data-theme="light">
+<html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="description" content={pageDescription} />
     <meta name="author" content={t.seo.author} />
-    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)" />
 
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
@@ -94,7 +99,7 @@ const schema = {
     {alternateUrls.map((alt) => (
       <link rel="alternate" hreflang={alt.lang} href={alt.href} />
     ))}
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="icon" type="svg+xml" href="/assets/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/moataz-ahmed-pic.jpg" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -108,7 +113,7 @@ const schema = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -117,8 +122,8 @@ const schema = {
         const stored = (() => {
           try { return localStorage.getItem('theme'); } catch { return null; }
         })();
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored || (prefersDark ? 'dark' : 'light');
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const theme = stored || (prefersLight ? 'light' : 'dark');
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
@@ -129,8 +134,8 @@ const schema = {
   </head>
 
   <body class="font-sans antialiased relative min-h-screen">
-    <MagneticCursor client:only="react" />
-    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <a href="#main" class="skip-link">{locale === 'ar' ? 'تخطَّ إلى المحتوى' : 'Skip to content'}</a>
+    <SignalLine />
 
     <Nav />
 
@@ -152,9 +157,5 @@ const schema = {
     </a>
 
     <script is:inline src="/app.js"></script>
-    <script>
-      import { initGSAP } from '../scripts/gsap-animations';
-      initGSAP();
-    </script>
   </body>
 </html>

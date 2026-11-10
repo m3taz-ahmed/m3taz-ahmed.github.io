@@ -1,0 +1,105 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+const isAr = locale === 'ar';
+---
+
+<section id="work" data-station="2" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <header class="max-w-3xl mb-14 reveal">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="station-chip">[ 02 / 06 ]</span>
+        <span class="kicker">{t.work.kicker}</span>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl font-bold text-fg">
+        {t.work.title.prefix}<span class="gradient-text">{t.work.title.highlight}</span>
+      </h2>
+    </header>
+
+    <div class="max-w-6xl space-y-6">
+      {t.work.flagships.map((p, i) => (
+        <article class="glass-card reveal p-0! overflow-hidden group">
+          <div class="grid md:grid-cols-12">
+            <!-- Manifest body -->
+            <div class="md:col-span-8 p-7 md:p-9">
+              <div class="flex items-center gap-3 mb-4 font-mono text-xs">
+                <span class="text-primary tracking-widest">{p.code}</span>
+                <span class="text-border">·</span>
+                {p.link ? (
+                  <span class="inline-flex items-center gap-1.5 text-accent tracking-wider">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>{t.work.live.toUpperCase()}
+                  </span>
+                ) : (
+                  <span class="text-muted tracking-wider">{t.work.nda.toUpperCase()}</span>
+                )}
+              </div>
+
+              <h3 class="font-display text-2xl md:text-3xl font-bold text-fg">{p.title}</h3>
+              <p class="mt-2 font-display text-lg md:text-xl text-primary font-medium">{p.headline}</p>
+              <p class="mt-3 text-muted leading-relaxed">{p.desc}</p>
+
+              <div class="mt-5 flex items-start gap-2 font-mono text-[0.72rem] text-muted">
+                <Icon name="Route" size={14} class="shrink-0 mt-0.5 text-primary" />
+                <span><span class="text-fg">{t.work.scopeLabel}:</span> {p.scope}</span>
+              </div>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                {p.tags.map((tag) => <span class="tech-tag">{tag}</span>)}
+              </div>
+            </div>
+
+            <!-- Meta rail -->
+            <div class="md:col-span-4 border-t md:border-t-0 md:border-s border-border bg-card-solid/40 p-7 md:p-8 flex flex-col justify-between gap-6">
+              <div>
+                <div class="mono-note mb-1">METRIC</div>
+                <div class="font-display text-xl md:text-2xl font-bold text-fg leading-snug">{p.metric}</div>
+              </div>
+              <div class="flex flex-col gap-3">
+                {p.link && (
+                  <a href={p.link} target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+                    {p.code === 'AIZ-04' ? 'GitHub' : t.work.live}
+                    <Icon name="ExternalLink" size={14} />
+                  </a>
+                )}
+                {p.caseStudyLink && (
+                  <a href={p.caseStudyLink} target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+                    {t.work.caseStudy}
+                    <Icon name={isAr ? 'ArrowLeft' : 'ArrowRight'} size={14} />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Archive index -->
+    <div class="max-w-6xl mt-10 glass-card reveal">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+        <h3 class="font-mono text-sm font-semibold text-fg tracking-wider uppercase">{t.work.index.title}</h3>
+        <a href="https://github.com/m3taz-ahmed" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all">
+          {t.work.index.viewProfile} <Icon name="ExternalLink" size={13} />
+        </a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+        {t.work.index.items.map((r) => (
+          <a href={r.url} target="_blank" rel="noopener noreferrer"
+            class="flex items-center justify-between gap-2 px-4 py-3 rounded-lg border border-border hover:border-primary transition-colors group/item">
+            <span class="font-medium text-fg text-sm">{r.name}</span>
+            <span class="flex items-center gap-2 text-muted text-xs font-mono">
+              {r.meta}
+              <Icon name={isAr ? 'ArrowLeft' : 'ArrowRight'} size={12} class="opacity-0 group-hover/item:opacity-100 transition-opacity text-primary" />
+            </span>
+          </a>
+        ))}
+      </div>
+      <p class="mono-note mt-4">{t.work.index.desc}</p>
+    </div>
+  </div>
+</section>

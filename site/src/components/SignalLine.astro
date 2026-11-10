@@ -1,0 +1,13 @@
+---
+// The Line — the site's signature. A fixed rail along the viewport's inline-start
+// edge. A deploy packet travels it as you scroll; each section is a station that
+// lights up when the packet arrives. Stations are positioned by JS from each
+// [data-station] section's scroll offset, so markup order = pipeline order.
+---
+
+<div class="rail" aria-hidden="true">
+  <div class="rail-track"></div>
+  <div class="rail-fill" id="rail-fill"></div>
+  <div id="rail-stations"></div>
+  <div class="rail-packet" id="rail-packet"></div>
+</div>

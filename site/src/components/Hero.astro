@@ -1,87 +1,125 @@
 ---
 import { getTranslations, type Locale } from '../i18n';
-import Hero3D from './react/Hero3D.tsx';
+import Icon from './Icon.astro';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
 const t = getTranslations(locale);
+const isAr = locale === 'ar';
 
-const phrases = JSON.stringify(t.hero.typewriter);
+// Console geometry: 5 stage nodes along a 256px spine (64px pitch).
+const stages = t.hero.console.stages;
+const artifacts = t.hero.console.artifacts;
+const NODE_X = 26;
+const NODE_Y0 = 22;
+const PITCH = 64;
+const LABEL_X = isAr ? 250 : 52;
+const ART_X = isAr ? 250 : 52;
+const TEXT_ANCHOR = isAr ? 'end' : 'start';
+const H = NODE_Y0 + PITCH * (stages.length - 1);
+const VB_H = H + 26;
 ---
 
-<section class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-12 hero-section">
-  <!-- 3D particle field background -->
-  <Hero3D client:load />
-  <!-- Gradient overlay for depth -->
-  <div class="absolute inset-0 bg-gradient-to-b from-bg/30 via-transparent to-bg/60 pointer-events-none z-0" aria-hidden="true"></div>
-  <div class="absolute top-0 end-0 w-1/2 h-full radial-glow pointer-events-none z-0" aria-hidden="true"></div>
+<section id="hero" data-station="0" class="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16 bg-grid">
+  <!-- ambient corner glow -->
+  <div class="absolute top-0 end-0 w-2/3 h-2/3 pointer-events-none" aria-hidden="true"
+    style="background: radial-gradient(circle at 75% 20%, color-mix(in srgb, var(--primary) 9%, transparent) 0%, transparent 65%);"></div>
+  <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-bg to-transparent pointer-events-none" aria-hidden="true"></div>
 
   <div class="container mx-auto px-6 relative z-10">
-    <div class="grid lg:grid-cols-5 gap-12 items-center">
-      <div class="lg:col-span-3 text-center lg:text-start">
-        <span class="inline-block font-mono text-xs text-primary tracking-widest uppercase bg-primary/10 px-3 py-1 rounded mb-4">
-          {t.hero.nameTag}
-        </span>
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
 
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-fg whitespace-pre-line">
-          {
-            t.hero.title.map((part) => (
-              <span class={part.gradient ? 'gradient-text' : ''}>{part.text}</span>
-            ))
-          }
+      <!-- Claim -->
+      <div class="lg:col-span-7 text-center lg:text-start">
+        <span class="kicker mb-6">{t.hero.kicker}</span>
+
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.05] text-fg whitespace-pre-line">
+          {t.hero.title.map((part) => (
+            <span class={part.gradient ? 'gradient-text' : ''}>{part.text}</span>
+          ))}
         </h1>
 
-        <div class="mt-6 flex flex-col items-center lg:items-start">
-          <h2
-            class="hero-name text-3xl sm:text-4xl md:text-5xl font-black text-muted/30 relative inline-block"
-            data-text={t.hero.name}
-            style="-webkit-text-stroke: 1px color-mix(in srgb, var(--fg) 30%, transparent);"
-          >
-            {t.hero.name}
-          </h2>
+        <p class="mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+          {t.hero.sub}
+        </p>
 
-          <p class="mt-4 text-lg md:text-xl text-muted font-mono">
-            {t.hero.subtitle}
-            <span id="typewriter" class="text-primary blink" data-phrases={phrases}></span>
-          </p>
-        </div>
-
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <a href="#projects" class="btn btn-primary">
+        <div class="mt-9 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <a href="#contact" class="btn btn-primary">
             {t.hero.ctaPrimary}
+            <Icon name={isAr ? 'ArrowLeft' : 'ArrowRight'} size={17} />
           </a>
-          <a href="/assets/Moataz-Ahmed-CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <a href="#pipeline" class="btn btn-outline font-mono text-sm">
             {t.hero.ctaSecondary}
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
-              <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
-              <path d="M12 18v-6"/>
-              <path d="m9 15 3 3 3-3"/>
-            </svg>
+            <span aria-hidden="true">↓</span>
           </a>
         </div>
+
+        <!-- Proof strip -->
+        <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-border pt-8 max-w-2xl">
+          {t.hero.proof.map((s) => (
+            <div class="text-center lg:text-start">
+              <dd class="font-display text-3xl md:text-4xl font-bold text-fg stat-number" data-target={s.value} data-suffix={s.suffix}>0{s.suffix}</dd>
+              <dt class="mt-1 text-xs text-muted font-mono tracking-wide uppercase">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
 
-      <div class="lg:col-span-2 flex justify-center">
-        <div class="relative w-64 h-64 sm:w-80 sm:h-80 hero-image-wrap" data-tilt>
-          <img
-            src="/assets/moataz-ahmed-pic.jpg"
-            alt={t.hero.name}
-            class="w-full h-full object-cover morph border-4 border-border shadow-2xl relative z-10"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            width="320"
-            height="320"
-          />
-          <div
-            class="absolute -inset-4 border-2 border-primary/30 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] rotating -z-0"
-            aria-hidden="true"
-          ></div>
-          <div
-            class="absolute -inset-8 border border-secondary/20 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] rotating -z-0"
-            style="animation-direction: reverse; animation-duration: 30s;"
-            aria-hidden="true"
-          ></div>
+      <!-- The console — the whole concept in one artifact -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="w-full max-w-sm space-y-4">
+          <div class="console reveal">
+            <div class="console-head">
+              <span>{t.hero.console.header}</span>
+              <span class="console-live">LIVE</span>
+            </div>
+            <svg viewBox={`0 0 300 ${VB_H}`} class="w-full relative" role="img" aria-label="Pipeline: discover, architect, design, build, ship">
+              <!-- spine -->
+              <line x1={NODE_X} y1={NODE_Y0} x2={NODE_X} y2={H} stroke="var(--border-strong)" stroke-width="1" />
+              {stages.map((stage, i) => {
+                const y = NODE_Y0 + PITCH * i;
+                return (
+                  <g class={`console-node n${i + 1}`}>
+                    <line x1={NODE_X} y1={y} x2={isAr ? LABEL_X : LABEL_X - 8} y2={y} stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4" />
+                    <circle class="halo" cx={NODE_X} cy={y} r="7" />
+                    <circle class="core" cx={NODE_X} cy={y} r="5" />
+                    <text class="console-stage-label" x={LABEL_X} y={y - 4} text-anchor={TEXT_ANCHOR}>{stage}</text>
+                    <text class="console-artifact" x={ART_X} y={y + 10} text-anchor={TEXT_ANCHOR}>{artifacts[i]}</text>
+                  </g>
+                );
+              })}
+              <!-- deploy packets -->
+              <circle class="packet-dot" cx={NODE_X} cy={NODE_Y0} r="3.5" />
+              <circle class="packet-dot p2" cx={NODE_X} cy={NODE_Y0} r="3" />
+            </svg>
+            <div class="console-foot">
+              {t.hero.console.telemetry.map((line) => <span>{line}</span>)}
+            </div>
+          </div>
+
+          <!-- Operator card -->
+          <div class="glass-card reveal p-4! flex items-center gap-4">
+            <img
+              src="/assets/moataz-ahmed-pic.jpg"
+              alt={t.hero.operator.name}
+              class="w-14 h-14 rounded-lg object-cover border border-border-strong"
+              loading="eager"
+              fetchpriority="high"
+              width="56"
+              height="56"
+            />
+            <div class="flex-1 min-w-0 font-mono text-[0.7rem] leading-relaxed">
+              <div class="text-muted tracking-widest">{t.hero.operator.label}</div>
+              <div class="text-fg font-semibold text-sm tracking-wide">{t.hero.operator.name}</div>
+              <div class="text-muted">{t.hero.operator.role}</div>
+              <div class="text-muted">{t.hero.operator.base}</div>
+            </div>
+            <div class="flex flex-col items-end gap-1 shrink-0">
+              <span class="inline-flex items-center gap-1.5 text-accent font-mono text-[0.62rem] tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                {t.hero.operator.status}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { cpSync, readdirSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, rmSync, readdirSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const dist = new URL('../dist/', import.meta.url);
@@ -18,6 +18,10 @@ if (existsSync(swDist)) {
   const versioned = swContent.replace(/__BUILD_VERSION__/g, buildVersion);
   writeFileSync(swDist, versioned, 'utf-8');
 }
+
+// Remove stale hashed assets so old chunks don't linger at the root.
+const astroOut = new URL('_astro', root);
+if (existsSync(astroOut)) rmSync(astroOut, { recursive: true, force: true });
 
 for (const entry of readdirSync(dist)) {
   if (entry === 'graphify-out') continue;

@@ -1,0 +1,66 @@
+---
+import { getTranslations, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const t = getTranslations(locale);
+---
+
+<section id="contract" data-station="5" class="section-padding relative">
+  <div class="container mx-auto px-6">
+    <header class="max-w-3xl mb-14 reveal">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="station-chip">[ 05 / 06 ]</span>
+        <span class="kicker">{t.contract.kicker}</span>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl font-bold text-fg">
+        {t.contract.title.prefix}<span class="gradient-text">{t.contract.title.highlight}</span>
+      </h2>
+    </header>
+
+    <!-- Engagement model -->
+    <div class="max-w-6xl grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
+      {t.contract.model.map((m) => (
+        <div class="glass-card reveal">
+          <div class="w-10 h-10 rounded-lg border border-border-strong flex items-center justify-center mb-4 bg-card-solid">
+            <Icon name={m.icon} size={19} class="text-primary" />
+          </div>
+          <h3 class="font-display text-lg font-semibold text-fg mb-2">{m.title}</h3>
+          <p class="text-muted text-sm leading-relaxed">{m.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="max-w-6xl grid lg:grid-cols-2 gap-10 items-start">
+      <!-- FAQ -->
+      <div>
+        <div class="mono-note mb-4 text-primary">{t.contract.faqLabel}</div>
+        <div class="space-y-3">
+          {t.contract.faq.map((f) => (
+            <details class="faq-item reveal">
+              <summary>{f.q}</summary>
+              <div class="faq-body">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Voices -->
+      <div>
+        <div class="mono-note mb-4 text-primary">{t.contract.voices.title.toUpperCase()}</div>
+        <div class="space-y-4">
+          {t.contract.voices.items.map((v) => (
+            <figure class="glass-card reveal relative">
+              <span class="absolute top-4 end-5 font-display text-5xl leading-none text-primary/15 select-none" aria-hidden="true">&rdquo;</span>
+              <blockquote class="text-sm text-muted leading-relaxed pe-8">{v.quote}</blockquote>
+              <figcaption class="mt-4 pt-3 border-t border-border">
+                <div class="text-fg font-semibold text-sm">{v.author}</div>
+                <div class="text-muted text-xs font-mono mt-0.5">{v.role}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

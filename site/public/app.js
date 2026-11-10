@@ -2,6 +2,7 @@
   'use strict';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isRtl = document.documentElement.dir === 'rtl';
 
   function initThemeToggle() {
     const toggles = document.querySelectorAll('[data-theme-toggle]');
@@ -22,8 +23,7 @@
     toggles.forEach((toggle) => {
       toggle.addEventListener('click', () => {
         const root = document.documentElement;
-        const isDark = root.getAttribute('data-theme') === 'dark';
-        const next = isDark ? 'light' : 'dark';
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         try { localStorage.setItem('theme', next); } catch {}
         updateIcons();
@@ -41,60 +41,25 @@
 
   ready(function () {
     initThemeToggle();
-    initTypewriter();
     initCounters();
-    initTestimonials();
     initMobileMenu();
     initBackToTop();
     initNavActive();
     initReveal();
-    if (!prefersReducedMotion) {
-      initParticles();
-    }
+    initStages();
+    initSectionView();
+    initRail();
     initForm();
+    if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+      initCursor();
+      initMagnetic();
+    }
+    if (!prefersReducedMotion) {
+      initParallax();
+    }
   });
 
-  function initTypewriter() {
-    const el = document.getElementById('typewriter');
-    if (!el) return;
-
-    const phrases = JSON.parse(el.dataset.phrases || '[]');
-    if (!phrases.length) return;
-
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const pause = 2000;
-
-    function tick() {
-      const current = phrases[phraseIndex];
-      el.textContent = current.slice(0, charIndex);
-
-      if (isDeleting) {
-        charIndex--;
-      } else {
-        charIndex++;
-      }
-
-      if (!isDeleting && charIndex === current.length) {
-        isDeleting = true;
-        setTimeout(tick, pause);
-        return;
-      }
-
-      if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-      }
-
-      setTimeout(tick, isDeleting ? deletingSpeed : typingSpeed);
-    }
-
-    tick();
-  }
-
+  /* ── Counters ─────────────────────────────────────────────── */
   function initCounters() {
     const counters = document.querySelectorAll('.stat-number');
     if (!counters.length) return;
@@ -115,7 +80,11 @@
     const target = parseFloat(el.dataset.target);
     const suffix = el.dataset.suffix || '';
     const isFloat = !Number.isInteger(target);
-    const duration = 2000;
+    if (prefersReducedMotion) {
+      el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
+      return;
+    }
+    const duration = 1600;
     const start = performance.now();
 
     function step(now) {
@@ -123,78 +92,26 @@
       const ease = 1 - Math.pow(1 - progress, 4);
       const value = target * ease;
       el.textContent = (isFloat ? value.toFixed(1) : Math.floor(value).toLocaleString()) + suffix;
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
+      if (progress < 1) requestAnimationFrame(step);
     }
-
     requestAnimationFrame(step);
   }
 
-  function initTestimonials() {
-    const slider = document.getElementById('testimonials-slider');
-    if (!slider) return;
-
-    const track = slider.querySelector('.testimonials-track');
-    const dots = document.querySelectorAll('#testimonials-dots button');
-    if (!track || !dots.length) return;
-
-    let current = 0;
-    let interval;
-    const items = track.children.length;
-
-    function goTo(index) {
-      current = index;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-primary', i === current);
-        dot.classList.toggle('bg-border', i !== current);
-      });
-    }
-
-    function next() {
-      goTo((current + 1) % items);
-    }
-
-    function start() {
-      interval = setInterval(next, 5000);
-    }
-
-    function stop() {
-      clearInterval(interval);
-    }
-
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        stop();
-        goTo(Number(dot.dataset.index));
-        start();
-      });
-    });
-
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-    slider.addEventListener('focusin', stop);
-    slider.addEventListener('focusout', start);
-
-    goTo(0);
-    start();
-  }
-
+  /* ── Mobile menu (RTL-aware slide direction) ─────────────── */
   function initMobileMenu() {
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('nav-links-mobile');
     if (!hamburger || !menu) return;
 
     const links = menu.querySelectorAll('a');
+    const closedX = isRtl ? 'translateX(-100%)' : 'translateX(100%)';
     let open = false;
 
     function setState(isOpen) {
       open = isOpen;
       hamburger.setAttribute('aria-expanded', String(open));
       menu.setAttribute('aria-hidden', String(!open));
-      menu.style.transform = open ? 'translateX(0)' : 'translateX(100%)';
+      menu.style.transform = open ? 'translateX(0)' : closedX;
       const bars = hamburger.children;
       if (bars[0]) bars[0].style.transform = open ? 'rotate(45deg) translateY(8px)' : '';
       if (bars[1]) bars[1].style.opacity = open ? '0' : '1';
@@ -202,14 +119,15 @@
       document.body.style.overflow = open ? 'hidden' : '';
     }
 
+    setState(false);
     hamburger.addEventListener('click', () => setState(!open));
     links.forEach((link) => link.addEventListener('click', () => open && setState(false)));
-
     document.addEventListener('keydown', (e) => {
       if (open && e.key === 'Escape') setState(false);
     });
   }
 
+  /* ── Back to top ─────────────────────────────────────────── */
   function initBackToTop() {
     const btn = document.getElementById('back-to-top');
     if (!btn) return;
@@ -234,6 +152,7 @@
     });
   }
 
+  /* ── Active nav link ─────────────────────────────────────── */
   function initNavActive() {
     const links = document.querySelectorAll('#nav-links a');
     if (!links.length) return;
@@ -255,6 +174,7 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  /* ── Reveal ──────────────────────────────────────────────── */
   function initReveal() {
     const elements = document.querySelectorAll('.reveal');
     if (!elements.length) return;
@@ -263,133 +183,215 @@
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    elements.forEach((el, i) => {
-      if (el.dataset.stagger) {
-        el.style.transitionDelay = `${i * 0.05}s`;
-      }
-      observer.observe(el);
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  /* ── Pipeline stages go live (artifact draw-on) ──────────── */
+  function initStages() {
+    const stages = document.querySelectorAll('.stage');
+    if (!stages.length) return;
+
+    if (prefersReducedMotion) {
+      stages.forEach((s) => s.classList.add('is-live'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-live');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    stages.forEach((stage) => observer.observe(stage));
+  }
+
+  /* ── Section in-view flag (station chip glow) ────────────── */
+  function initSectionView() {
+    const sections = document.querySelectorAll('section[data-station]');
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
+    }, { threshold: 0.12 });
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  /* ── The Line — rail, packet, stations, top progress ─────── */
+  function initRail() {
+    const fill = document.getElementById('rail-fill');
+    const packet = document.getElementById('rail-packet');
+    const holder = document.getElementById('rail-stations');
+    const sections = Array.from(document.querySelectorAll('section[data-station]'));
+
+    const bar = document.createElement('div');
+    bar.id = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    let stations = [];
+
+    function maxScroll() {
+      return Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    }
+
+    function layout() {
+      if (!holder) return;
+      const max = maxScroll();
+      holder.innerHTML = '';
+      stations = sections.map((sec) => {
+        const target = Math.min(Math.max(sec.offsetTop - window.innerHeight * 0.5, 0), max);
+        const pos = target / max;
+
+        const node = document.createElement('span');
+        node.className = 'rail-node';
+        node.style.top = (pos * 100) + '%';
+        const label = document.createElement('span');
+        label.className = 'rail-node-label';
+        label.style.top = (pos * 100) + '%';
+        label.textContent = '0' + (sec.dataset.station ?? '0');
+        holder.appendChild(node);
+        holder.appendChild(label);
+        return { node, label, pos };
+      });
+      update();
+    }
+
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    function update() {
+      ticking = false;
+      const max = maxScroll();
+      const p = Math.min(Math.max(window.scrollY / max, 0), 1);
+
+      bar.style.transform = `scaleX(${p})`;
+      if (fill) fill.style.height = (p * 100) + '%';
+      if (packet) packet.style.top = (p * 100) + '%';
+
+      stations.forEach((s) => {
+        const passed = p > s.pos + 0.008;
+        const at = !passed && p >= s.pos - 0.015;
+        s.node.classList.toggle('passed', passed);
+        s.node.classList.toggle('active', at);
+      });
+    }
+
+    layout();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { layout(); }, { passive: true });
+    window.addEventListener('load', layout);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => layout());
+    }
+  }
+
+  /* ── Cursor — dot + lagging ring (desktop, motion-safe) ──── */
+  function initCursor() {
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.style.cssText = 'position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--primary);pointer-events:none;z-index:9999;mix-blend-mode:screen;';
+    ring.style.cssText = 'position:fixed;top:0;left:0;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--primary);pointer-events:none;z-index:9998;opacity:0.4;transition:width .3s ease,height .3s ease,opacity .3s ease,border-color .3s ease;';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mx = -100, my = -100, rx = -100, ry = -100;
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      dot.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+    });
+
+    (function loop() {
+      rx += (mx - rx) * 0.15;
+      ry += (my - ry) * 0.15;
+      ring.style.transform = `translate(${rx - 20}px, ${ry - 20}px)`;
+      requestAnimationFrame(loop);
+    })();
+
+    const interactive = document.querySelectorAll('a, button, input, textarea, select, summary, .glass-card-interactive');
+    const onEnter = () => {
+      ring.style.width = '56px';
+      ring.style.height = '56px';
+      ring.style.opacity = '0.8';
+    };
+    const onLeave = () => {
+      ring.style.width = '40px';
+      ring.style.height = '40px';
+      ring.style.opacity = '0.4';
+    };
+    interactive.forEach((el) => {
+      el.addEventListener('mouseenter', onEnter);
+      el.addEventListener('mouseleave', onLeave);
     });
   }
 
-  function initParticles() {
-    const canvas = document.getElementById('particles-canvas');
-    if (!canvas) return;
+  /* ── Magnetic buttons — clamped pull, lerp return ────────── */
+  function initMagnetic() {
+    document.querySelectorAll('.btn-primary').forEach((el) => {
+      let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let width, height, particles;
-    const maxParticles = window.matchMedia('(pointer: coarse)').matches ? 20 : 35;
-    const connectionDistance = 120;
-    const mouse = { x: null, y: null };
-    let rafId;
-
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-
-    function create() {
-      particles = [];
-      for (let i = 0; i < maxParticles; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-        });
+      function frame() {
+        cx += (tx - cx) * 0.2;
+        cy += (ty - cy) * 0.2;
+        el.style.transform = `translate(${cx}px, ${cy}px)`;
+        if (Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1) {
+          raf = requestAnimationFrame(frame);
+        } else {
+          raf = null;
+          if (tx === 0 && ty === 0) el.style.transform = '';
+        }
       }
-    }
 
-    function draw() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(34, 211, 238, 0.5)' : 'rgba(8, 145, 178, 0.4)';
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const other = particles[j];
-          const dx = p.x - other.x;
-          const dy = p.y - other.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < connectionDistance) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(other.x, other.y);
-            const alpha = (1 - dist / connectionDistance) * (isDark ? 0.18 : 0.12);
-            ctx.strokeStyle = isDark ? `rgba(34, 211, 238, ${alpha})` : `rgba(8, 145, 178, ${alpha})`;
-            ctx.stroke();
-          }
-        }
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            const alpha = (1 - dist / 150) * 0.3;
-            ctx.strokeStyle = isDark ? `rgba(34, 211, 238, ${alpha})` : `rgba(8, 145, 178, ${alpha})`;
-            ctx.stroke();
-          }
-        }
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        tx = (e.clientX - r.left - r.width / 2) * 0.22;
+        ty = (e.clientY - r.top - r.height / 2) * 0.22;
+        if (!raf) raf = requestAnimationFrame(frame);
       });
-
-      rafId = requestAnimationFrame(draw);
-    }
-
-    function onResize() {
-      resize();
-      create();
-    }
-
-    function onMouseMove(e) {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    }
-
-    function onMouseLeave() {
-      mouse.x = null;
-      mouse.y = null;
-    }
-
-    resize();
-    create();
-    draw();
-
-    window.addEventListener('resize', onResize);
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseleave', onMouseLeave);
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cancelAnimationFrame(rafId);
-      } else {
-        draw();
-      }
+      el.addEventListener('pointerleave', () => {
+        tx = 0;
+        ty = 0;
+        if (!raf) raf = requestAnimationFrame(frame);
+      });
     });
   }
 
+  /* ── Hero ambient parallax — scroll-driven drift ─────────── */
+  function initParallax() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    const glows = hero.querySelectorAll('[aria-hidden="true"]');
+    if (!glows.length) return;
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const y = Math.min(window.scrollY, window.innerHeight) * 0.18;
+      glows.forEach((g) => { g.style.transform = `translateY(${y}px)`; });
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+  }
+
+  /* ── Contact form ────────────────────────────────────────── */
   function initForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
@@ -402,7 +404,6 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Honeypot + time-trap
       if (hp && hp.value) return;
       if (ts) {
         const elapsed = Date.now() - parseInt(ts.value || '0', 10);
@@ -417,6 +418,16 @@
       }
       if (!form.checkValidity()) {
         form.reportValidity();
+        return;
+      }
+
+      const captcha = form.querySelector('textarea[name="h-captcha-response"]');
+      if (captcha && !captcha.value) {
+        if (status) {
+          status.textContent = form.dataset.captchaError || 'Please complete the verification first.';
+          status.classList.remove('hidden', 'text-primary');
+          status.classList.add('text-red-500');
+        }
         return;
       }
 
@@ -436,7 +447,6 @@
 
       try {
         const fd = new FormData(form);
-        // Remove honeypot from submission
         fd.delete('website');
         fd.delete('_ts');
         const response = await fetch(form.action, {
@@ -449,6 +459,9 @@
           if (status) status.textContent = success;
           form.reset();
           if (ts) ts.value = String(Date.now());
+          if (typeof hcaptcha !== 'undefined') {
+            try { hcaptcha.reset(); } catch (_) {}
+          }
         } else {
           throw new Error('Submission failed');
         }

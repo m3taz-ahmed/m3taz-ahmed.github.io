@@ -1,11 +1,11 @@
 {
-  "name": "Moataz Ahmed — Lead Systems Architect",
+  "name": "Moataz Ahmed — Full-Cycle Product Engineer",
   "short_name": "M3TAZ",
-  "description": "Portfolio of Moataz Ahmed, a seasoned software engineer and Sovereign AI architect.",
+  "description": "Ideas to production — discovery, architecture, design, build, deploy — one accountable senior engineer.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#0891b2",
+  "background_color": "#0b0f17",
+  "theme_color": "#22d3ee",
   "orientation": "portrait-primary",
   "lang": "en",
   "icons": [
