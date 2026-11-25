@@ -9,11 +9,12 @@ const isAr = locale === 'ar';
 // Console geometry: 5 stage nodes along a 256px spine (64px pitch).
 const stages = t.hero.console.stages;
 const artifacts = t.hero.console.artifacts;
-const NODE_X = 26;
+const NODE_X = isAr ? 274 : 26;
 const NODE_Y0 = 22;
 const PITCH = 64;
-const LABEL_X = isAr ? 250 : 52;
-const ART_X = isAr ? 250 : 52;
+const LABEL_X = isAr ? 248 : 52;
+const ART_X = isAr ? 248 : 52;
+const CONNECT_X = isAr ? LABEL_X + 8 : LABEL_X - 8;
 const TEXT_ANCHOR = isAr ? 'end' : 'start';
 const H = NODE_Y0 + PITCH * (stages.length - 1);
 const VB_H = H + 26;
@@ -54,7 +55,7 @@ const VB_H = H + 26;
         </div>
 
         <!-- Proof strip -->
-        <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-border pt-8 max-w-2xl">
+        <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-6 border-t border-border pt-8 max-w-2xl">
           {t.hero.proof.map((s) => (
             <div class="text-center lg:text-start">
               <dd class="font-display text-3xl md:text-4xl font-bold text-fg stat-number" data-target={s.value} data-suffix={s.suffix}>0{s.suffix}</dd>
@@ -72,18 +73,18 @@ const VB_H = H + 26;
               <span>{t.hero.console.header}</span>
               <span class="console-live">LIVE</span>
             </div>
-            <svg viewBox={`0 0 300 ${VB_H}`} class="w-full relative" role="img" aria-label="Pipeline: discover, architect, design, build, ship">
+            <svg viewBox={`0 0 300 ${VB_H}`} class="w-full relative" role="img" aria-label={`${t.hero.console.header}: ${stages.join(', ')}`}>
               <!-- spine -->
               <line x1={NODE_X} y1={NODE_Y0} x2={NODE_X} y2={H} stroke="var(--border-strong)" stroke-width="1" />
               {stages.map((stage, i) => {
                 const y = NODE_Y0 + PITCH * i;
                 return (
                   <g class={`console-node n${i + 1}`}>
-                    <line x1={NODE_X} y1={y} x2={isAr ? LABEL_X : LABEL_X - 8} y2={y} stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4" />
+                    <line x1={NODE_X} y1={y} x2={CONNECT_X} y2={y} stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4" />
                     <circle class="halo" cx={NODE_X} cy={y} r="7" />
                     <circle class="core" cx={NODE_X} cy={y} r="5" />
                     <text class="console-stage-label" x={LABEL_X} y={y - 4} text-anchor={TEXT_ANCHOR}>{stage}</text>
-                    <text class="console-artifact" x={ART_X} y={y + 10} text-anchor={TEXT_ANCHOR}>{artifacts[i]}</text>
+                    <text class="console-artifact" x={ART_X} y={y + 10} text-anchor={TEXT_ANCHOR} direction="ltr">{artifacts[i]}</text>
                   </g>
                 );
               })}

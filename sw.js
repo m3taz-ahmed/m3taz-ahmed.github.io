@@ -1,4 +1,4 @@
-const CACHE_NAME = 'm3taz-portfolio-20261110192201';
+const CACHE_NAME = 'm3taz-portfolio-20261125211423';
 const PRECACHE_ASSETS = [
   '/',
   '/ar/',
@@ -36,6 +36,7 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
 
   // Never cache the service worker script itself so updates always propagate.
   if (url.pathname === '/sw.js') {
@@ -72,7 +73,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)).catch(() => {});
           return response;
         })
-        .catch(() => caches.match('/'));
+        .catch(() => Response.error());
     })
   );
 });

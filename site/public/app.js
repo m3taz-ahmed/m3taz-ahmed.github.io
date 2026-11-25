@@ -31,6 +31,16 @@
     });
   }
 
+  function initServiceWorker() {
+    const localHost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+    if (!('serviceWorker' in navigator) || localHost) return;
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch((error) => {
+        console.warn('Service worker registration failed', error);
+      });
+    });
+  }
+
   function ready(fn) {
     if (document.readyState !== 'loading') {
       fn();
@@ -40,6 +50,7 @@
   }
 
   ready(function () {
+    initServiceWorker();
     initThemeToggle();
     initCounters();
     initMobileMenu();
@@ -105,25 +116,63 @@
 
     const links = menu.querySelectorAll('a');
     const closedX = isRtl ? 'translateX(-100%)' : 'translateX(100%)';
+    const desktopQuery = window.matchMedia('(min-width: 1024px)');
+    const openLabel = hamburger.dataset.openLabel || 'Open menu';
+    const closeLabel = hamburger.dataset.closeLabel || 'Close menu';
     let open = false;
+    let closeTimer = null;
 
     function setState(isOpen) {
       open = isOpen;
+      window.clearTimeout(closeTimer);
       hamburger.setAttribute('aria-expanded', String(open));
+      hamburger.setAttribute('aria-label', open ? closeLabel : openLabel);
       menu.setAttribute('aria-hidden', String(!open));
-      menu.style.transform = open ? 'translateX(0)' : closedX;
+
+      if (open) {
+        menu.hidden = false;
+        menu.style.visibility = 'visible';
+        menu.style.pointerEvents = 'auto';
+        requestAnimationFrame(() => {
+          if (!open) return;
+          menu.style.transform = 'translateX(0)';
+          menu.style.opacity = '1';
+        });
+      } else {
+        menu.style.transform = closedX;
+        menu.style.opacity = '0';
+        menu.style.pointerEvents = 'none';
+        closeTimer = window.setTimeout(() => {
+          if (open) return;
+          menu.hidden = true;
+          menu.style.visibility = 'hidden';
+        }, prefersReducedMotion ? 0 : 300);
+      }
+
       const bars = hamburger.children;
       if (bars[0]) bars[0].style.transform = open ? 'rotate(45deg) translateY(8px)' : '';
       if (bars[1]) bars[1].style.opacity = open ? '0' : '1';
       if (bars[2]) bars[2].style.transform = open ? 'rotate(-45deg) translateY(-8px)' : '';
       document.body.style.overflow = open ? 'hidden' : '';
+
+      if (open && links[0]) {
+        window.setTimeout(() => links[0].focus({ preventScroll: true }), prefersReducedMotion ? 0 : 180);
+      } else if (!open && menu.contains(document.activeElement)) {
+        hamburger.focus({ preventScroll: true });
+      }
     }
 
+    menu.style.visibility = 'hidden';
+    menu.style.opacity = '0';
+    menu.style.pointerEvents = 'none';
     setState(false);
     hamburger.addEventListener('click', () => setState(!open));
     links.forEach((link) => link.addEventListener('click', () => open && setState(false)));
     document.addEventListener('keydown', (e) => {
       if (open && e.key === 'Escape') setState(false);
+    });
+    desktopQuery.addEventListener('change', (e) => {
+      if (e.matches && open) setState(false);
     });
   }
 
@@ -303,13 +352,21 @@
   function initCursor() {
     const dot = document.createElement('div');
     const ring = document.createElement('div');
-    dot.style.cssText = 'position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--primary);pointer-events:none;z-index:9999;mix-blend-mode:screen;';
-    ring.style.cssText = 'position:fixed;top:0;left:0;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--primary);pointer-events:none;z-index:9998;opacity:0.4;transition:width .3s ease,height .3s ease,opacity .3s ease,border-color .3s ease;';
+    dot.style.cssText = 'position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--primary);pointer-events:none;z-index:9999;mix-blend-mode:screen;opacity:0;visibility:hidden;';
+    ring.style.cssText = 'position:fixed;top:0;left:0;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--primary);pointer-events:none;z-index:9998;opacity:0;visibility:hidden;transition:width .3s ease,height .3s ease,opacity .3s ease,border-color .3s ease;';
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 
     let mx = -100, my = -100, rx = -100, ry = -100;
+    let cursorVisible = false;
     document.addEventListener('mousemove', (e) => {
+      if (!cursorVisible) {
+        cursorVisible = true;
+        dot.style.visibility = 'visible';
+        ring.style.visibility = 'visible';
+        dot.style.opacity = '1';
+        ring.style.opacity = '0.4';
+      }
       mx = e.clientX;
       my = e.clientY;
       dot.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;

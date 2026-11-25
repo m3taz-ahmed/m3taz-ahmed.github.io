@@ -20,7 +20,7 @@ const homeUrl = getRelativeLocaleUrl(locale, '/');
 
 <nav class="fixed top-0 inset-x-0 z-50 border-b border-border bg-bg/75 backdrop-blur-xl">
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-    <a href={homeUrl} class="font-mono text-sm font-semibold text-fg tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+    <a href={homeUrl} class="font-mono text-sm font-semibold text-fg tracking-tight py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
       <span class="text-muted">[</span>M3TAZ<span class="text-primary">.</span>AHMED<span class="text-muted">]</span>
     </a>
 
@@ -34,7 +34,7 @@ const homeUrl = getRelativeLocaleUrl(locale, '/');
           <li>
             <a
               href={item.href}
-              class="text-sm font-medium text-muted hover:text-fg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+              class="text-sm font-medium text-muted hover:text-fg transition-colors py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
             >
               <span class="font-mono text-[0.65rem] text-primary/70 me-1">{item.num}</span>
               {item.label}
@@ -51,7 +51,7 @@ const homeUrl = getRelativeLocaleUrl(locale, '/');
         href="https://github.com/m3taz-ahmed"
         target="_blank"
         rel="noopener noreferrer"
-        class="p-2 rounded-full text-muted hover:text-fg hover:bg-card transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        class="hidden xl:flex p-3 rounded-full text-muted hover:text-fg hover:bg-card transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label="GitHub"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -70,10 +70,12 @@ const homeUrl = getRelativeLocaleUrl(locale, '/');
       <button
         id="hamburger"
         type="button"
-        class="flex flex-col justify-center gap-1.5 w-10 h-10 bg-transparent border-0 p-0 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        class="flex flex-col justify-center items-center gap-1.5 w-11 h-11 bg-transparent border-0 p-0 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label={t.nav.openMenu}
         aria-expanded="false"
         aria-controls="nav-links-mobile"
+        data-open-label={t.nav.openMenu}
+        data-close-label={t.nav.closeMenu}
       >
         <span class="block w-6 h-0.5 bg-fg transition-all duration-300 origin-center"></span>
         <span class="block w-6 h-0.5 bg-fg transition-all duration-300 origin-center"></span>
@@ -81,28 +83,30 @@ const homeUrl = getRelativeLocaleUrl(locale, '/');
       </button>
     </div>
   </div>
+</nav>
 
-  <div
-    id="nav-links-mobile"
-    class="lg:hidden fixed inset-0 top-16 bg-bg/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300"
-    aria-hidden="true"
-  >
-    <ul class="flex flex-col items-center justify-center h-full gap-7 list-none m-0 p-0">
-      {
-        navItems.map((item) => (
-          <li>
-            <a href={item.href} class="text-xl font-medium text-fg hover:text-primary transition-colors">
-              <span class="font-mono text-xs text-primary me-2">{item.num}</span>
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-      <li>
-        <a href="#contact" class="btn btn-primary mt-4 font-mono">
-          {t.nav.cta}
-        </a>
-      </li>
-    </ul>
-  </div>
+<nav
+  id="nav-links-mobile"
+  class="lg:hidden fixed inset-0 top-16 bg-bg/95 backdrop-blur-xl z-40 transition-all duration-300"
+  aria-label={locale === 'ar' ? 'قائمة الجوال' : 'Mobile menu'}
+  aria-hidden="true"
+  hidden
+>
+  <ul class="flex flex-col items-center justify-center h-full gap-7 list-none m-0 p-0">
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} class="inline-flex items-center justify-center py-3 px-4 text-xl font-medium text-fg hover:text-primary transition-colors">
+            <span class="font-mono text-xs text-primary me-2">{item.num}</span>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+    <li>
+      <a href="#contact" class="btn btn-primary mt-4 font-mono">
+        {t.nav.cta}
+      </a>
+    </li>
+  </ul>
 </nav>

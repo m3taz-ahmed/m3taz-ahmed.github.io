@@ -7,6 +7,7 @@
    One signature hue (cyan signal) + one sub-brand hue (aiZee violet).
    --------------------------------------------------------------------------- */
 :root {
+  color-scheme: light;
   --bg: #f4f7fb;
   --bg-2: #eaeff6;
   --fg: #0b1220;
@@ -28,6 +29,7 @@
 }
 
 [data-theme='dark'] {
+  color-scheme: dark;
   --bg: #0b0f17;
   --bg-2: #0f1522;
   --fg: #e6ebf4;
@@ -110,6 +112,11 @@ body {
 
 ::selection {
   background: color-mix(in srgb, var(--primary) 30%, transparent);
+  color: var(--fg);
+}
+
+select option {
+  background-color: var(--card-solid);
   color: var(--fg);
 }
 
@@ -571,7 +578,6 @@ body {
 .stage {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
   gap: 1.25rem;
   padding: 1.75rem 0;
 }
@@ -616,6 +622,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
+  direction: ltr;
 }
 
 /* Artifact drawing strokes — animate stroke-dashoffset when .is-live */

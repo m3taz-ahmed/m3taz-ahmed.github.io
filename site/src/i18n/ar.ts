@@ -314,6 +314,7 @@ const ar: Translation = {
     title: { prefix: 'أخبرني ', highlight: 'بما تبنيه.' },
     subtitle: 'رسالة واحدة تكفي لتشغيل المسار.',
     expectations: ['رد خلال 24 ساعة', 'مكالمة اكتشاف مجانية', 'NDA عند الطلب', 'EN / العربية'],
+    responseTime: 'متوسط الرد أقل من 24 ساعة · القاهرة (UTC+2)',
     info: {
       email: 'm3taz.ahmed@gmail.com',
       phone: '+201001495645',
@@ -333,6 +334,7 @@ const ar: Translation = {
         'تدقيق وتصليب',
         'شيء آخر',
       ],
+      messageLabel: 'الرسالة',
       message: 'تفاصيل المشروع، الجدول الزمني، المشكلة التي تؤرّقك...',
       submit: 'أرسل',
       sending: 'جارٍ الإرسال...',

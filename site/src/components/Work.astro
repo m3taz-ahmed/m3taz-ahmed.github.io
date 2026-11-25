@@ -60,14 +60,14 @@ const isAr = locale === 'ar';
               <div class="flex flex-col gap-3">
                 {p.link && (
                   <a href={p.link} target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+                    class="inline-flex items-center gap-2 py-2 text-primary font-semibold text-sm hover:gap-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                     {p.code === 'AIZ-04' ? 'GitHub' : t.work.live}
                     <Icon name="ExternalLink" size={14} />
                   </a>
                 )}
                 {p.caseStudyLink && (
                   <a href={p.caseStudyLink} target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+                    class="inline-flex items-center gap-2 py-2 text-secondary font-semibold text-sm hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
                     {t.work.caseStudy}
                     <Icon name={isAr ? 'ArrowLeft' : 'ArrowRight'} size={14} />
                   </a>
@@ -83,7 +83,7 @@ const isAr = locale === 'ar';
     <div class="max-w-6xl mt-10 glass-card reveal">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
         <h3 class="font-mono text-sm font-semibold text-fg tracking-wider uppercase">{t.work.index.title}</h3>
-        <a href="https://github.com/m3taz-ahmed" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all">
+        <a href="https://github.com/m3taz-ahmed" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 py-2 text-primary text-sm font-medium hover:gap-3 transition-all">
           {t.work.index.viewProfile} <Icon name="ExternalLink" size={13} />
         </a>
       </div>

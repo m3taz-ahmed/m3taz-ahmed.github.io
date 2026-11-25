@@ -312,6 +312,7 @@ const en = {
     title: { prefix: 'Tell me what ', highlight: "you're building." },
     subtitle: 'One message is all it takes to start the pipeline.',
     expectations: ['Reply < 24h', 'Free discovery call', 'NDA on request', 'EN / العربية'],
+    responseTime: 'Avg. reply < 24h · Cairo (UTC+2)',
     info: {
       email: 'm3taz.ahmed@gmail.com',
       phone: '+201001495645',
@@ -331,6 +332,7 @@ const en = {
         'Audit & hardening',
         'Something else',
       ],
+      messageLabel: 'Message',
       message: 'Project details, timeline, the problem keeping you up at night...',
       submit: 'Transmit',
       sending: 'Transmitting...',

@@ -27,7 +27,7 @@ const contact = t.contact.info;
 
     <div class="max-w-6xl grid lg:grid-cols-5 gap-8">
       <!-- Channels -->
-      <div class="lg:col-span-2 space-y-3">
+      <div class="lg:col-span-2 min-w-0 space-y-3">
         {[
           { icon: 'Mail', label: contact.email, href: `mailto:${contact.email}` },
           { icon: 'Phone', label: contact.phone, href: `tel:${contact.phone}` },
@@ -40,15 +40,15 @@ const contact = t.contact.info;
             <span class="w-9 h-9 rounded-lg border border-border-strong flex items-center justify-center bg-card-solid shrink-0 group-hover:border-primary transition-colors">
               <Icon name={c.icon} size={17} class="text-primary" />
             </span>
-            <span class="text-sm font-medium truncate">{c.label}</span>
+            <span class="text-sm font-medium truncate" dir={c.href.startsWith('tel') ? 'ltr' : undefined}>{c.label}</span>
             <Icon name="ArrowUpRight" size={14} class="ms-auto opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
           </a>
         ))}
-        <p class="mono-note pt-3 ps-1">Avg. reply &lt; 24h · Cairo (UTC+2)</p>
+        <p class="mono-note pt-3 ps-1">{t.contact.responseTime}</p>
       </div>
 
       <!-- Form -->
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 min-w-0">
         <div class="glass-card reveal">
           <h3 class="font-display text-xl font-semibold text-fg mb-6">{t.contact.form.title}</h3>
           <form
@@ -66,7 +66,7 @@ const contact = t.contact.info;
             <input type="hidden" name="redirect" value="https://m3taz-ahmed.github.io" />
             <input type="hidden" name="subject" value="New pipeline inquiry — m3taz-ahmed.github.io" />
             <input type="hidden" name="from_name" value="Portfolio Contact" />
-            <div class="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+            <div class="sr-only" aria-hidden="true">
               <label for="website">Website</label>
               <input id="website" type="text" name="website" tabindex="-1" autocomplete="off" />
             </div>
@@ -102,7 +102,7 @@ const contact = t.contact.info;
             </div>
 
             <div>
-              <label for="message" class="mono-note block mb-1.5">Message</label>
+              <label for="message" class="mono-note block mb-1.5">{t.contact.form.messageLabel}</label>
               <textarea
                 id="message" name="message" rows="5" required minlength="10"
                 placeholder={t.contact.form.message}
@@ -110,7 +110,7 @@ const contact = t.contact.info;
               ></textarea>
             </div>
 
-            <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang={locale}></div>
+            <div class="h-captcha" data-captcha="true" data-theme="dark" data-size="compact" data-lang={locale}></div>
 
             <button type="submit" id="submit-btn" class="btn btn-primary w-full font-mono tracking-wide">
               <span>{t.contact.form.submit}</span>
